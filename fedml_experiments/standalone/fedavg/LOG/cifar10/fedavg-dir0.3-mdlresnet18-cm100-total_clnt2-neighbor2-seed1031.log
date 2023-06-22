@@ -1,0 +1,669 @@
+Namespace(batch_size=128, ci=0, client_num_in_total=2, client_num_per_round=2, client_optimizer='sgd', comm_round=100, data_dir='/Date/FL/DisPFL-master/data/', dataset='cifar10', epochs=5, frac=1.0, frequency_of_the_test=1, gpu=0, identity='fedavg-dir0.3-mdlresnet18-cm100-total_clnt2-neighbor2-seed1031', lr=0.1, lr_decay=0.998, model='resnet18', momentum=0, partition_alpha=0.3, partition_method='dir', seed=1031, tag='test', wd=0.0005)
+cuda:0
+running at devicecuda:0
+*********partition data***************
+train_num25000  test_num5005
+client_idx = 0, local_sample_number = 25000
+train_num25000  test_num5003
+client_idx = 1, local_sample_number = 25000
+DATA Partition: Train [4081, 35, 2941, 3111, 2, 177, 5000, 4161, 3980, 1512]; Test [817, 7, 589, 623, 1, 36, 1000, 833, 796, 303]
+DATA Partition: Train [919, 4965, 2059, 1889, 4998, 4823, 0, 839, 1020, 3488]; Test [184, 993, 412, 378, 1000, 965, 0, 168, 205, 698]
+create_model. model_name = resnet18
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (linear): Linear(in_features=512, out_features=10, bias=True)
+)
+############setup_clients (START)#############
+self.local_sample_number = 25000
+self.local_sample_number = 25000
+############setup_clients (END)#############
+################Communication round : 0
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(0): 0
+Client Index = 0	Epoch: 0	Loss: 2.151559
+Client Index = 0	Epoch: 1	Loss: 1.608959
+Client Index = 0	Epoch: 2	Loss: 1.497832
+Client Index = 0	Epoch: 3	Loss: 1.395382
+Client Index = 0	Epoch: 4	Loss: 1.329213
+@@@@@@@@@@@@@@@@ Training Client CM(0): 1
+Client Index = 1	Epoch: 0	Loss: 2.253274
+Client Index = 1	Epoch: 1	Loss: 1.720383
+Client Index = 1	Epoch: 2	Loss: 1.571149
+Client Index = 1	Epoch: 3	Loss: 1.448794
+Client Index = 1	Epoch: 4	Loss: 1.365266
+{'training_loss': 1.6341812513920724}
+################global_test_on_all_clients : 0
+{'global_test_acc': 0.2726556873068966, 'global_test_loss': 2.2310706931160236}
+{'person_test_acc': 0.41985426126941217, 'person_test_loss': 1.7787734061547535}
+################Communication round : 1
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(1): 0
+Client Index = 0	Epoch: 0	Loss: 1.454180
+Client Index = 0	Epoch: 1	Loss: 1.272150
+Client Index = 0	Epoch: 2	Loss: 1.192614
+Client Index = 0	Epoch: 3	Loss: 1.118765
+Client Index = 0	Epoch: 4	Loss: 1.065544
+@@@@@@@@@@@@@@@@ Training Client CM(1): 1
+Client Index = 1	Epoch: 0	Loss: 1.506660
+Client Index = 1	Epoch: 1	Loss: 1.330056
+Client Index = 1	Epoch: 2	Loss: 1.257738
+Client Index = 1	Epoch: 3	Loss: 1.179858
+Client Index = 1	Epoch: 4	Loss: 1.132453
+{'training_loss': 1.2510017724669709}
+################global_test_on_all_clients : 1
+{'global_test_acc': 0.35369922901404016, 'global_test_loss': 2.0485295664359153}
+{'person_test_acc': 0.5552425387924089, 'person_test_loss': 1.225084443413207}
+################Communication round : 2
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(2): 0
+Client Index = 0	Epoch: 0	Loss: 1.147666
+Client Index = 0	Epoch: 1	Loss: 1.014226
+Client Index = 0	Epoch: 2	Loss: 0.937687
+Client Index = 0	Epoch: 3	Loss: 0.878089
+Client Index = 0	Epoch: 4	Loss: 0.809547
+@@@@@@@@@@@@@@@@ Training Client CM(2): 1
+Client Index = 1	Epoch: 0	Loss: 1.213268
+Client Index = 1	Epoch: 1	Loss: 1.093066
+Client Index = 1	Epoch: 2	Loss: 1.022380
+Client Index = 1	Epoch: 3	Loss: 0.971952
+Client Index = 1	Epoch: 4	Loss: 0.911746
+{'training_loss': 0.9999627316636697}
+################global_test_on_all_clients : 2
+{'global_test_acc': 0.4204431586802164, 'global_test_loss': 1.895049080768021}
+{'person_test_acc': 0.585519896853097, 'person_test_loss': 1.2365303121749012}
+################Communication round : 3
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(3): 0
+Client Index = 0	Epoch: 0	Loss: 0.880471
+Client Index = 0	Epoch: 1	Loss: 0.789619
+Client Index = 0	Epoch: 2	Loss: 0.758450
+Client Index = 0	Epoch: 3	Loss: 0.693703
+Client Index = 0	Epoch: 4	Loss: 0.652601
+@@@@@@@@@@@@@@@@ Training Client CM(3): 1
+Client Index = 1	Epoch: 0	Loss: 0.962095
+Client Index = 1	Epoch: 1	Loss: 0.875886
+Client Index = 1	Epoch: 2	Loss: 0.828165
+Client Index = 1	Epoch: 3	Loss: 0.756974
+Client Index = 1	Epoch: 4	Loss: 0.712270
+{'training_loss': 0.7910234811354657}
+################global_test_on_all_clients : 3
+{'global_test_acc': 0.5089747350390964, 'global_test_loss': 1.581779609614609}
+{'person_test_acc': 0.6592598287181537, 'person_test_loss': 1.0029391888815526}
+################Communication round : 4
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(4): 0
+Client Index = 0	Epoch: 0	Loss: 0.717716
+Client Index = 0	Epoch: 1	Loss: 0.635249
+Client Index = 0	Epoch: 2	Loss: 0.601229
+Client Index = 0	Epoch: 3	Loss: 0.576984
+Client Index = 0	Epoch: 4	Loss: 0.557247
+@@@@@@@@@@@@@@@@ Training Client CM(4): 1
+Client Index = 1	Epoch: 0	Loss: 0.750941
+Client Index = 1	Epoch: 1	Loss: 0.705525
+Client Index = 1	Epoch: 2	Loss: 0.648595
+Client Index = 1	Epoch: 3	Loss: 0.611272
+Client Index = 1	Epoch: 4	Loss: 0.587259
+{'training_loss': 0.6392018306316161}
+################global_test_on_all_clients : 4
+{'global_test_acc': 0.5455436029091836, 'global_test_loss': 1.352084319636111}
+{'person_test_acc': 0.7610875033421506, 'person_test_loss': 0.7085351832198469}
+################Communication round : 5
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(5): 0
+Client Index = 0	Epoch: 0	Loss: 0.599448
+Client Index = 0	Epoch: 1	Loss: 0.532641
+Client Index = 0	Epoch: 2	Loss: 0.516486
+Client Index = 0	Epoch: 3	Loss: 0.484282
+Client Index = 0	Epoch: 4	Loss: 0.468797
+@@@@@@@@@@@@@@@@ Training Client CM(5): 1
+Client Index = 1	Epoch: 0	Loss: 0.633966
+Client Index = 1	Epoch: 1	Loss: 0.579223
+Client Index = 1	Epoch: 2	Loss: 0.545091
+Client Index = 1	Epoch: 3	Loss: 0.516543
+Client Index = 1	Epoch: 4	Loss: 0.489953
+{'training_loss': 0.536643041617104}
+################global_test_on_all_clients : 5
+{'global_test_acc': 0.6993291537564974, 'global_test_loss': 0.8741861255321073}
+{'person_test_acc': 0.7702851815384296, 'person_test_loss': 0.6796387858651283}
+################Communication round : 6
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(6): 0
+Client Index = 0	Epoch: 0	Loss: 0.501793
+Client Index = 0	Epoch: 1	Loss: 0.454977
+Client Index = 0	Epoch: 2	Loss: 0.428079
+Client Index = 0	Epoch: 3	Loss: 0.418819
+Client Index = 0	Epoch: 4	Loss: 0.385398
+@@@@@@@@@@@@@@@@ Training Client CM(6): 1
+Client Index = 1	Epoch: 0	Loss: 0.537668
+Client Index = 1	Epoch: 1	Loss: 0.498035
+Client Index = 1	Epoch: 2	Loss: 0.467420
+Client Index = 1	Epoch: 3	Loss: 0.452908
+Client Index = 1	Epoch: 4	Loss: 0.429010
+{'training_loss': 0.4574106573830454}
+################global_test_on_all_clients : 6
+{'global_test_acc': 0.7166211761454615, 'global_test_loss': 0.8972113193811568}
+{'person_test_acc': 0.73980095459208, 'person_test_loss': 0.849244994702389}
+################Communication round : 7
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(7): 0
+Client Index = 0	Epoch: 0	Loss: 0.444267
+Client Index = 0	Epoch: 1	Loss: 0.389783
+Client Index = 0	Epoch: 2	Loss: 0.378931
+Client Index = 0	Epoch: 3	Loss: 0.368275
+Client Index = 0	Epoch: 4	Loss: 0.326645
+@@@@@@@@@@@@@@@@ Training Client CM(7): 1
+Client Index = 1	Epoch: 0	Loss: 0.466358
+Client Index = 1	Epoch: 1	Loss: 0.431749
+Client Index = 1	Epoch: 2	Loss: 0.403230
+Client Index = 1	Epoch: 3	Loss: 0.397289
+Client Index = 1	Epoch: 4	Loss: 0.374686
+{'training_loss': 0.39812131037517473}
+################global_test_on_all_clients : 7
+{'global_test_acc': 0.7075250753643718, 'global_test_loss': 0.9014847814332837}
+{'person_test_acc': 0.8152425028499384, 'person_test_loss': 0.5487451776043798}
+################Communication round : 8
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(8): 0
+Client Index = 0	Epoch: 0	Loss: 0.391800
+Client Index = 0	Epoch: 1	Loss: 0.339375
+Client Index = 0	Epoch: 2	Loss: 0.329171
+Client Index = 0	Epoch: 3	Loss: 0.315252
+Client Index = 0	Epoch: 4	Loss: 0.299650
+@@@@@@@@@@@@@@@@ Training Client CM(8): 1
+Client Index = 1	Epoch: 0	Loss: 0.418461
+Client Index = 1	Epoch: 1	Loss: 0.388702
+Client Index = 1	Epoch: 2	Loss: 0.366352
+Client Index = 1	Epoch: 3	Loss: 0.351894
+Client Index = 1	Epoch: 4	Loss: 0.328271
+{'training_loss': 0.3528927167687489}
+################global_test_on_all_clients : 8
+{'global_test_acc': 0.7256143017486212, 'global_test_loss': 0.8775666309141722}
+{'person_test_acc': 0.8299301737638736, 'person_test_loss': 0.5160392854363094}
+################Communication round : 9
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(9): 0
+Client Index = 0	Epoch: 0	Loss: 0.337386
+Client Index = 0	Epoch: 1	Loss: 0.308384
+Client Index = 0	Epoch: 2	Loss: 0.287378
+Client Index = 0	Epoch: 3	Loss: 0.281054
+Client Index = 0	Epoch: 4	Loss: 0.275866
+@@@@@@@@@@@@@@@@ Training Client CM(9): 1
+Client Index = 1	Epoch: 0	Loss: 0.367783
+Client Index = 1	Epoch: 1	Loss: 0.339310
+Client Index = 1	Epoch: 2	Loss: 0.324402
+Client Index = 1	Epoch: 3	Loss: 0.313708
+Client Index = 1	Epoch: 4	Loss: 0.315937
+{'training_loss': 0.31512068732432563}
+################global_test_on_all_clients : 9
+{'global_test_acc': 0.7975546340527352, 'global_test_loss': 0.6250096840514452}
+{'person_test_acc': 0.8502187598529793, 'person_test_loss': 0.4524659284484936}
+################Communication round : 10
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(10): 0
+Client Index = 0	Epoch: 0	Loss: 0.295143
+Client Index = 0	Epoch: 1	Loss: 0.272586
+Client Index = 0	Epoch: 2	Loss: 0.266285
+Client Index = 0	Epoch: 3	Loss: 0.251037
+Client Index = 0	Epoch: 4	Loss: 0.238521
+@@@@@@@@@@@@@@@@ Training Client CM(10): 1
+Client Index = 1	Epoch: 0	Loss: 0.330935
+Client Index = 1	Epoch: 1	Loss: 0.306449
+Client Index = 1	Epoch: 2	Loss: 0.288828
+Client Index = 1	Epoch: 3	Loss: 0.291560
+Client Index = 1	Epoch: 4	Loss: 0.266848
+{'training_loss': 0.28081935714854267}
+################global_test_on_all_clients : 10
+{'global_test_acc': 0.7916616064327437, 'global_test_loss': 0.6495006130958849}
+{'person_test_acc': 0.8500163638080888, 'person_test_loss': 0.441435880215968}
+################Communication round : 11
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(11): 0
+Client Index = 0	Epoch: 0	Loss: 0.275823
+Client Index = 0	Epoch: 1	Loss: 0.238092
+Client Index = 0	Epoch: 2	Loss: 0.256781
+Client Index = 0	Epoch: 3	Loss: 0.222851
+Client Index = 0	Epoch: 4	Loss: 0.212293
+@@@@@@@@@@@@@@@@ Training Client CM(11): 1
+Client Index = 1	Epoch: 0	Loss: 0.297509
+Client Index = 1	Epoch: 1	Loss: 0.287347
+Client Index = 1	Epoch: 2	Loss: 0.267017
+Client Index = 1	Epoch: 3	Loss: 0.257901
+Client Index = 1	Epoch: 4	Loss: 0.241874
+{'training_loss': 0.2557488415732372}
+################global_test_on_all_clients : 11
+{'global_test_acc': 0.7875649435513516, 'global_test_loss': 0.6700292232299734}
+{'person_test_acc': 0.8382223213524433, 'person_test_loss': 0.506607477684254}
+################Communication round : 12
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(12): 0
+Client Index = 0	Epoch: 0	Loss: 0.249526
+Client Index = 0	Epoch: 1	Loss: 0.220495
+Client Index = 0	Epoch: 2	Loss: 0.215233
+Client Index = 0	Epoch: 3	Loss: 0.203925
+Client Index = 0	Epoch: 4	Loss: 0.196868
+@@@@@@@@@@@@@@@@ Training Client CM(12): 1
+Client Index = 1	Epoch: 0	Loss: 0.278087
+Client Index = 1	Epoch: 1	Loss: 0.254945
+Client Index = 1	Epoch: 2	Loss: 0.242544
+Client Index = 1	Epoch: 3	Loss: 0.230636
+Client Index = 1	Epoch: 4	Loss: 0.228157
+{'training_loss': 0.23204151349978486}
+################global_test_on_all_clients : 12
+{'global_test_acc': 0.8250359873985698, 'global_test_loss': 0.541199178951982}
+{'person_test_acc': 0.8726021330258789, 'person_test_loss': 0.4068781084877273}
+################Communication round : 13
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(13): 0
+Client Index = 0	Epoch: 0	Loss: 0.223975
+Client Index = 0	Epoch: 1	Loss: 0.206157
+Client Index = 0	Epoch: 2	Loss: 0.197682
+Client Index = 0	Epoch: 3	Loss: 0.182222
+Client Index = 0	Epoch: 4	Loss: 0.198303
+@@@@@@@@@@@@@@@@ Training Client CM(13): 1
+Client Index = 1	Epoch: 0	Loss: 0.247485
+Client Index = 1	Epoch: 1	Loss: 0.256326
+Client Index = 1	Epoch: 2	Loss: 0.223517
+Client Index = 1	Epoch: 3	Loss: 0.217760
+Client Index = 1	Epoch: 4	Loss: 0.205800
+{'training_loss': 0.21592260469891586}
+################global_test_on_all_clients : 13
+{'global_test_acc': 0.8306301134404273, 'global_test_loss': 0.5251129720393263}
+{'person_test_acc': 0.8659063902317949, 'person_test_loss': 0.42166077003169644}
+################Communication round : 14
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(14): 0
+Client Index = 0	Epoch: 0	Loss: 0.205911
+Client Index = 0	Epoch: 1	Loss: 0.189159
+Client Index = 0	Epoch: 2	Loss: 0.177144
+Client Index = 0	Epoch: 3	Loss: 0.174126
+Client Index = 0	Epoch: 4	Loss: 0.162836
+@@@@@@@@@@@@@@@@ Training Client CM(14): 1
+Client Index = 1	Epoch: 0	Loss: 0.240547
+Client Index = 1	Epoch: 1	Loss: 0.214963
+Client Index = 1	Epoch: 2	Loss: 0.205597
+Client Index = 1	Epoch: 3	Loss: 0.191880
+Client Index = 1	Epoch: 4	Loss: 0.190182
+{'training_loss': 0.19523439712784424}
+################global_test_on_all_clients : 14
+{'global_test_acc': 0.7905642628408969, 'global_test_loss': 0.6809148288152198}
+{'person_test_acc': 0.8290243236675376, 'person_test_loss': 0.5796189201577473}
+################Communication round : 15
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(15): 0
+Client Index = 0	Epoch: 0	Loss: 0.184423
+Client Index = 0	Epoch: 1	Loss: 0.171550
+Client Index = 0	Epoch: 2	Loss: 0.162027
+Client Index = 0	Epoch: 3	Loss: 0.154293
+Client Index = 0	Epoch: 4	Loss: 0.149873
+@@@@@@@@@@@@@@@@ Training Client CM(15): 1
+Client Index = 1	Epoch: 0	Loss: 0.216193
+Client Index = 1	Epoch: 1	Loss: 0.194867
+Client Index = 1	Epoch: 2	Loss: 0.189288
+Client Index = 1	Epoch: 3	Loss: 0.179670
+Client Index = 1	Epoch: 4	Loss: 0.171092
+{'training_loss': 0.17732747873785548}
+################global_test_on_all_clients : 15
+{'global_test_acc': 0.826536365892752, 'global_test_loss': 0.5592134852436428}
+{'person_test_acc': 0.877298515995298, 'person_test_loss': 0.38313041708001483}
+################Communication round : 16
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(16): 0
+Client Index = 0	Epoch: 0	Loss: 0.174377
+Client Index = 0	Epoch: 1	Loss: 0.158242
+Client Index = 0	Epoch: 2	Loss: 0.150751
+Client Index = 0	Epoch: 3	Loss: 0.153321
+Client Index = 0	Epoch: 4	Loss: 0.131326
+@@@@@@@@@@@@@@@@ Training Client CM(16): 1
+Client Index = 1	Epoch: 0	Loss: 0.201452
+Client Index = 1	Epoch: 1	Loss: 0.175317
+Client Index = 1	Epoch: 2	Loss: 0.171275
+Client Index = 1	Epoch: 3	Loss: 0.171822
+Client Index = 1	Epoch: 4	Loss: 0.165148
+{'training_loss': 0.1653032186156025}
+################global_test_on_all_clients : 16
+{'global_test_acc': 0.8324286746633338, 'global_test_loss': 0.5403440251663462}
+{'person_test_acc': 0.8804922840501493, 'person_test_loss': 0.3965547446306733}
+################Communication round : 17
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(17): 0
+Client Index = 0	Epoch: 0	Loss: 0.158955
+Client Index = 0	Epoch: 1	Loss: 0.154424
+Client Index = 0	Epoch: 2	Loss: 0.139972
+Client Index = 0	Epoch: 3	Loss: 0.129276
+Client Index = 0	Epoch: 4	Loss: 0.132038
+@@@@@@@@@@@@@@@@ Training Client CM(17): 1
+Client Index = 1	Epoch: 0	Loss: 0.183984
+Client Index = 1	Epoch: 1	Loss: 0.168787
+Client Index = 1	Epoch: 2	Loss: 0.168243
+Client Index = 1	Epoch: 3	Loss: 0.160748
+Client Index = 1	Epoch: 4	Loss: 0.142453
+{'training_loss': 0.15388803680959556}
+################global_test_on_all_clients : 17
+{'global_test_acc': 0.8324288743437254, 'global_test_loss': 0.5751804704076843}
+{'person_test_acc': 0.8738934860861705, 'person_test_loss': 0.44048885645011815}
+################Communication round : 18
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(18): 0
+Client Index = 0	Epoch: 0	Loss: 0.148826
+Client Index = 0	Epoch: 1	Loss: 0.144021
+Client Index = 0	Epoch: 2	Loss: 0.133858
+Client Index = 0	Epoch: 3	Loss: 0.128094
+Client Index = 0	Epoch: 4	Loss: 0.121900
+@@@@@@@@@@@@@@@@ Training Client CM(18): 1
+Client Index = 1	Epoch: 0	Loss: 0.162352
+Client Index = 1	Epoch: 1	Loss: 0.172154
+Client Index = 1	Epoch: 2	Loss: 0.154292
+Client Index = 1	Epoch: 3	Loss: 0.157297
+Client Index = 1	Epoch: 4	Loss: 0.145954
+{'training_loss': 0.14687477719342829}
+################global_test_on_all_clients : 18
+{'global_test_acc': 0.7925640220263446, 'global_test_loss': 0.7291855809277916}
+{'person_test_acc': 0.8434254332515376, 'person_test_loss': 0.5512306224943284}
+################Communication round : 19
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(19): 0
+Client Index = 0	Epoch: 0	Loss: 0.142063
+Client Index = 0	Epoch: 1	Loss: 0.144416
+Client Index = 0	Epoch: 2	Loss: 0.110944
+Client Index = 0	Epoch: 3	Loss: 0.114012
+Client Index = 0	Epoch: 4	Loss: 0.106476
+@@@@@@@@@@@@@@@@ Training Client CM(19): 1
+Client Index = 1	Epoch: 0	Loss: 0.163398
+Client Index = 1	Epoch: 1	Loss: 0.147677
+Client Index = 1	Epoch: 2	Loss: 0.148742
+Client Index = 1	Epoch: 3	Loss: 0.138091
+Client Index = 1	Epoch: 4	Loss: 0.129624
+{'training_loss': 0.13454418363790882}
+################global_test_on_all_clients : 19
+{'global_test_acc': 0.8287320514784037, 'global_test_loss': 0.5933902897638158}
+{'person_test_acc': 0.8634047743182263, 'person_test_loss': 0.4736712652309314}
+################Communication round : 20
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(20): 0
+Client Index = 0	Epoch: 0	Loss: 0.141077
+Client Index = 0	Epoch: 1	Loss: 0.124951
+Client Index = 0	Epoch: 2	Loss: 0.123459
+Client Index = 0	Epoch: 3	Loss: 0.110910
+Client Index = 0	Epoch: 4	Loss: 0.097607
+@@@@@@@@@@@@@@@@ Training Client CM(20): 1
+Client Index = 1	Epoch: 0	Loss: 0.152103
+Client Index = 1	Epoch: 1	Loss: 0.133224
+Client Index = 1	Epoch: 2	Loss: 0.143188
+Client Index = 1	Epoch: 3	Loss: 0.146126
+Client Index = 1	Epoch: 4	Loss: 0.120571
+{'training_loss': 0.12932152308010478}
+################global_test_on_all_clients : 20
+{'global_test_acc': 0.8066512140667648, 'global_test_loss': 0.6673051230247473}
+{'person_test_acc': 0.8408128549443761, 'person_test_loss': 0.584700458671175}
+################Communication round : 21
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(21): 0
+Client Index = 0	Epoch: 0	Loss: 0.117272
+Client Index = 0	Epoch: 1	Loss: 0.111021
+Client Index = 0	Epoch: 2	Loss: 0.115192
+Client Index = 0	Epoch: 3	Loss: 0.121117
+Client Index = 0	Epoch: 4	Loss: 0.087290
+@@@@@@@@@@@@@@@@ Training Client CM(21): 1
+Client Index = 1	Epoch: 0	Loss: 0.142886
+Client Index = 1	Epoch: 1	Loss: 0.135432
+Client Index = 1	Epoch: 2	Loss: 0.130341
+Client Index = 1	Epoch: 3	Loss: 0.125846
+Client Index = 1	Epoch: 4	Loss: 0.149225
+{'training_loss': 0.12356219832614368}
+################global_test_on_all_clients : 21
+{'global_test_acc': 0.8422206815770678, 'global_test_loss': 0.5512640047155722}
+{'person_test_acc': 0.8456310229846109, 'person_test_loss': 0.5444747832915386}
+################Communication round : 22
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(22): 0
+Client Index = 0	Epoch: 0	Loss: 0.127666
+Client Index = 0	Epoch: 1	Loss: 0.108598
+Client Index = 0	Epoch: 2	Loss: 0.110043
+Client Index = 0	Epoch: 3	Loss: 0.120177
+Client Index = 0	Epoch: 4	Loss: 0.091613
+@@@@@@@@@@@@@@@@ Training Client CM(22): 1
+Client Index = 1	Epoch: 0	Loss: 0.132678
+Client Index = 1	Epoch: 1	Loss: 0.127779
+Client Index = 1	Epoch: 2	Loss: 0.122161
+Client Index = 1	Epoch: 3	Loss: 0.127836
+Client Index = 1	Epoch: 4	Loss: 0.109626
+{'training_loss': 0.11781776617281137}
+################global_test_on_all_clients : 22
+{'global_test_acc': 0.8565087520914025, 'global_test_loss': 0.48691355069737907}
+{'person_test_acc': 0.8988794535466532, 'person_test_loss': 0.3467246616844174}
+################Communication round : 23
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(23): 0
+Client Index = 0	Epoch: 0	Loss: 0.109667
+Client Index = 0	Epoch: 1	Loss: 0.101292
+Client Index = 0	Epoch: 2	Loss: 0.096265
+Client Index = 0	Epoch: 3	Loss: 0.098380
+Client Index = 0	Epoch: 4	Loss: 0.100143
+@@@@@@@@@@@@@@@@ Training Client CM(23): 1
+Client Index = 1	Epoch: 0	Loss: 0.118023
+Client Index = 1	Epoch: 1	Loss: 0.116856
+Client Index = 1	Epoch: 2	Loss: 0.111020
+Client Index = 1	Epoch: 3	Loss: 0.111647
+Client Index = 1	Epoch: 4	Loss: 0.111217
+{'training_loss': 0.10745103752136004}
+################global_test_on_all_clients : 23
+{'global_test_acc': 0.7944624034769947, 'global_test_loss': 0.7564571807702956}
+{'person_test_acc': 0.813031282129823, 'person_test_loss': 0.7156843781231841}
+################Communication round : 24
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(24): 0
+Client Index = 0	Epoch: 0	Loss: 0.110268
+Client Index = 0	Epoch: 1	Loss: 0.101067
+Client Index = 0	Epoch: 2	Loss: 0.125794
+Client Index = 0	Epoch: 3	Loss: 0.089478
+Client Index = 0	Epoch: 4	Loss: 0.079143
+@@@@@@@@@@@@@@@@ Training Client CM(24): 1
+Client Index = 1	Epoch: 0	Loss: 0.116812
+Client Index = 1	Epoch: 1	Loss: 0.113314
+Client Index = 1	Epoch: 2	Loss: 0.132721
+Client Index = 1	Epoch: 3	Loss: 0.106240
+Client Index = 1	Epoch: 4	Loss: 0.099720
+{'training_loss': 0.10745572180734303}
+################global_test_on_all_clients : 24
+{'global_test_acc': 0.8410244762233569, 'global_test_loss': 0.5602119104717194}
+{'person_test_acc': 0.8929809147478546, 'person_test_loss': 0.3741939739122775}
+################Communication round : 25
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(25): 0
+Client Index = 0	Epoch: 0	Loss: 0.105816
+Client Index = 0	Epoch: 1	Loss: 0.094907
+Client Index = 0	Epoch: 2	Loss: 0.077926
+Client Index = 0	Epoch: 3	Loss: 0.109909
+Client Index = 0	Epoch: 4	Loss: 0.085480
+@@@@@@@@@@@@@@@@ Training Client CM(25): 1
+Client Index = 1	Epoch: 0	Loss: 0.125076
+Client Index = 1	Epoch: 1	Loss: 0.111711
+Client Index = 1	Epoch: 2	Loss: 0.108799
+Client Index = 1	Epoch: 3	Loss: 0.103959
+Client Index = 1	Epoch: 4	Loss: 0.102668
+{'training_loss': 0.10262516640478328}
+################global_test_on_all_clients : 25
+{'global_test_acc': 0.859905994465259, 'global_test_loss': 0.4936636999921352}
+{'person_test_acc': 0.8827879895439359, 'person_test_loss': 0.4220323087783719}
+################Communication round : 26
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(26): 0
+Client Index = 0	Epoch: 0	Loss: 0.091179
+Client Index = 0	Epoch: 1	Loss: 0.091753
+Client Index = 0	Epoch: 2	Loss: 0.084761
+Client Index = 0	Epoch: 3	Loss: 0.091071
+Client Index = 0	Epoch: 4	Loss: 0.077556
+@@@@@@@@@@@@@@@@ Training Client CM(26): 1
+Client Index = 1	Epoch: 0	Loss: 0.100667
+Client Index = 1	Epoch: 1	Loss: 0.118495
+Client Index = 1	Epoch: 2	Loss: 0.107746
+Client Index = 1	Epoch: 3	Loss: 0.106741
+Client Index = 1	Epoch: 4	Loss: 0.088366
+{'training_loss': 0.09583346268580276}
+################global_test_on_all_clients : 26
+{'global_test_acc': 0.8636081288289963, 'global_test_loss': 0.4700057440446902}
+{'person_test_acc': 0.8837870704150936, 'person_test_loss': 0.4152142994711281}
+################Communication round : 27
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(27): 0
+Client Index = 0	Epoch: 0	Loss: 0.090495
+Client Index = 0	Epoch: 1	Loss: 0.098973
+Client Index = 0	Epoch: 2	Loss: 0.092570
+Client Index = 0	Epoch: 3	Loss: 0.086530
+Client Index = 0	Epoch: 4	Loss: 0.071313
+@@@@@@@@@@@@@@@@ Training Client CM(27): 1
+Client Index = 1	Epoch: 0	Loss: 0.101797
+Client Index = 1	Epoch: 1	Loss: 0.107941
+Client Index = 1	Epoch: 2	Loss: 0.124689
+Client Index = 1	Epoch: 3	Loss: 0.095340
+Client Index = 1	Epoch: 4	Loss: 0.097952
+{'training_loss': 0.09676028091593512}
+################global_test_on_all_clients : 27
+{'global_test_acc': 0.8425279297955692, 'global_test_loss': 0.5466300384498439}
+{'person_test_acc': 0.8659074285698312, 'person_test_loss': 0.4630977599429884}
+################Communication round : 28
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(28): 0
+Client Index = 0	Epoch: 0	Loss: 0.099801
+Client Index = 0	Epoch: 1	Loss: 0.086453
+Client Index = 0	Epoch: 2	Loss: 0.100765
+Client Index = 0	Epoch: 3	Loss: 0.076889
+Client Index = 0	Epoch: 4	Loss: 0.083010
+@@@@@@@@@@@@@@@@ Training Client CM(28): 1
+Client Index = 1	Epoch: 0	Loss: 0.111757
+Client Index = 1	Epoch: 1	Loss: 0.101797
+Client Index = 1	Epoch: 2	Loss: 0.117496
+Client Index = 1	Epoch: 3	Loss: 0.083820
+Client Index = 1	Epoch: 4	Loss: 0.097098
+{'training_loss': 0.09588858343646577}
+################global_test_on_all_clients : 28
+{'global_test_acc': 0.86020733214417, 'global_test_loss': 0.4933614100057914}
+{'person_test_acc': 0.8885828742514731, 'person_test_loss': 0.3980455733104721}
+################Communication round : 29
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(29): 0
+Client Index = 0	Epoch: 0	Loss: 0.081217
+Client Index = 0	Epoch: 1	Loss: 0.102444
+Client Index = 0	Epoch: 2	Loss: 0.089544
+Client Index = 0	Epoch: 3	Loss: 0.078049
+Client Index = 0	Epoch: 4	Loss: 0.077504
+@@@@@@@@@@@@@@@@ Training Client CM(29): 1
+Client Index = 1	Epoch: 0	Loss: 0.089930
+Client Index = 1	Epoch: 1	Loss: 0.122510
+Client Index = 1	Epoch: 2	Loss: 0.086617
+Client Index = 1	Epoch: 3	Loss: 0.106940
+Client Index = 1	Epoch: 4	Loss: 0.081161
+{'training_loss': 0.09159162537294574}
+################global_test_on_all_clients : 29
+{'global_test_acc': 0.8597107469783863, 'global_test_loss': 0.4936344155647691}
+{'person_test_acc': 0.8638143188013265, 'person_test_loss': 0.5005703969671137}
+################Communication round : 30
+client_indexes = [0, 1]
+client_indexes = [0 1]
+@@@@@@@@@@@@@@@@ Training Client CM(30): 0
+Client Index = 0	Epoch: 0	Loss: 0.080314
+Client Index = 0	Epoch: 1	Loss: 0.091322

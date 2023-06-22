@@ -1,0 +1,336 @@
+Namespace(batch_size=128, ci=0, client_num_in_total=5, client_num_per_round=5, client_optimizer='sgd', comm_round=100, data_dir='/Date/FL/DisPFL-master/data/', dataset='tiny', epochs=5, frac=1.0, frequency_of_the_test=1, gpu=0, identity='fedavg-dir0.3-mdlresnet18-cm100-total_clnt5-neighbor5-seed1118', lr=0.1, lr_decay=0.998, model='resnet18', momentum=0, partition_alpha=0.3, partition_method='dir', seed=1118, tag='test', wd=0.0005)
+cuda:0
+running at devicecuda:0
+*********partition data***************
+train_num100000  test_num2000
+client_idx = 0, local_sample_number = 100000
+train_num10000  test_num2085
+client_idx = 1, local_sample_number = 10000
+train_num30000  test_num2085
+client_idx = 2, local_sample_number = 30000
+train_num50000  test_num2105
+client_idx = 3, local_sample_number = 50000
+train_num70000  test_num2095
+client_idx = 4, local_sample_number = 70000
+DATA Partition: Train [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500]; Test [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+DATA Partition: Train [63, 53, 50, 51, 52, 65, 46, 52, 38, 59, 55, 43, 45, 56, 51, 47, 42, 58, 52, 56, 40, 45, 49, 56, 41, 49, 50, 50, 47, 62, 47, 53, 57, 53, 48, 54, 46, 50, 47, 46, 52, 41, 46, 41, 50, 61, 39, 48, 49, 40, 56, 43, 54, 39, 61, 53, 46, 41, 37, 53, 55, 50, 47, 45, 52, 61, 48, 50, 51, 56, 41, 55, 49, 54, 55, 48, 54, 49, 44, 51, 41, 53, 51, 42, 62, 55, 53, 58, 56, 44, 42, 55, 54, 52, 57, 50, 38, 57, 44, 55, 42, 49, 56, 55, 51, 67, 44, 48, 46, 40, 60, 47, 50, 49, 43, 61, 49, 57, 46, 51, 51, 53, 51, 60, 46, 55, 50, 40, 57, 45, 44, 55, 45, 58, 53, 52, 56, 56, 56, 37, 54, 52, 47, 52, 61, 50, 59, 45, 47, 42, 49, 60, 47, 38, 45, 58, 45, 46, 48, 57, 55, 63, 53, 49, 53, 39, 46, 44, 38, 43, 50, 47, 51, 50, 65, 46, 50, 54, 47, 46, 46, 51, 64, 47, 63, 41, 48, 44, 39, 46, 59, 41, 56, 46, 47, 50, 38, 41, 47, 56]; Test [13, 11, 10, 11, 11, 13, 10, 11, 8, 12, 11, 9, 9, 12, 11, 10, 9, 12, 11, 12, 8, 9, 10, 12, 9, 10, 10, 10, 10, 13, 10, 11, 12, 11, 10, 11, 10, 10, 10, 10, 11, 9, 10, 9, 10, 13, 8, 10, 10, 8, 12, 9, 11, 8, 13, 11, 10, 9, 8, 11, 11, 10, 10, 9, 11, 13, 10, 10, 11, 12, 9, 11, 10, 11, 11, 10, 11, 10, 9, 11, 9, 11, 11, 9, 13, 11, 11, 12, 12, 9, 9, 11, 11, 11, 12, 10, 8, 12, 9, 11, 9, 10, 12, 11, 11, 14, 9, 10, 10, 8, 12, 10, 10, 10, 9, 13, 10, 12, 10, 11, 11, 11, 11, 12, 10, 11, 10, 8, 12, 9, 9, 11, 9, 12, 11, 11, 12, 12, 12, 8, 11, 11, 10, 11, 13, 10, 12, 9, 10, 9, 10, 12, 10, 8, 9, 12, 9, 10, 10, 12, 11, 13, 11, 10, 11, 8, 10, 9, 8, 9, 10, 10, 11, 10, 13, 10, 10, 11, 10, 10, 10, 11, 13, 10, 13, 9, 10, 9, 8, 10, 12, 9, 12, 10, 10, 10, 8, 9, 10, 12]
+DATA Partition: Train [144, 175, 149, 159, 145, 157, 147, 148, 159, 140, 147, 154, 155, 175, 140, 146, 145, 152, 143, 170, 161, 143, 144, 153, 147, 157, 161, 164, 131, 157, 134, 133, 156, 155, 156, 150, 143, 149, 158, 147, 148, 157, 150, 152, 150, 144, 146, 162, 146, 152, 147, 133, 150, 138, 146, 162, 133, 145, 146, 135, 137, 164, 147, 153, 133, 151, 135, 161, 150, 155, 136, 148, 150, 151, 146, 133, 150, 156, 155, 139, 154, 161, 154, 162, 139, 132, 163, 144, 164, 166, 162, 166, 137, 138, 156, 168, 155, 155, 163, 174, 168, 152, 134, 132, 145, 146, 145, 151, 154, 154, 136, 137, 157, 161, 158, 137, 144, 154, 144, 141, 131, 145, 146, 149, 158, 153, 164, 160, 133, 140, 139, 162, 150, 151, 165, 147, 153, 142, 156, 164, 155, 167, 145, 143, 148, 148, 154, 139, 156, 135, 143, 146, 148, 145, 131, 167, 148, 156, 155, 150, 153, 145, 142, 139, 148, 157, 140, 140, 150, 160, 154, 149, 149, 144, 147, 149, 150, 160, 170, 131, 142, 142, 168, 148, 142, 143, 163, 161, 154, 156, 142, 167, 152, 131, 154, 154, 148, 148, 173, 144]; Test [10, 12, 10, 11, 10, 11, 10, 10, 11, 10, 10, 11, 11, 12, 10, 10, 10, 11, 10, 12, 11, 10, 10, 11, 10, 11, 11, 11, 9, 11, 9, 9, 11, 11, 11, 10, 10, 10, 11, 10, 10, 11, 10, 11, 10, 10, 10, 11, 10, 11, 10, 9, 10, 10, 10, 11, 9, 10, 10, 9, 10, 11, 10, 11, 9, 11, 9, 11, 10, 11, 10, 10, 10, 11, 10, 9, 10, 11, 11, 10, 11, 11, 11, 11, 10, 9, 11, 10, 11, 12, 11, 12, 10, 10, 11, 12, 11, 11, 11, 12, 12, 11, 9, 9, 10, 10, 10, 11, 11, 11, 10, 10, 11, 11, 11, 10, 10, 11, 10, 10, 9, 10, 10, 10, 11, 11, 11, 11, 9, 10, 10, 11, 10, 11, 11, 10, 11, 10, 11, 11, 11, 12, 10, 10, 10, 10, 11, 10, 11, 9, 10, 10, 10, 10, 9, 12, 10, 11, 11, 10, 11, 10, 10, 10, 10, 11, 10, 10, 10, 11, 11, 10, 10, 10, 10, 10, 10, 11, 12, 9, 10, 10, 12, 10, 10, 10, 11, 11, 11, 11, 10, 12, 11, 9, 11, 11, 10, 10, 12, 10]
+DATA Partition: Train [260, 242, 271, 233, 244, 240, 258, 251, 256, 264, 260, 247, 253, 272, 247, 238, 241, 238, 246, 257, 252, 240, 230, 263, 239, 244, 256, 244, 252, 242, 251, 254, 251, 262, 255, 243, 242, 249, 241, 242, 229, 238, 269, 254, 244, 240, 231, 238, 253, 280, 273, 251, 266, 257, 267, 257, 276, 250, 259, 259, 234, 263, 276, 257, 240, 257, 237, 263, 270, 229, 263, 255, 263, 263, 252, 255, 245, 255, 255, 230, 230, 252, 241, 261, 245, 262, 252, 242, 243, 276, 252, 246, 255, 255, 255, 267, 225, 237, 245, 249, 261, 246, 227, 251, 245, 263, 247, 259, 252, 262, 250, 251, 263, 257, 246, 242, 236, 263, 253, 249, 232, 263, 254, 240, 252, 272, 250, 248, 232, 268, 251, 251, 235, 241, 222, 265, 232, 229, 249, 257, 257, 239, 233, 248, 238, 263, 258, 232, 239, 240, 254, 267, 258, 227, 249, 241, 245, 271, 234, 239, 256, 236, 246, 245, 263, 258, 254, 263, 236, 249, 242, 235, 228, 250, 261, 252, 241, 257, 268, 244, 247, 233, 265, 244, 264, 258, 251, 258, 261, 250, 255, 258, 223, 255, 251, 252, 248, 254, 236, 242]; Test [11, 10, 11, 10, 10, 10, 11, 11, 11, 11, 11, 10, 11, 11, 10, 10, 10, 10, 10, 11, 11, 10, 10, 11, 10, 10, 11, 10, 11, 10, 11, 11, 11, 11, 11, 10, 10, 10, 10, 10, 10, 10, 11, 11, 10, 10, 10, 10, 11, 12, 11, 11, 11, 11, 11, 11, 12, 10, 11, 11, 10, 11, 12, 11, 10, 11, 10, 11, 11, 10, 11, 11, 11, 11, 11, 11, 10, 11, 11, 10, 10, 11, 10, 11, 10, 11, 11, 10, 10, 12, 11, 10, 11, 11, 11, 11, 9, 10, 10, 10, 11, 10, 10, 11, 10, 11, 10, 11, 11, 11, 10, 11, 11, 11, 10, 10, 10, 11, 11, 10, 10, 11, 11, 10, 11, 11, 10, 10, 10, 11, 11, 11, 10, 10, 9, 11, 10, 10, 10, 11, 11, 10, 10, 10, 10, 11, 11, 10, 10, 10, 11, 11, 11, 10, 10, 10, 10, 11, 10, 10, 11, 10, 10, 10, 11, 11, 11, 11, 10, 10, 10, 10, 10, 10, 11, 11, 10, 11, 11, 10, 10, 10, 11, 10, 11, 11, 11, 11, 11, 10, 11, 11, 9, 11, 11, 11, 10, 11, 10, 10]
+DATA Partition: Train [344, 355, 355, 340, 338, 352, 351, 363, 353, 369, 369, 374, 341, 366, 362, 343, 343, 336, 355, 353, 322, 345, 362, 350, 346, 367, 356, 336, 371, 339, 354, 353, 334, 339, 342, 349, 356, 343, 357, 357, 355, 350, 354, 365, 357, 344, 366, 365, 343, 342, 362, 342, 365, 339, 370, 336, 344, 356, 340, 356, 360, 345, 345, 340, 371, 338, 356, 330, 353, 343, 350, 347, 357, 340, 358, 361, 342, 364, 350, 336, 352, 350, 358, 329, 349, 365, 349, 360, 357, 324, 348, 367, 353, 344, 350, 353, 348, 349, 355, 359, 363, 358, 342, 349, 355, 342, 352, 345, 338, 342, 352, 335, 370, 366, 360, 344, 362, 344, 325, 364, 350, 332, 342, 357, 353, 384, 356, 346, 345, 341, 364, 367, 350, 358, 353, 329, 350, 345, 338, 325, 356, 351, 351, 354, 361, 370, 333, 336, 348, 365, 346, 358, 351, 341, 355, 338, 351, 363, 353, 352, 359, 341, 340, 345, 347, 350, 333, 340, 351, 343, 334, 347, 364, 352, 339, 340, 355, 348, 352, 343, 348, 332, 349, 350, 345, 357, 348, 322, 349, 354, 341, 359, 347, 341, 336, 355, 332, 347, 377, 366]; Test [10, 11, 11, 10, 10, 11, 11, 11, 11, 11, 11, 11, 10, 11, 11, 10, 10, 10, 11, 11, 10, 10, 11, 10, 10, 11, 11, 10, 11, 10, 11, 11, 10, 10, 10, 10, 11, 10, 11, 11, 11, 10, 11, 11, 11, 10, 11, 11, 10, 10, 11, 10, 11, 10, 11, 10, 10, 11, 10, 11, 11, 10, 10, 10, 11, 10, 11, 10, 11, 10, 10, 10, 11, 10, 11, 11, 10, 11, 10, 10, 11, 10, 11, 10, 10, 11, 10, 11, 11, 10, 10, 11, 11, 10, 10, 11, 10, 10, 11, 11, 11, 11, 10, 10, 11, 10, 11, 10, 10, 10, 11, 10, 11, 11, 11, 10, 11, 10, 10, 11, 10, 10, 10, 11, 11, 11, 11, 10, 10, 10, 11, 11, 10, 11, 11, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 10, 10, 10, 11, 10, 11, 11, 10, 11, 10, 11, 11, 11, 11, 11, 10, 10, 10, 10, 10, 10, 10, 11, 10, 10, 10, 11, 11, 10, 10, 11, 10, 11, 10, 10, 10, 10, 10, 10, 11, 10, 10, 10, 11, 10, 11, 10, 10, 10, 11, 10, 10, 11, 11]
+create_model. model_name = resnet18
+tiny_ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (linear): Linear(in_features=512, out_features=200, bias=True)
+)
+############setup_clients (START)#############
+self.local_sample_number = 100000
+self.local_sample_number = 10000
+self.local_sample_number = 30000
+self.local_sample_number = 50000
+self.local_sample_number = 70000
+############setup_clients (END)#############
+################Communication round : 0
+client_indexes = [0, 1, 2, 3, 4]
+client_indexes = [0 1 2 3 4]
+@@@@@@@@@@@@@@@@ Training Client CM(0): 0
+Client Index = 0	Epoch: 0	Loss: 5.275308
+Client Index = 0	Epoch: 1	Loss: 5.078928
+Client Index = 0	Epoch: 2	Loss: 4.909730
+Client Index = 0	Epoch: 3	Loss: 4.779690
+Client Index = 0	Epoch: 4	Loss: 4.656985
+@@@@@@@@@@@@@@@@ Training Client CM(0): 1
+Client Index = 1	Epoch: 0	Loss: 5.388798
+Client Index = 1	Epoch: 1	Loss: 5.322468
+Client Index = 1	Epoch: 2	Loss: 5.311064
+Client Index = 1	Epoch: 3	Loss: 5.300339
+Client Index = 1	Epoch: 4	Loss: 5.293589
+@@@@@@@@@@@@@@@@ Training Client CM(0): 2
+Client Index = 2	Epoch: 0	Loss: 5.346935
+Client Index = 2	Epoch: 1	Loss: 5.289087
+Client Index = 2	Epoch: 2	Loss: 5.219917
+Client Index = 2	Epoch: 3	Loss: 5.162886
+Client Index = 2	Epoch: 4	Loss: 5.121007
+@@@@@@@@@@@@@@@@ Training Client CM(0): 3
+Client Index = 3	Epoch: 0	Loss: 5.327362
+Client Index = 3	Epoch: 1	Loss: 5.238721
+Client Index = 3	Epoch: 2	Loss: 5.135401
+Client Index = 3	Epoch: 3	Loss: 5.038591
+Client Index = 3	Epoch: 4	Loss: 4.940278
+@@@@@@@@@@@@@@@@ Training Client CM(0): 4
+Client Index = 4	Epoch: 0	Loss: 5.304479
+Client Index = 4	Epoch: 1	Loss: 5.145892
+Client Index = 4	Epoch: 2	Loss: 4.997258
+Client Index = 4	Epoch: 3	Loss: 4.880912
+Client Index = 4	Epoch: 4	Loss: 4.781635
+{'training_loss': 5.129890436377312}
+################global_test_on_all_clients : 0
+{'global_test_acc': 0.04072158757894393, 'global_test_loss': 4.849413460240844}
+{'person_test_acc': 0.02917332637804178, 'person_test_loss': 4.98338028224276}
+################Communication round : 1
+client_indexes = [0, 1, 2, 3, 4]
+client_indexes = [0 1 2 3 4]
+@@@@@@@@@@@@@@@@ Training Client CM(1): 0
+Client Index = 0	Epoch: 0	Loss: 4.745015
+Client Index = 0	Epoch: 1	Loss: 4.558153
+Client Index = 0	Epoch: 2	Loss: 4.440085
+Client Index = 0	Epoch: 3	Loss: 4.344520
+Client Index = 0	Epoch: 4	Loss: 4.264766
+@@@@@@@@@@@@@@@@ Training Client CM(1): 1
+Client Index = 1	Epoch: 0	Loss: 4.921468
+Client Index = 1	Epoch: 1	Loss: 4.848450
+Client Index = 1	Epoch: 2	Loss: 4.765000
+Client Index = 1	Epoch: 3	Loss: 4.731912
+Client Index = 1	Epoch: 4	Loss: 4.706774
+@@@@@@@@@@@@@@@@ Training Client CM(1): 2
+Client Index = 2	Epoch: 0	Loss: 4.853673
+Client Index = 2	Epoch: 1	Loss: 4.723213
+Client Index = 2	Epoch: 2	Loss: 4.655035
+Client Index = 2	Epoch: 3	Loss: 4.594684
+Client Index = 2	Epoch: 4	Loss: 4.555482
+@@@@@@@@@@@@@@@@ Training Client CM(1): 3
+Client Index = 3	Epoch: 0	Loss: 4.805832
+Client Index = 3	Epoch: 1	Loss: 4.665444
+Client Index = 3	Epoch: 2	Loss: 4.576243
+Client Index = 3	Epoch: 3	Loss: 4.506888
+Client Index = 3	Epoch: 4	Loss: 4.442492
+@@@@@@@@@@@@@@@@ Training Client CM(1): 4
+Client Index = 4	Epoch: 0	Loss: 4.781367
+Client Index = 4	Epoch: 1	Loss: 4.619695
+Client Index = 4	Epoch: 2	Loss: 4.515658
+Client Index = 4	Epoch: 3	Loss: 4.434830
+Client Index = 4	Epoch: 4	Loss: 4.365675
+{'training_loss': 4.61689426593087}
+################global_test_on_all_clients : 1
+{'global_test_acc': 0.10733153987221278, 'global_test_loss': 4.2808981232437056}
+{'person_test_acc': 0.05942639101922618, 'person_test_loss': 4.764218202363834}
+################Communication round : 2
+client_indexes = [0, 1, 2, 3, 4]
+client_indexes = [0 1 2 3 4]
+@@@@@@@@@@@@@@@@ Training Client CM(2): 0
+Client Index = 0	Epoch: 0	Loss: 4.304733
+Client Index = 0	Epoch: 1	Loss: 4.218055
+Client Index = 0	Epoch: 2	Loss: 4.140647
+Client Index = 0	Epoch: 3	Loss: 4.080649
+Client Index = 0	Epoch: 4	Loss: 4.026162
+@@@@@@@@@@@@@@@@ Training Client CM(2): 1
+Client Index = 1	Epoch: 0	Loss: 4.327372
+Client Index = 1	Epoch: 1	Loss: 4.297122
+Client Index = 1	Epoch: 2	Loss: 4.279973
+Client Index = 1	Epoch: 3	Loss: 4.253693
+Client Index = 1	Epoch: 4	Loss: 4.239158
+@@@@@@@@@@@@@@@@ Training Client CM(2): 2
+Client Index = 2	Epoch: 0	Loss: 4.324852
+Client Index = 2	Epoch: 1	Loss: 4.284073
+Client Index = 2	Epoch: 2	Loss: 4.245723
+Client Index = 2	Epoch: 3	Loss: 4.207377
+Client Index = 2	Epoch: 4	Loss: 4.185898
+@@@@@@@@@@@@@@@@ Training Client CM(2): 3
+Client Index = 3	Epoch: 0	Loss: 4.314199
+Client Index = 3	Epoch: 1	Loss: 4.267664
+Client Index = 3	Epoch: 2	Loss: 4.212083
+Client Index = 3	Epoch: 3	Loss: 4.172452
+Client Index = 3	Epoch: 4	Loss: 4.126176
+@@@@@@@@@@@@@@@@ Training Client CM(2): 4
+Client Index = 4	Epoch: 0	Loss: 4.315296
+Client Index = 4	Epoch: 1	Loss: 4.249027
+Client Index = 4	Epoch: 2	Loss: 4.187669
+Client Index = 4	Epoch: 3	Loss: 4.135307
+Client Index = 4	Epoch: 4	Loss: 4.087088
+{'training_loss': 4.219297897375734}
+################global_test_on_all_clients : 2
+{'global_test_acc': 0.1367097815744536, 'global_test_loss': 4.023916298344227}
+{'person_test_acc': 0.08943772930408218, 'person_test_loss': 4.3899267472918115}
+################Communication round : 3
+client_indexes = [0, 1, 2, 3, 4]
+client_indexes = [0 1 2 3 4]
+@@@@@@@@@@@@@@@@ Training Client CM(3): 0
+Client Index = 0	Epoch: 0	Loss: 4.055198
+Client Index = 0	Epoch: 1	Loss: 3.996532
+Client Index = 0	Epoch: 2	Loss: 3.948485
+Client Index = 0	Epoch: 3	Loss: 3.900837
+Client Index = 0	Epoch: 4	Loss: 3.858523
+@@@@@@@@@@@@@@@@ Training Client CM(3): 1
+Client Index = 1	Epoch: 0	Loss: 4.052590
+Client Index = 1	Epoch: 1	Loss: 4.050129
+Client Index = 1	Epoch: 2	Loss: 3.994742
+Client Index = 1	Epoch: 3	Loss: 3.983771
+Client Index = 1	Epoch: 4	Loss: 3.928006
+@@@@@@@@@@@@@@@@ Training Client CM(3): 2
+Client Index = 2	Epoch: 0	Loss: 4.043464
+Client Index = 2	Epoch: 1	Loss: 4.016693
+Client Index = 2	Epoch: 2	Loss: 3.988022
+Client Index = 2	Epoch: 3	Loss: 3.969956
+Client Index = 2	Epoch: 4	Loss: 3.940618
+@@@@@@@@@@@@@@@@ Training Client CM(3): 3
+Client Index = 3	Epoch: 0	Loss: 4.051366
+Client Index = 3	Epoch: 1	Loss: 4.014289
+Client Index = 3	Epoch: 2	Loss: 3.977660
+Client Index = 3	Epoch: 3	Loss: 3.943364
+Client Index = 3	Epoch: 4	Loss: 3.921451
+@@@@@@@@@@@@@@@@ Training Client CM(3): 4
+Client Index = 4	Epoch: 0	Loss: 4.050991
+Client Index = 4	Epoch: 1	Loss: 4.006910
+Client Index = 4	Epoch: 2	Loss: 3.970063
+Client Index = 4	Epoch: 3	Loss: 3.928468
+Client Index = 4	Epoch: 4	Loss: 3.894983
+{'training_loss': 3.97948439016628}
+################global_test_on_all_clients : 3
+{'global_test_acc': 0.16112415715826706, 'global_test_loss': 3.8940522887893274}
+{'person_test_acc': 0.11221508666116273, 'person_test_loss': 4.234292284093927}
+################Communication round : 4
+client_indexes = [0, 1, 2, 3, 4]
+client_indexes = [0 1 2 3 4]
+@@@@@@@@@@@@@@@@ Training Client CM(4): 0
+Client Index = 0	Epoch: 0	Loss: 3.876860
+Client Index = 0	Epoch: 1	Loss: 3.841642
+Client Index = 0	Epoch: 2	Loss: 3.798657
+Client Index = 0	Epoch: 3	Loss: 3.763615
+Client Index = 0	Epoch: 4	Loss: 3.735952
+@@@@@@@@@@@@@@@@ Training Client CM(4): 1
+Client Index = 1	Epoch: 0	Loss: 3.874432
+Client Index = 1	Epoch: 1	Loss: 3.826884
+Client Index = 1	Epoch: 2	Loss: 3.793347
+Client Index = 1	Epoch: 3	Loss: 3.756404
+Client Index = 1	Epoch: 4	Loss: 3.771432
+@@@@@@@@@@@@@@@@ Training Client CM(4): 2
+Client Index = 2	Epoch: 0	Loss: 3.866601
+Client Index = 2	Epoch: 1	Loss: 3.842203
+Client Index = 2	Epoch: 2	Loss: 3.817425
+Client Index = 2	Epoch: 3	Loss: 3.792978
+Client Index = 2	Epoch: 4	Loss: 3.768446
+@@@@@@@@@@@@@@@@ Training Client CM(4): 3
+Client Index = 3	Epoch: 0	Loss: 3.868022
+Client Index = 3	Epoch: 1	Loss: 3.840649
+Client Index = 3	Epoch: 2	Loss: 3.804354
+Client Index = 3	Epoch: 3	Loss: 3.789609
+Client Index = 3	Epoch: 4	Loss: 3.763318
+@@@@@@@@@@@@@@@@ Training Client CM(4): 4
+Client Index = 4	Epoch: 0	Loss: 3.874740
+Client Index = 4	Epoch: 1	Loss: 3.839324
+Client Index = 4	Epoch: 2	Loss: 3.800291
+Client Index = 4	Epoch: 3	Loss: 3.783765
+Client Index = 4	Epoch: 4	Loss: 3.743862
+{'training_loss': 3.8093924146788973}
+################global_test_on_all_clients : 4
+{'global_test_acc': 0.1702620042735306, 'global_test_loss': 3.8112372471606166}
+{'person_test_acc': 0.1180080240507734, 'person_test_loss': 4.203753724009505}
+################Communication round : 5
+client_indexes = [0, 1, 2, 3, 4]
+client_indexes = [0 1 2 3 4]
+@@@@@@@@@@@@@@@@ Training Client CM(5): 0
+Client Index = 0	Epoch: 0	Loss: 3.740340
+Client Index = 0	Epoch: 1	Loss: 3.710650
+Client Index = 0	Epoch: 2	Loss: 3.673242
+Client Index = 0	Epoch: 3	Loss: 3.643088
+Client Index = 0	Epoch: 4	Loss: 3.606821
+@@@@@@@@@@@@@@@@ Training Client CM(5): 1
+Client Index = 1	Epoch: 0	Loss: 3.690632
+Client Index = 1	Epoch: 1	Loss: 3.653246
+Client Index = 1	Epoch: 2	Loss: 3.639518
+Client Index = 1	Epoch: 3	Loss: 3.624567
+Client Index = 1	Epoch: 4	Loss: 3.597676
+@@@@@@@@@@@@@@@@ Training Client CM(5): 2
+Client Index = 2	Epoch: 0	Loss: 3.721978
+Client Index = 2	Epoch: 1	Loss: 3.693189
+Client Index = 2	Epoch: 2	Loss: 3.673387
+Client Index = 2	Epoch: 3	Loss: 3.642211
+Client Index = 2	Epoch: 4	Loss: 3.610069
+@@@@@@@@@@@@@@@@ Training Client CM(5): 3
+Client Index = 3	Epoch: 0	Loss: 3.721645
+Client Index = 3	Epoch: 1	Loss: 3.687613
+Client Index = 3	Epoch: 2	Loss: 3.676248
+Client Index = 3	Epoch: 3	Loss: 3.644414
+Client Index = 3	Epoch: 4	Loss: 3.623630
+@@@@@@@@@@@@@@@@ Training Client CM(5): 4
+Client Index = 4	Epoch: 0	Loss: 3.729727
+Client Index = 4	Epoch: 1	Loss: 3.708248
+Client Index = 4	Epoch: 2	Loss: 3.674621
+Client Index = 4	Epoch: 3	Loss: 3.648089
+Client Index = 4	Epoch: 4	Loss: 3.612398
+{'training_loss': 3.66588991173724}
+################global_test_on_all_clients : 5
+{'global_test_acc': 0.18267176716894387, 'global_test_loss': 3.73245071328495}
+{'person_test_acc': 0.13280655868414074, 'person_test_loss': 4.134491754338688}
+################Communication round : 6
+client_indexes = [0, 1, 2, 3, 4]
+client_indexes = [0 1 2 3 4]
+@@@@@@@@@@@@@@@@ Training Client CM(6): 0
+Client Index = 0	Epoch: 0	Loss: 3.618965
+Client Index = 0	Epoch: 1	Loss: 3.596455
+Client Index = 0	Epoch: 2	Loss: 3.558928
+Client Index = 0	Epoch: 3	Loss: 3.533393

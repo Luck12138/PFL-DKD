@@ -1,0 +1,169 @@
+Namespace(batch_size=128, ci=0, client_num_in_total=20, client_num_per_round=2, client_optimizer='sgd', comm_round=1, data_dir='/Date/FL/DisPFL-master/data/', dataset='mnist', epochs=5, frac=0.1, frequency_of_the_test=1, gpu=0, identity='fedavg-dir0.3-mdlresnet18-cm1-total_clnt20-neighbor2-seed1102', lr=0.1, lr_decay=0.998, model='resnet18', momentum=0, partition_alpha=0.3, partition_method='dir', seed=1102, tag='test', wd=0.0005)
+cuda:0
+running at devicecuda:0
+*********partition data***************
+train_num2999  test_num505
+client_idx = 0, local_sample_number = 2999
+train_num2999  test_num505
+client_idx = 1, local_sample_number = 2999
+train_num2999  test_num507
+client_idx = 2, local_sample_number = 2999
+train_num2999  test_num507
+client_idx = 3, local_sample_number = 2999
+train_num2999  test_num503
+client_idx = 4, local_sample_number = 2999
+train_num2999  test_num505
+client_idx = 5, local_sample_number = 2999
+train_num2999  test_num505
+client_idx = 6, local_sample_number = 2999
+train_num2999  test_num506
+client_idx = 7, local_sample_number = 2999
+train_num2999  test_num506
+client_idx = 8, local_sample_number = 2999
+train_num2999  test_num505
+client_idx = 9, local_sample_number = 2999
+train_num2999  test_num506
+client_idx = 10, local_sample_number = 2999
+train_num2999  test_num506
+client_idx = 11, local_sample_number = 2999
+train_num2999  test_num506
+client_idx = 12, local_sample_number = 2999
+train_num2999  test_num505
+client_idx = 13, local_sample_number = 2999
+train_num2999  test_num506
+client_idx = 14, local_sample_number = 2999
+train_num2999  test_num506
+client_idx = 15, local_sample_number = 2999
+train_num2999  test_num505
+client_idx = 16, local_sample_number = 2999
+train_num2999  test_num504
+client_idx = 17, local_sample_number = 2999
+train_num2999  test_num506
+client_idx = 18, local_sample_number = 2999
+train_num2999  test_num506
+client_idx = 19, local_sample_number = 2999
+DATA Partition: Train [491, 691, 49, 155, 481, 9, 39, 1045, 0, 39]; Test [82, 116, 9, 26, 81, 2, 7, 175, 0, 7]
+DATA Partition: Train [44, 264, 140, 15, 0, 652, 40, 71, 36, 1737]; Test [8, 45, 24, 3, 0, 109, 7, 12, 7, 290]
+DATA Partition: Train [80, 2056, 31, 90, 139, 8, 43, 528, 0, 24]; Test [14, 343, 6, 16, 24, 2, 8, 89, 0, 5]
+DATA Partition: Train [815, 1102, 32, 18, 61, 552, 18, 1, 300, 100]; Test [136, 184, 6, 4, 11, 93, 4, 1, 51, 17]
+DATA Partition: Train [641, 161, 448, 50, 0, 0, 628, 672, 310, 89]; Test [107, 27, 75, 9, 0, 0, 105, 113, 52, 15]
+DATA Partition: Train [83, 95, 229, 1085, 135, 60, 223, 0, 1033, 56]; Test [14, 16, 39, 181, 23, 11, 38, 0, 173, 10]
+DATA Partition: Train [789, 597, 67, 173, 168, 154, 431, 538, 37, 45]; Test [132, 100, 12, 29, 29, 26, 72, 90, 7, 8]
+DATA Partition: Train [78, 5, 337, 374, 58, 645, 44, 997, 91, 370]; Test [14, 1, 57, 63, 10, 108, 8, 167, 16, 62]
+DATA Partition: Train [74, 96, 27, 25, 10, 4, 1266, 1480, 2, 15]; Test [13, 17, 5, 5, 2, 1, 212, 247, 1, 3]
+DATA Partition: Train [142, 22, 229, 617, 1072, 45, 101, 1, 715, 55]; Test [24, 4, 39, 103, 179, 8, 17, 1, 120, 10]
+DATA Partition: Train [1163, 10, 525, 444, 114, 1, 237, 0, 396, 109]; Test [194, 2, 88, 75, 20, 1, 40, 0, 67, 19]
+DATA Partition: Train [194, 21, 1, 22, 29, 604, 25, 61, 578, 1464]; Test [33, 4, 1, 4, 5, 101, 5, 11, 97, 245]
+DATA Partition: Train [118, 11, 415, 121, 1314, 0, 324, 186, 477, 33]; Test [20, 2, 70, 21, 220, 0, 55, 32, 80, 6]
+DATA Partition: Train [450, 104, 1567, 65, 50, 0, 297, 37, 220, 209]; Test [76, 18, 262, 11, 9, 0, 50, 7, 37, 35]
+DATA Partition: Train [109, 187, 1092, 0, 99, 660, 572, 6, 47, 227]; Test [19, 32, 183, 0, 17, 111, 96, 2, 8, 38]
+DATA Partition: Train [88, 324, 0, 348, 255, 1579, 102, 1, 302, 0]; Test [15, 55, 0, 59, 43, 264, 18, 1, 51, 0]
+DATA Partition: Train [150, 65, 0, 849, 1033, 15, 519, 122, 241, 5]; Test [26, 11, 0, 142, 173, 3, 87, 21, 41, 1]
+DATA Partition: Train [369, 364, 709, 63, 567, 293, 581, 49, 0, 4]; Test [62, 61, 119, 11, 95, 49, 97, 9, 0, 1]
+DATA Partition: Train [24, 465, 30, 1142, 238, 21, 135, 69, 55, 820]; Test [5, 78, 6, 191, 40, 4, 23, 12, 10, 137]
+DATA Partition: Train [1, 102, 30, 475, 19, 119, 293, 401, 1011, 548]; Test [1, 18, 6, 80, 4, 20, 49, 67, 169, 92]
+create_model. model_name = resnet18
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (linear): Linear(in_features=512, out_features=10, bias=True)
+)
+############setup_clients (START)#############
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+self.local_sample_number = 2999
+############setup_clients (END)#############
+################Communication round : 0
+client_indexes = [18  1]
+client_indexes = [ 1 18]
+@@@@@@@@@@@@@@@@ Training Client CM(0): 1

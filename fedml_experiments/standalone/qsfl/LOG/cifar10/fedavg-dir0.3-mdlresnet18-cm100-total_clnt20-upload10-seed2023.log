@@ -1,0 +1,2036 @@
+Namespace(batch_size=64, ci=0, client_num_in_total=20, client_num_per_round=10, client_optimizer='sgd', comm_round=100, data_dir='/Date/FL/DisPFL-master/data/', dataset='cifar10', epochs=5, frac=0.5, frequency_of_the_test=1, gpu=0, identity='fedavg-dir0.3-mdlresnet18-cm100-total_clnt20-upload10-seed2023', lr=0.1, lr_decay=0.998, model='resnet18', momentum=0, partition_alpha=0.3, partition_method='dir', seed=2023, tag='test', wd=0.0005)
+cuda:0
+running at devicecuda:0
+*********partition data***************
+train_num2500  test_num503
+client_idx = 0, local_sample_number = 2500
+train_num2500  test_num503
+client_idx = 1, local_sample_number = 2500
+train_num2500  test_num504
+client_idx = 2, local_sample_number = 2500
+train_num2500  test_num503
+client_idx = 3, local_sample_number = 2500
+train_num2500  test_num503
+client_idx = 4, local_sample_number = 2500
+train_num2500  test_num503
+client_idx = 5, local_sample_number = 2500
+train_num2500  test_num504
+client_idx = 6, local_sample_number = 2500
+train_num2500  test_num505
+client_idx = 7, local_sample_number = 2500
+train_num2500  test_num503
+client_idx = 8, local_sample_number = 2500
+train_num2500  test_num504
+client_idx = 9, local_sample_number = 2500
+train_num2500  test_num504
+client_idx = 10, local_sample_number = 2500
+train_num2500  test_num504
+client_idx = 11, local_sample_number = 2500
+train_num2500  test_num504
+client_idx = 12, local_sample_number = 2500
+train_num2500  test_num505
+client_idx = 13, local_sample_number = 2500
+train_num2500  test_num502
+client_idx = 14, local_sample_number = 2500
+train_num2500  test_num504
+client_idx = 15, local_sample_number = 2500
+train_num2500  test_num505
+client_idx = 16, local_sample_number = 2500
+train_num2500  test_num503
+client_idx = 17, local_sample_number = 2500
+train_num2500  test_num505
+client_idx = 18, local_sample_number = 2500
+train_num2500  test_num504
+client_idx = 19, local_sample_number = 2500
+DATA Partition: Train [31, 5, 64, 26, 385, 110, 534, 1022, 319, 4]; Test [7, 1, 13, 6, 77, 22, 107, 205, 64, 1]
+DATA Partition: Train [213, 0, 63, 5, 1439, 1, 42, 10, 727, 0]; Test [43, 0, 13, 1, 288, 1, 9, 2, 146, 0]
+DATA Partition: Train [112, 80, 30, 42, 117, 0, 1282, 626, 0, 211]; Test [23, 16, 6, 9, 24, 0, 257, 126, 0, 43]
+DATA Partition: Train [63, 240, 154, 114, 24, 842, 477, 380, 200, 6]; Test [13, 48, 31, 23, 5, 169, 96, 76, 40, 2]
+DATA Partition: Train [961, 69, 80, 0, 98, 145, 5, 56, 632, 454]; Test [193, 14, 16, 0, 20, 29, 1, 12, 127, 91]
+DATA Partition: Train [0, 1092, 875, 0, 3, 218, 39, 7, 25, 241]; Test [0, 219, 175, 0, 1, 44, 8, 2, 5, 49]
+DATA Partition: Train [366, 713, 490, 282, 170, 17, 133, 17, 269, 43]; Test [74, 143, 98, 57, 34, 4, 27, 4, 54, 9]
+DATA Partition: Train [21, 1, 65, 796, 221, 7, 536, 780, 44, 29]; Test [5, 1, 13, 160, 45, 2, 108, 156, 9, 6]
+DATA Partition: Train [61, 104, 423, 4, 18, 336, 364, 930, 255, 5]; Test [13, 21, 85, 1, 4, 68, 73, 186, 51, 1]
+DATA Partition: Train [187, 72, 255, 515, 12, 1013, 6, 307, 84, 49]; Test [38, 15, 51, 103, 3, 203, 2, 62, 17, 10]
+DATA Partition: Train [739, 35, 480, 287, 475, 57, 2, 2, 1, 422]; Test [148, 7, 96, 58, 95, 12, 1, 1, 1, 85]
+DATA Partition: Train [64, 239, 0, 34, 3, 66, 1351, 96, 260, 387]; Test [13, 48, 0, 7, 1, 14, 271, 20, 52, 78]
+DATA Partition: Train [0, 245, 284, 286, 46, 523, 99, 1, 1, 1015]; Test [0, 49, 57, 58, 10, 105, 20, 1, 1, 203]
+DATA Partition: Train [2, 1180, 7, 396, 179, 7, 1, 72, 656, 0]; Test [1, 236, 2, 80, 36, 2, 1, 15, 132, 0]
+DATA Partition: Train [345, 154, 0, 3, 244, 278, 70, 0, 1140, 266]; Test [69, 31, 0, 1, 49, 56, 14, 0, 228, 54]
+DATA Partition: Train [18, 9, 28, 97, 1044, 0, 36, 49, 46, 1173]; Test [4, 2, 6, 20, 209, 0, 8, 10, 10, 235]
+DATA Partition: Train [1, 28, 1417, 327, 441, 73, 2, 84, 67, 60]; Test [1, 6, 284, 66, 89, 15, 1, 17, 14, 12]
+DATA Partition: Train [699, 551, 1, 584, 5, 8, 0, 15, 22, 615]; Test [140, 111, 1, 117, 1, 2, 0, 3, 5, 123]
+DATA Partition: Train [256, 46, 190, 524, 76, 936, 16, 438, 5, 13]; Test [52, 10, 38, 105, 16, 188, 4, 88, 1, 3]
+DATA Partition: Train [861, 137, 94, 678, 0, 363, 5, 108, 247, 7]; Test [173, 28, 19, 136, 0, 73, 1, 22, 50, 2]
+create_model. model_name = resnet18
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (linear): Linear(in_features=512, out_features=10, bias=True)
+)
+############setup_clients (START)#############
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+self.local_sample_number = 2500
+############setup_clients (END)#############
+################Communication round : 0
+client_indexes = [18  1 19  8 10 17  6 13  4  2]
+client_indexes = [ 1  2  4  6  8 10 13 17 18 19]
+@@@@@@@@@@@@@@@@ Training Client CM(0): 1
+Client Index = 1	Epoch: 0	Loss: 3.005014
+Client Index = 1	Epoch: 1	Loss: 1.178506
+Client Index = 1	Epoch: 2	Loss: 1.122160
+Client Index = 1	Epoch: 3	Loss: 0.976838
+Client Index = 1	Epoch: 4	Loss: 0.884106
+@@@@@@@@@@@@@@@@ Training Client CM(0): 2
+Client Index = 2	Epoch: 0	Loss: 3.021778
+Client Index = 2	Epoch: 1	Loss: 1.459350
+Client Index = 2	Epoch: 2	Loss: 1.466959
+Client Index = 2	Epoch: 3	Loss: 1.375129
+Client Index = 2	Epoch: 4	Loss: 1.327401
+@@@@@@@@@@@@@@@@ Training Client CM(0): 4
+Client Index = 4	Epoch: 0	Loss: 3.323369
+Client Index = 4	Epoch: 1	Loss: 1.749654
+Client Index = 4	Epoch: 2	Loss: 1.641622
+Client Index = 4	Epoch: 3	Loss: 1.644009
+Client Index = 4	Epoch: 4	Loss: 1.614751
+@@@@@@@@@@@@@@@@ Training Client CM(0): 6
+Client Index = 6	Epoch: 0	Loss: 3.727655
+Client Index = 6	Epoch: 1	Loss: 2.004143
+Client Index = 6	Epoch: 2	Loss: 1.926385
+Client Index = 6	Epoch: 3	Loss: 1.882094
+Client Index = 6	Epoch: 4	Loss: 1.869268
+@@@@@@@@@@@@@@@@ Training Client CM(0): 8
+Client Index = 8	Epoch: 0	Loss: 3.514502
+Client Index = 8	Epoch: 1	Loss: 1.828939
+Client Index = 8	Epoch: 2	Loss: 1.708460
+Client Index = 8	Epoch: 3	Loss: 1.698780
+Client Index = 8	Epoch: 4	Loss: 1.631416
+@@@@@@@@@@@@@@@@ Training Client CM(0): 10
+Client Index = 10	Epoch: 0	Loss: 3.308319
+Client Index = 10	Epoch: 1	Loss: 1.783589
+Client Index = 10	Epoch: 2	Loss: 1.651164
+Client Index = 10	Epoch: 3	Loss: 1.677265
+Client Index = 10	Epoch: 4	Loss: 1.562971
+@@@@@@@@@@@@@@@@ Training Client CM(0): 13
+Client Index = 13	Epoch: 0	Loss: 3.057919
+Client Index = 13	Epoch: 1	Loss: 1.383572
+Client Index = 13	Epoch: 2	Loss: 1.328239
+Client Index = 13	Epoch: 3	Loss: 1.404103
+Client Index = 13	Epoch: 4	Loss: 1.272715
+@@@@@@@@@@@@@@@@ Training Client CM(0): 17
+Client Index = 17	Epoch: 0	Loss: 3.483260
+Client Index = 17	Epoch: 1	Loss: 1.511477
+Client Index = 17	Epoch: 2	Loss: 1.470941
+Client Index = 17	Epoch: 3	Loss: 1.428261
+Client Index = 17	Epoch: 4	Loss: 1.472766
+@@@@@@@@@@@@@@@@ Training Client CM(0): 18
+Client Index = 18	Epoch: 0	Loss: 3.375230
+Client Index = 18	Epoch: 1	Loss: 1.776160
+Client Index = 18	Epoch: 2	Loss: 1.709070
+Client Index = 18	Epoch: 3	Loss: 1.673133
+Client Index = 18	Epoch: 4	Loss: 1.633983
+@@@@@@@@@@@@@@@@ Training Client CM(0): 19
+Client Index = 19	Epoch: 0	Loss: 3.451029
+Client Index = 19	Epoch: 1	Loss: 1.757286
+Client Index = 19	Epoch: 2	Loss: 1.729196
+Client Index = 19	Epoch: 3	Loss: 1.695018
+Client Index = 19	Epoch: 4	Loss: 1.599316
+{'training_loss': 1.9155653761923315}
+################global_test_on_all_clients : 0
+{'global_test_acc': 0.10029476091146865, 'global_test_loss': 2.6004058529532164}
+{'person_test_acc': 0.24640834119583657, 'person_test_loss': 2.0543936258547815}
+################Communication round : 1
+client_indexes = [ 3 16  6 10  2 14  4 17  7  1]
+client_indexes = [ 1  2  3  4  6  7 10 14 16 17]
+@@@@@@@@@@@@@@@@ Training Client CM(1): 1
+Client Index = 1	Epoch: 0	Loss: 1.431396
+Client Index = 1	Epoch: 1	Loss: 0.939456
+Client Index = 1	Epoch: 2	Loss: 0.848550
+Client Index = 1	Epoch: 3	Loss: 0.840053
+Client Index = 1	Epoch: 4	Loss: 0.859523
+@@@@@@@@@@@@@@@@ Training Client CM(1): 2
+Client Index = 2	Epoch: 0	Loss: 1.697277
+Client Index = 2	Epoch: 1	Loss: 1.332701
+Client Index = 2	Epoch: 2	Loss: 1.313488
+Client Index = 2	Epoch: 3	Loss: 1.308002
+Client Index = 2	Epoch: 4	Loss: 1.205068
+@@@@@@@@@@@@@@@@ Training Client CM(1): 3
+Client Index = 3	Epoch: 0	Loss: 2.043213
+Client Index = 3	Epoch: 1	Loss: 1.809540
+Client Index = 3	Epoch: 2	Loss: 1.837103
+Client Index = 3	Epoch: 3	Loss: 1.724570
+Client Index = 3	Epoch: 4	Loss: 1.685068
+@@@@@@@@@@@@@@@@ Training Client CM(1): 4
+Client Index = 4	Epoch: 0	Loss: 1.759035
+Client Index = 4	Epoch: 1	Loss: 1.584334
+Client Index = 4	Epoch: 2	Loss: 1.569899
+Client Index = 4	Epoch: 3	Loss: 1.495642
+Client Index = 4	Epoch: 4	Loss: 1.456239
+@@@@@@@@@@@@@@@@ Training Client CM(1): 6
+Client Index = 6	Epoch: 0	Loss: 1.980459
+Client Index = 6	Epoch: 1	Loss: 1.889789
+Client Index = 6	Epoch: 2	Loss: 1.808812
+Client Index = 6	Epoch: 3	Loss: 1.754223
+Client Index = 6	Epoch: 4	Loss: 1.723785
+@@@@@@@@@@@@@@@@ Training Client CM(1): 7
+Client Index = 7	Epoch: 0	Loss: 1.938546
+Client Index = 7	Epoch: 1	Loss: 1.533477
+Client Index = 7	Epoch: 2	Loss: 1.474803
+Client Index = 7	Epoch: 3	Loss: 1.490784
+Client Index = 7	Epoch: 4	Loss: 1.405346
+@@@@@@@@@@@@@@@@ Training Client CM(1): 10
+Client Index = 10	Epoch: 0	Loss: 1.836136
+Client Index = 10	Epoch: 1	Loss: 1.807954
+Client Index = 10	Epoch: 2	Loss: 1.697938
+Client Index = 10	Epoch: 3	Loss: 1.671450
+Client Index = 10	Epoch: 4	Loss: 1.612372
+@@@@@@@@@@@@@@@@ Training Client CM(1): 14
+Client Index = 14	Epoch: 0	Loss: 1.859831
+Client Index = 14	Epoch: 1	Loss: 1.544063
+Client Index = 14	Epoch: 2	Loss: 1.458846
+Client Index = 14	Epoch: 3	Loss: 1.456518
+Client Index = 14	Epoch: 4	Loss: 1.382627
+@@@@@@@@@@@@@@@@ Training Client CM(1): 16
+Client Index = 16	Epoch: 0	Loss: 1.695134
+Client Index = 16	Epoch: 1	Loss: 1.372762
+Client Index = 16	Epoch: 2	Loss: 1.386094
+Client Index = 16	Epoch: 3	Loss: 1.358991
+Client Index = 16	Epoch: 4	Loss: 1.295713
+@@@@@@@@@@@@@@@@ Training Client CM(1): 17
+Client Index = 17	Epoch: 0	Loss: 1.716173
+Client Index = 17	Epoch: 1	Loss: 1.411495
+Client Index = 17	Epoch: 2	Loss: 1.398343
+Client Index = 17	Epoch: 3	Loss: 1.405719
+Client Index = 17	Epoch: 4	Loss: 1.321166
+{'training_loss': 1.5285900605767966}
+################global_test_on_all_clients : 1
+{'global_test_acc': 0.1637185140327489, 'global_test_loss': 2.1806746071560674}
+{'person_test_acc': 0.28304131012761713, 'person_test_loss': 2.073003440111571}
+################Communication round : 2
+client_indexes = [12  4 18  0  9  5  3 10  1 17]
+client_indexes = [ 0  1  3  4  5  9 10 12 17 18]
+@@@@@@@@@@@@@@@@ Training Client CM(2): 0
+Client Index = 0	Epoch: 0	Loss: 1.521006
+Client Index = 0	Epoch: 1	Loss: 1.416183
+Client Index = 0	Epoch: 2	Loss: 1.408062
+Client Index = 0	Epoch: 3	Loss: 1.331062
+Client Index = 0	Epoch: 4	Loss: 1.370203
+@@@@@@@@@@@@@@@@ Training Client CM(2): 1
+Client Index = 1	Epoch: 0	Loss: 0.946341
+Client Index = 1	Epoch: 1	Loss: 0.942737
+Client Index = 1	Epoch: 2	Loss: 0.860906
+Client Index = 1	Epoch: 3	Loss: 0.812306
+Client Index = 1	Epoch: 4	Loss: 0.815930
+@@@@@@@@@@@@@@@@ Training Client CM(2): 3
+Client Index = 3	Epoch: 0	Loss: 1.762082
+Client Index = 3	Epoch: 1	Loss: 1.684884
+Client Index = 3	Epoch: 2	Loss: 1.663811
+Client Index = 3	Epoch: 3	Loss: 1.639170
+Client Index = 3	Epoch: 4	Loss: 1.722768
+@@@@@@@@@@@@@@@@ Training Client CM(2): 4
+Client Index = 4	Epoch: 0	Loss: 1.560229
+Client Index = 4	Epoch: 1	Loss: 1.493083
+Client Index = 4	Epoch: 2	Loss: 1.452077
+Client Index = 4	Epoch: 3	Loss: 1.509562
+Client Index = 4	Epoch: 4	Loss: 1.451426
+@@@@@@@@@@@@@@@@ Training Client CM(2): 5
+Client Index = 5	Epoch: 0	Loss: 1.285300
+Client Index = 5	Epoch: 1	Loss: 1.195204
+Client Index = 5	Epoch: 2	Loss: 1.043196
+Client Index = 5	Epoch: 3	Loss: 1.041376
+Client Index = 5	Epoch: 4	Loss: 0.985969
+@@@@@@@@@@@@@@@@ Training Client CM(2): 9
+Client Index = 9	Epoch: 0	Loss: 1.657496
+Client Index = 9	Epoch: 1	Loss: 1.583092
+Client Index = 9	Epoch: 2	Loss: 1.607210
+Client Index = 9	Epoch: 3	Loss: 1.584126
+Client Index = 9	Epoch: 4	Loss: 1.568960
+@@@@@@@@@@@@@@@@ Training Client CM(2): 10
+Client Index = 10	Epoch: 0	Loss: 1.581203
+Client Index = 10	Epoch: 1	Loss: 1.509953
+Client Index = 10	Epoch: 2	Loss: 1.495446
+Client Index = 10	Epoch: 3	Loss: 1.456946
+Client Index = 10	Epoch: 4	Loss: 1.401063
+@@@@@@@@@@@@@@@@ Training Client CM(2): 12
+Client Index = 12	Epoch: 0	Loss: 1.543063
+Client Index = 12	Epoch: 1	Loss: 1.392374
+Client Index = 12	Epoch: 2	Loss: 1.372482
+Client Index = 12	Epoch: 3	Loss: 1.334541
+Client Index = 12	Epoch: 4	Loss: 1.299592
+@@@@@@@@@@@@@@@@ Training Client CM(2): 17
+Client Index = 17	Epoch: 0	Loss: 1.400641
+Client Index = 17	Epoch: 1	Loss: 1.286776
+Client Index = 17	Epoch: 2	Loss: 1.277059
+Client Index = 17	Epoch: 3	Loss: 1.249860
+Client Index = 17	Epoch: 4	Loss: 1.336971
+@@@@@@@@@@@@@@@@ Training Client CM(2): 18
+Client Index = 18	Epoch: 0	Loss: 1.681217
+Client Index = 18	Epoch: 1	Loss: 1.610736
+Client Index = 18	Epoch: 2	Loss: 1.552100
+Client Index = 18	Epoch: 3	Loss: 1.511669
+Client Index = 18	Epoch: 4	Loss: 1.543373
+{'training_loss': 1.3950564124137164}
+################global_test_on_all_clients : 2
+{'global_test_acc': 0.1865966415545433, 'global_test_loss': 2.0918004936677272}
+{'person_test_acc': 0.34600340280805814, 'person_test_loss': 1.8709897920085852}
+################Communication round : 3
+client_indexes = [14  2  1 17  4 16  6  7 15 12]
+client_indexes = [ 1  2  4  6  7 12 14 15 16 17]
+@@@@@@@@@@@@@@@@ Training Client CM(3): 1
+Client Index = 1	Epoch: 0	Loss: 0.929994
+Client Index = 1	Epoch: 1	Loss: 0.760441
+Client Index = 1	Epoch: 2	Loss: 0.761257
+Client Index = 1	Epoch: 3	Loss: 0.781713
+Client Index = 1	Epoch: 4	Loss: 0.785135
+@@@@@@@@@@@@@@@@ Training Client CM(3): 2
+Client Index = 2	Epoch: 0	Loss: 1.254472
+Client Index = 2	Epoch: 1	Loss: 1.198461
+Client Index = 2	Epoch: 2	Loss: 1.128058
+Client Index = 2	Epoch: 3	Loss: 1.102707
+Client Index = 2	Epoch: 4	Loss: 1.048948
+@@@@@@@@@@@@@@@@ Training Client CM(3): 4
+Client Index = 4	Epoch: 0	Loss: 1.496047
+Client Index = 4	Epoch: 1	Loss: 1.465480
+Client Index = 4	Epoch: 2	Loss: 1.443705
+Client Index = 4	Epoch: 3	Loss: 1.446032
+Client Index = 4	Epoch: 4	Loss: 1.395965
+@@@@@@@@@@@@@@@@ Training Client CM(3): 6
+Client Index = 6	Epoch: 0	Loss: 1.643382
+Client Index = 6	Epoch: 1	Loss: 1.700574
+Client Index = 6	Epoch: 2	Loss: 1.627665
+Client Index = 6	Epoch: 3	Loss: 1.624688
+Client Index = 6	Epoch: 4	Loss: 1.581491
+@@@@@@@@@@@@@@@@ Training Client CM(3): 7
+Client Index = 7	Epoch: 0	Loss: 1.507559
+Client Index = 7	Epoch: 1	Loss: 1.369383
+Client Index = 7	Epoch: 2	Loss: 1.355484
+Client Index = 7	Epoch: 3	Loss: 1.306739
+Client Index = 7	Epoch: 4	Loss: 1.298399
+@@@@@@@@@@@@@@@@ Training Client CM(3): 12
+Client Index = 12	Epoch: 0	Loss: 1.381825
+Client Index = 12	Epoch: 1	Loss: 1.328045
+Client Index = 12	Epoch: 2	Loss: 1.363226
+Client Index = 12	Epoch: 3	Loss: 1.258255
+Client Index = 12	Epoch: 4	Loss: 1.287903
+@@@@@@@@@@@@@@@@ Training Client CM(3): 14
+Client Index = 14	Epoch: 0	Loss: 1.421249
+Client Index = 14	Epoch: 1	Loss: 1.417632
+Client Index = 14	Epoch: 2	Loss: 1.372609
+Client Index = 14	Epoch: 3	Loss: 1.320699
+Client Index = 14	Epoch: 4	Loss: 1.378980
+@@@@@@@@@@@@@@@@ Training Client CM(3): 15
+Client Index = 15	Epoch: 0	Loss: 0.954893
+Client Index = 15	Epoch: 1	Loss: 0.852679
+Client Index = 15	Epoch: 2	Loss: 0.826349
+Client Index = 15	Epoch: 3	Loss: 0.781885
+Client Index = 15	Epoch: 4	Loss: 0.740766
+@@@@@@@@@@@@@@@@ Training Client CM(3): 16
+Client Index = 16	Epoch: 0	Loss: 1.343948
+Client Index = 16	Epoch: 1	Loss: 1.298104
+Client Index = 16	Epoch: 2	Loss: 1.294220
+Client Index = 16	Epoch: 3	Loss: 1.288670
+Client Index = 16	Epoch: 4	Loss: 1.263548
+@@@@@@@@@@@@@@@@ Training Client CM(3): 17
+Client Index = 17	Epoch: 0	Loss: 1.351347
+Client Index = 17	Epoch: 1	Loss: 1.293050
+Client Index = 17	Epoch: 2	Loss: 1.209844
+Client Index = 17	Epoch: 3	Loss: 1.182823
+Client Index = 17	Epoch: 4	Loss: 1.166558
+{'training_loss': 1.2478577770739794}
+################global_test_on_all_clients : 3
+{'global_test_acc': 0.1785787737194, 'global_test_loss': 2.117455136248202}
+{'person_test_acc': 0.40356363303480547, 'person_test_loss': 1.8742997927420106}
+################Communication round : 4
+client_indexes = [19  3 18  6 13  4  0 17 12 11]
+client_indexes = [ 0  3  4  6 11 12 13 17 18 19]
+@@@@@@@@@@@@@@@@ Training Client CM(4): 0
+Client Index = 0	Epoch: 0	Loss: 1.362857
+Client Index = 0	Epoch: 1	Loss: 1.321742
+Client Index = 0	Epoch: 2	Loss: 1.234004
+Client Index = 0	Epoch: 3	Loss: 1.241488
+Client Index = 0	Epoch: 4	Loss: 1.244893
+@@@@@@@@@@@@@@@@ Training Client CM(4): 3
+Client Index = 3	Epoch: 0	Loss: 1.608327
+Client Index = 3	Epoch: 1	Loss: 1.568765
+Client Index = 3	Epoch: 2	Loss: 1.496054
+Client Index = 3	Epoch: 3	Loss: 1.528479
+Client Index = 3	Epoch: 4	Loss: 1.442449
+@@@@@@@@@@@@@@@@ Training Client CM(4): 4
+Client Index = 4	Epoch: 0	Loss: 1.441062
+Client Index = 4	Epoch: 1	Loss: 1.443996
+Client Index = 4	Epoch: 2	Loss: 1.335235
+Client Index = 4	Epoch: 3	Loss: 1.388579
+Client Index = 4	Epoch: 4	Loss: 1.277581
+@@@@@@@@@@@@@@@@ Training Client CM(4): 6
+Client Index = 6	Epoch: 0	Loss: 1.560874
+Client Index = 6	Epoch: 1	Loss: 1.548774
+Client Index = 6	Epoch: 2	Loss: 1.598009
+Client Index = 6	Epoch: 3	Loss: 1.499600
+Client Index = 6	Epoch: 4	Loss: 1.449616
+@@@@@@@@@@@@@@@@ Training Client CM(4): 11
+Client Index = 11	Epoch: 0	Loss: 1.102076
+Client Index = 11	Epoch: 1	Loss: 1.017197
+Client Index = 11	Epoch: 2	Loss: 1.065487
+Client Index = 11	Epoch: 3	Loss: 0.997391
+Client Index = 11	Epoch: 4	Loss: 0.995058
+@@@@@@@@@@@@@@@@ Training Client CM(4): 12
+Client Index = 12	Epoch: 0	Loss: 1.369002
+Client Index = 12	Epoch: 1	Loss: 1.290829
+Client Index = 12	Epoch: 2	Loss: 1.265432
+Client Index = 12	Epoch: 3	Loss: 1.223223
+Client Index = 12	Epoch: 4	Loss: 1.204861
+@@@@@@@@@@@@@@@@ Training Client CM(4): 13
+Client Index = 13	Epoch: 0	Loss: 1.079618
+Client Index = 13	Epoch: 1	Loss: 0.967010
+Client Index = 13	Epoch: 2	Loss: 0.940554
+Client Index = 13	Epoch: 3	Loss: 0.869378
+Client Index = 13	Epoch: 4	Loss: 0.850884
+@@@@@@@@@@@@@@@@ Training Client CM(4): 17
+Client Index = 17	Epoch: 0	Loss: 1.265239
+Client Index = 17	Epoch: 1	Loss: 1.177620
+Client Index = 17	Epoch: 2	Loss: 1.091789
+Client Index = 17	Epoch: 3	Loss: 1.143598
+Client Index = 17	Epoch: 4	Loss: 1.103251
+@@@@@@@@@@@@@@@@ Training Client CM(4): 18
+Client Index = 18	Epoch: 0	Loss: 1.566590
+Client Index = 18	Epoch: 1	Loss: 1.561176
+Client Index = 18	Epoch: 2	Loss: 1.510840
+Client Index = 18	Epoch: 3	Loss: 1.474432
+Client Index = 18	Epoch: 4	Loss: 1.422754
+@@@@@@@@@@@@@@@@ Training Client CM(4): 19
+Client Index = 19	Epoch: 0	Loss: 1.423897
+Client Index = 19	Epoch: 1	Loss: 1.381833
+Client Index = 19	Epoch: 2	Loss: 1.295874
+Client Index = 19	Epoch: 3	Loss: 1.306347
+Client Index = 19	Epoch: 4	Loss: 1.293158
+{'training_loss': 1.2969756672475488}
+################global_test_on_all_clients : 4
+{'global_test_acc': 0.2862918793636041, 'global_test_loss': 1.9275104845016255}
+{'person_test_acc': 0.440464320298931, 'person_test_loss': 1.7926908837096842}
+################Communication round : 5
+client_indexes = [ 2  5 17 19 12  1 11 10 13 18]
+client_indexes = [ 1  2  5 10 11 12 13 17 18 19]
+@@@@@@@@@@@@@@@@ Training Client CM(5): 1
+Client Index = 1	Epoch: 0	Loss: 0.840284
+Client Index = 1	Epoch: 1	Loss: 0.766920
+Client Index = 1	Epoch: 2	Loss: 0.702031
+Client Index = 1	Epoch: 3	Loss: 0.693024
+Client Index = 1	Epoch: 4	Loss: 0.719974
+@@@@@@@@@@@@@@@@ Training Client CM(5): 2
+Client Index = 2	Epoch: 0	Loss: 1.203705
+Client Index = 2	Epoch: 1	Loss: 1.127521
+Client Index = 2	Epoch: 2	Loss: 1.034128
+Client Index = 2	Epoch: 3	Loss: 0.988228
+Client Index = 2	Epoch: 4	Loss: 0.955506
+@@@@@@@@@@@@@@@@ Training Client CM(5): 5
+Client Index = 5	Epoch: 0	Loss: 0.994096
+Client Index = 5	Epoch: 1	Loss: 0.927731
+Client Index = 5	Epoch: 2	Loss: 0.836800
+Client Index = 5	Epoch: 3	Loss: 0.976339
+Client Index = 5	Epoch: 4	Loss: 0.800434
+@@@@@@@@@@@@@@@@ Training Client CM(5): 10
+Client Index = 10	Epoch: 0	Loss: 1.402316
+Client Index = 10	Epoch: 1	Loss: 1.395067
+Client Index = 10	Epoch: 2	Loss: 1.351410
+Client Index = 10	Epoch: 3	Loss: 1.294697
+Client Index = 10	Epoch: 4	Loss: 1.248564
+@@@@@@@@@@@@@@@@ Training Client CM(5): 11
+Client Index = 11	Epoch: 0	Loss: 1.033689
+Client Index = 11	Epoch: 1	Loss: 0.995812
+Client Index = 11	Epoch: 2	Loss: 0.934165
+Client Index = 11	Epoch: 3	Loss: 0.928618
+Client Index = 11	Epoch: 4	Loss: 1.066495
+@@@@@@@@@@@@@@@@ Training Client CM(5): 12
+Client Index = 12	Epoch: 0	Loss: 1.264291
+Client Index = 12	Epoch: 1	Loss: 1.261405
+Client Index = 12	Epoch: 2	Loss: 1.222492
+Client Index = 12	Epoch: 3	Loss: 1.215678
+Client Index = 12	Epoch: 4	Loss: 1.244437
+@@@@@@@@@@@@@@@@ Training Client CM(5): 13
+Client Index = 13	Epoch: 0	Loss: 1.051351
+Client Index = 13	Epoch: 1	Loss: 0.950843
+Client Index = 13	Epoch: 2	Loss: 0.978190
+Client Index = 13	Epoch: 3	Loss: 0.852150
+Client Index = 13	Epoch: 4	Loss: 0.799354
+@@@@@@@@@@@@@@@@ Training Client CM(5): 17
+Client Index = 17	Epoch: 0	Loss: 1.163313
+Client Index = 17	Epoch: 1	Loss: 1.109662
+Client Index = 17	Epoch: 2	Loss: 1.142627
+Client Index = 17	Epoch: 3	Loss: 1.068546
+Client Index = 17	Epoch: 4	Loss: 0.987875
+@@@@@@@@@@@@@@@@ Training Client CM(5): 18
+Client Index = 18	Epoch: 0	Loss: 1.473036
+Client Index = 18	Epoch: 1	Loss: 1.486335
+Client Index = 18	Epoch: 2	Loss: 1.424731
+Client Index = 18	Epoch: 3	Loss: 1.408743
+Client Index = 18	Epoch: 4	Loss: 1.549271
+@@@@@@@@@@@@@@@@ Training Client CM(5): 19
+Client Index = 19	Epoch: 0	Loss: 1.325021
+Client Index = 19	Epoch: 1	Loss: 1.319738
+Client Index = 19	Epoch: 2	Loss: 1.280739
+Client Index = 19	Epoch: 3	Loss: 1.331374
+Client Index = 19	Epoch: 4	Loss: 1.273280
+{'training_loss': 1.108040642995387}
+################global_test_on_all_clients : 5
+{'global_test_acc': 0.2859251223740455, 'global_test_loss': 1.8395406004732304}
+{'person_test_acc': 0.39698973483981714, 'person_test_loss': 1.919975188409324}
+################Communication round : 6
+client_indexes = [17  7  5  6  8  2 15 14  4 11]
+client_indexes = [ 2  4  5  6  7  8 11 14 15 17]
+@@@@@@@@@@@@@@@@ Training Client CM(6): 2
+Client Index = 2	Epoch: 0	Loss: 1.167426
+Client Index = 2	Epoch: 1	Loss: 1.080128
+Client Index = 2	Epoch: 2	Loss: 1.079073
+Client Index = 2	Epoch: 3	Loss: 1.010818
+Client Index = 2	Epoch: 4	Loss: 0.972413
+@@@@@@@@@@@@@@@@ Training Client CM(6): 4
+Client Index = 4	Epoch: 0	Loss: 1.312295
+Client Index = 4	Epoch: 1	Loss: 1.314330
+Client Index = 4	Epoch: 2	Loss: 1.272705
+Client Index = 4	Epoch: 3	Loss: 1.282056
+Client Index = 4	Epoch: 4	Loss: 1.200285
+@@@@@@@@@@@@@@@@ Training Client CM(6): 5
+Client Index = 5	Epoch: 0	Loss: 0.898500
+Client Index = 5	Epoch: 1	Loss: 0.851793
+Client Index = 5	Epoch: 2	Loss: 0.801706
+Client Index = 5	Epoch: 3	Loss: 0.766662
+Client Index = 5	Epoch: 4	Loss: 0.816413
+@@@@@@@@@@@@@@@@ Training Client CM(6): 6
+Client Index = 6	Epoch: 0	Loss: 1.423904
+Client Index = 6	Epoch: 1	Loss: 1.491346
+Client Index = 6	Epoch: 2	Loss: 1.385508
+Client Index = 6	Epoch: 3	Loss: 1.377641
+Client Index = 6	Epoch: 4	Loss: 1.338004
+@@@@@@@@@@@@@@@@ Training Client CM(6): 7
+Client Index = 7	Epoch: 0	Loss: 1.397600
+Client Index = 7	Epoch: 1	Loss: 1.351220
+Client Index = 7	Epoch: 2	Loss: 1.264929
+Client Index = 7	Epoch: 3	Loss: 1.192973
+Client Index = 7	Epoch: 4	Loss: 1.252997
+@@@@@@@@@@@@@@@@ Training Client CM(6): 8
+Client Index = 8	Epoch: 0	Loss: 1.385695
+Client Index = 8	Epoch: 1	Loss: 1.342588
+Client Index = 8	Epoch: 2	Loss: 1.389790
+Client Index = 8	Epoch: 3	Loss: 1.321394
+Client Index = 8	Epoch: 4	Loss: 1.280282
+@@@@@@@@@@@@@@@@ Training Client CM(6): 11
+Client Index = 11	Epoch: 0	Loss: 0.990818
+Client Index = 11	Epoch: 1	Loss: 0.906233
+Client Index = 11	Epoch: 2	Loss: 0.983080
+Client Index = 11	Epoch: 3	Loss: 0.931291
+Client Index = 11	Epoch: 4	Loss: 0.917289
+@@@@@@@@@@@@@@@@ Training Client CM(6): 14
+Client Index = 14	Epoch: 0	Loss: 1.259349
+Client Index = 14	Epoch: 1	Loss: 1.220316
+Client Index = 14	Epoch: 2	Loss: 1.182200
+Client Index = 14	Epoch: 3	Loss: 1.124030
+Client Index = 14	Epoch: 4	Loss: 1.143263
+@@@@@@@@@@@@@@@@ Training Client CM(6): 15
+Client Index = 15	Epoch: 0	Loss: 0.827904
+Client Index = 15	Epoch: 1	Loss: 0.764115
+Client Index = 15	Epoch: 2	Loss: 0.695111
+Client Index = 15	Epoch: 3	Loss: 0.672090
+Client Index = 15	Epoch: 4	Loss: 0.692489
+@@@@@@@@@@@@@@@@ Training Client CM(6): 17
+Client Index = 17	Epoch: 0	Loss: 1.064669
+Client Index = 17	Epoch: 1	Loss: 1.063139
+Client Index = 17	Epoch: 2	Loss: 0.997086
+Client Index = 17	Epoch: 3	Loss: 1.058964
+Client Index = 17	Epoch: 4	Loss: 0.984279
+{'training_loss': 1.110003731288016}
+################global_test_on_all_clients : 6
+{'global_test_acc': 0.3095591980751566, 'global_test_loss': 1.8840589105240817}
+{'person_test_acc': 0.4178708255556158, 'person_test_loss': 1.9113377867640744}
+################Communication round : 7
+client_indexes = [ 1 17  2  5 11  0 18  6 13 19]
+client_indexes = [ 0  1  2  5  6 11 13 17 18 19]
+@@@@@@@@@@@@@@@@ Training Client CM(7): 0
+Client Index = 0	Epoch: 0	Loss: 1.232498
+Client Index = 0	Epoch: 1	Loss: 1.171736
+Client Index = 0	Epoch: 2	Loss: 1.147823
+Client Index = 0	Epoch: 3	Loss: 1.164717
+Client Index = 0	Epoch: 4	Loss: 1.071330
+@@@@@@@@@@@@@@@@ Training Client CM(7): 1
+Client Index = 1	Epoch: 0	Loss: 0.797647
+Client Index = 1	Epoch: 1	Loss: 0.681276
+Client Index = 1	Epoch: 2	Loss: 0.667619
+Client Index = 1	Epoch: 3	Loss: 0.629804
+Client Index = 1	Epoch: 4	Loss: 0.622620
+@@@@@@@@@@@@@@@@ Training Client CM(7): 2
+Client Index = 2	Epoch: 0	Loss: 1.064141
+Client Index = 2	Epoch: 1	Loss: 0.971894
+Client Index = 2	Epoch: 2	Loss: 0.957709
+Client Index = 2	Epoch: 3	Loss: 0.986960
+Client Index = 2	Epoch: 4	Loss: 0.960546
+@@@@@@@@@@@@@@@@ Training Client CM(7): 5
+Client Index = 5	Epoch: 0	Loss: 0.910226
+Client Index = 5	Epoch: 1	Loss: 0.922589
+Client Index = 5	Epoch: 2	Loss: 0.806075
+Client Index = 5	Epoch: 3	Loss: 0.757099
+Client Index = 5	Epoch: 4	Loss: 0.766691
+@@@@@@@@@@@@@@@@ Training Client CM(7): 6
+Client Index = 6	Epoch: 0	Loss: 1.376353
+Client Index = 6	Epoch: 1	Loss: 1.443039
+Client Index = 6	Epoch: 2	Loss: 1.377206
+Client Index = 6	Epoch: 3	Loss: 1.450711
+Client Index = 6	Epoch: 4	Loss: 1.327017
+@@@@@@@@@@@@@@@@ Training Client CM(7): 11
+Client Index = 11	Epoch: 0	Loss: 0.951093
+Client Index = 11	Epoch: 1	Loss: 0.947833
+Client Index = 11	Epoch: 2	Loss: 0.882312
+Client Index = 11	Epoch: 3	Loss: 0.885581
+Client Index = 11	Epoch: 4	Loss: 0.864361
+@@@@@@@@@@@@@@@@ Training Client CM(7): 13
+Client Index = 13	Epoch: 0	Loss: 0.923781
+Client Index = 13	Epoch: 1	Loss: 0.906589
+Client Index = 13	Epoch: 2	Loss: 0.784521
+Client Index = 13	Epoch: 3	Loss: 0.755185
+Client Index = 13	Epoch: 4	Loss: 0.747397
+@@@@@@@@@@@@@@@@ Training Client CM(7): 17
+Client Index = 17	Epoch: 0	Loss: 1.074111
+Client Index = 17	Epoch: 1	Loss: 1.020529
+Client Index = 17	Epoch: 2	Loss: 1.066432
+Client Index = 17	Epoch: 3	Loss: 0.954433
+Client Index = 17	Epoch: 4	Loss: 0.904433
+@@@@@@@@@@@@@@@@ Training Client CM(7): 18
+Client Index = 18	Epoch: 0	Loss: 1.430291
+Client Index = 18	Epoch: 1	Loss: 1.412581
+Client Index = 18	Epoch: 2	Loss: 1.354199
+Client Index = 18	Epoch: 3	Loss: 1.338349
+Client Index = 18	Epoch: 4	Loss: 1.325552
+@@@@@@@@@@@@@@@@ Training Client CM(7): 19
+Client Index = 19	Epoch: 0	Loss: 1.260856
+Client Index = 19	Epoch: 1	Loss: 1.268284
+Client Index = 19	Epoch: 2	Loss: 1.212575
+Client Index = 19	Epoch: 3	Loss: 1.160363
+Client Index = 19	Epoch: 4	Loss: 1.159350
+{'training_loss': 1.0371264458447693}
+################global_test_on_all_clients : 7
+{'global_test_acc': 0.35533563091155584, 'global_test_loss': 1.705909507138338}
+{'person_test_acc': 0.4898915622075258, 'person_test_loss': 1.7042270145888672}
+################Communication round : 8
+client_indexes = [ 7 11  6 15 18  4 12  2 13  1]
+client_indexes = [ 1  2  4  6  7 11 12 13 15 18]
+@@@@@@@@@@@@@@@@ Training Client CM(8): 1
+Client Index = 1	Epoch: 0	Loss: 0.755999
+Client Index = 1	Epoch: 1	Loss: 0.637096
+Client Index = 1	Epoch: 2	Loss: 0.657315
+Client Index = 1	Epoch: 3	Loss: 0.613408
+Client Index = 1	Epoch: 4	Loss: 0.649270
+@@@@@@@@@@@@@@@@ Training Client CM(8): 2
+Client Index = 2	Epoch: 0	Loss: 1.071889
+Client Index = 2	Epoch: 1	Loss: 1.025402
+Client Index = 2	Epoch: 2	Loss: 1.007892
+Client Index = 2	Epoch: 3	Loss: 0.893274
+Client Index = 2	Epoch: 4	Loss: 0.847870
+@@@@@@@@@@@@@@@@ Training Client CM(8): 4
+Client Index = 4	Epoch: 0	Loss: 1.285400
+Client Index = 4	Epoch: 1	Loss: 1.199471
+Client Index = 4	Epoch: 2	Loss: 1.217835
+Client Index = 4	Epoch: 3	Loss: 1.178550
+Client Index = 4	Epoch: 4	Loss: 1.158673
+@@@@@@@@@@@@@@@@ Training Client CM(8): 6
+Client Index = 6	Epoch: 0	Loss: 1.347391
+Client Index = 6	Epoch: 1	Loss: 1.369286
+Client Index = 6	Epoch: 2	Loss: 1.341300
+Client Index = 6	Epoch: 3	Loss: 1.315662
+Client Index = 6	Epoch: 4	Loss: 1.324809
+@@@@@@@@@@@@@@@@ Training Client CM(8): 7
+Client Index = 7	Epoch: 0	Loss: 1.300560
+Client Index = 7	Epoch: 1	Loss: 1.224231
+Client Index = 7	Epoch: 2	Loss: 1.217639
+Client Index = 7	Epoch: 3	Loss: 1.215366
+Client Index = 7	Epoch: 4	Loss: 1.137775
+@@@@@@@@@@@@@@@@ Training Client CM(8): 11
+Client Index = 11	Epoch: 0	Loss: 0.903961
+Client Index = 11	Epoch: 1	Loss: 0.854715
+Client Index = 11	Epoch: 2	Loss: 0.878945
+Client Index = 11	Epoch: 3	Loss: 0.849243
+Client Index = 11	Epoch: 4	Loss: 0.809516
+@@@@@@@@@@@@@@@@ Training Client CM(8): 12
+Client Index = 12	Epoch: 0	Loss: 1.175679
+Client Index = 12	Epoch: 1	Loss: 1.124292
+Client Index = 12	Epoch: 2	Loss: 1.143200
+Client Index = 12	Epoch: 3	Loss: 1.166617
+Client Index = 12	Epoch: 4	Loss: 1.093261
+@@@@@@@@@@@@@@@@ Training Client CM(8): 13
+Client Index = 13	Epoch: 0	Loss: 0.871129
+Client Index = 13	Epoch: 1	Loss: 0.773263
+Client Index = 13	Epoch: 2	Loss: 0.799464
+Client Index = 13	Epoch: 3	Loss: 0.722791
+Client Index = 13	Epoch: 4	Loss: 0.707820
+@@@@@@@@@@@@@@@@ Training Client CM(8): 15
+Client Index = 15	Epoch: 0	Loss: 0.733322
+Client Index = 15	Epoch: 1	Loss: 0.659410
+Client Index = 15	Epoch: 2	Loss: 0.634925
+Client Index = 15	Epoch: 3	Loss: 0.599015
+Client Index = 15	Epoch: 4	Loss: 0.627681
+@@@@@@@@@@@@@@@@ Training Client CM(8): 18
+Client Index = 18	Epoch: 0	Loss: 1.400448
+Client Index = 18	Epoch: 1	Loss: 1.414857
+Client Index = 18	Epoch: 2	Loss: 1.329530
+Client Index = 18	Epoch: 3	Loss: 1.311525
+Client Index = 18	Epoch: 4	Loss: 1.308031
+{'training_loss': 1.0177200244888662}
+################global_test_on_all_clients : 8
+{'global_test_acc': 0.38840035673824735, 'global_test_loss': 1.6781312049077477}
+{'person_test_acc': 0.44221067284622395, 'person_test_loss': 1.8570536383458012}
+################Communication round : 9
+client_indexes = [ 3  6  7  5 16 15  2  4  9 10]
+client_indexes = [ 2  3  4  5  6  7  9 10 15 16]
+@@@@@@@@@@@@@@@@ Training Client CM(9): 2
+Client Index = 2	Epoch: 0	Loss: 0.994542
+Client Index = 2	Epoch: 1	Loss: 0.942569
+Client Index = 2	Epoch: 2	Loss: 0.889451
+Client Index = 2	Epoch: 3	Loss: 0.902157
+Client Index = 2	Epoch: 4	Loss: 0.894029
+@@@@@@@@@@@@@@@@ Training Client CM(9): 3
+Client Index = 3	Epoch: 0	Loss: 1.350144
+Client Index = 3	Epoch: 1	Loss: 1.412508
+Client Index = 3	Epoch: 2	Loss: 1.366681
+Client Index = 3	Epoch: 3	Loss: 1.340652
+Client Index = 3	Epoch: 4	Loss: 1.263489
+@@@@@@@@@@@@@@@@ Training Client CM(9): 4
+Client Index = 4	Epoch: 0	Loss: 1.257658
+Client Index = 4	Epoch: 1	Loss: 1.152555
+Client Index = 4	Epoch: 2	Loss: 1.221870
+Client Index = 4	Epoch: 3	Loss: 1.126562
+Client Index = 4	Epoch: 4	Loss: 1.122257
+@@@@@@@@@@@@@@@@ Training Client CM(9): 5
+Client Index = 5	Epoch: 0	Loss: 0.852255
+Client Index = 5	Epoch: 1	Loss: 0.746780
+Client Index = 5	Epoch: 2	Loss: 0.793034
+Client Index = 5	Epoch: 3	Loss: 0.762743
+Client Index = 5	Epoch: 4	Loss: 0.737912
+@@@@@@@@@@@@@@@@ Training Client CM(9): 6
+Client Index = 6	Epoch: 0	Loss: 1.329518
+Client Index = 6	Epoch: 1	Loss: 1.361070
+Client Index = 6	Epoch: 2	Loss: 1.321795
+Client Index = 6	Epoch: 3	Loss: 1.286994
+Client Index = 6	Epoch: 4	Loss: 1.271496
+@@@@@@@@@@@@@@@@ Training Client CM(9): 7
+Client Index = 7	Epoch: 0	Loss: 1.266583
+Client Index = 7	Epoch: 1	Loss: 1.224466
+Client Index = 7	Epoch: 2	Loss: 1.249471
+Client Index = 7	Epoch: 3	Loss: 1.189421
+Client Index = 7	Epoch: 4	Loss: 1.151079
+@@@@@@@@@@@@@@@@ Training Client CM(9): 9
+Client Index = 9	Epoch: 0	Loss: 1.350744
+Client Index = 9	Epoch: 1	Loss: 1.355487
+Client Index = 9	Epoch: 2	Loss: 1.275371
+Client Index = 9	Epoch: 3	Loss: 1.324675
+Client Index = 9	Epoch: 4	Loss: 1.290970
+@@@@@@@@@@@@@@@@ Training Client CM(9): 10
+Client Index = 10	Epoch: 0	Loss: 1.245929
+Client Index = 10	Epoch: 1	Loss: 1.267802
+Client Index = 10	Epoch: 2	Loss: 1.176009
+Client Index = 10	Epoch: 3	Loss: 1.197142
+Client Index = 10	Epoch: 4	Loss: 1.139926
+@@@@@@@@@@@@@@@@ Training Client CM(9): 15
+Client Index = 15	Epoch: 0	Loss: 0.767922
+Client Index = 15	Epoch: 1	Loss: 0.701084
+Client Index = 15	Epoch: 2	Loss: 0.590049
+Client Index = 15	Epoch: 3	Loss: 0.677428
+Client Index = 15	Epoch: 4	Loss: 0.613184
+@@@@@@@@@@@@@@@@ Training Client CM(9): 16
+Client Index = 16	Epoch: 0	Loss: 1.230874
+Client Index = 16	Epoch: 1	Loss: 1.173601
+Client Index = 16	Epoch: 2	Loss: 1.156363
+Client Index = 16	Epoch: 3	Loss: 1.156768
+Client Index = 16	Epoch: 4	Loss: 1.155325
+{'training_loss': 1.1125677632652222}
+################global_test_on_all_clients : 9
+{'global_test_acc': 0.3913659131735711, 'global_test_loss': 1.6307577373343691}
+{'person_test_acc': 0.4930232881179755, 'person_test_loss': 1.6399655136451479}
+################Communication round : 10
+client_indexes = [ 7 10  5  6  3 18 13  2 14  8]
+client_indexes = [ 2  3  5  6  7  8 10 13 14 18]
+@@@@@@@@@@@@@@@@ Training Client CM(10): 2
+Client Index = 2	Epoch: 0	Loss: 0.977946
+Client Index = 2	Epoch: 1	Loss: 1.007482
+Client Index = 2	Epoch: 2	Loss: 0.975592
+Client Index = 2	Epoch: 3	Loss: 0.820618
+Client Index = 2	Epoch: 4	Loss: 0.913065
+@@@@@@@@@@@@@@@@ Training Client CM(10): 3
+Client Index = 3	Epoch: 0	Loss: 1.353418
+Client Index = 3	Epoch: 1	Loss: 1.339333
+Client Index = 3	Epoch: 2	Loss: 1.397578
+Client Index = 3	Epoch: 3	Loss: 1.269662
+Client Index = 3	Epoch: 4	Loss: 1.280150
+@@@@@@@@@@@@@@@@ Training Client CM(10): 5
+Client Index = 5	Epoch: 0	Loss: 0.792215
+Client Index = 5	Epoch: 1	Loss: 0.773079
+Client Index = 5	Epoch: 2	Loss: 0.729964
+Client Index = 5	Epoch: 3	Loss: 0.727774
+Client Index = 5	Epoch: 4	Loss: 0.662892
+@@@@@@@@@@@@@@@@ Training Client CM(10): 6
+Client Index = 6	Epoch: 0	Loss: 1.300150
+Client Index = 6	Epoch: 1	Loss: 1.269379
+Client Index = 6	Epoch: 2	Loss: 1.293248
+Client Index = 6	Epoch: 3	Loss: 1.222621
+Client Index = 6	Epoch: 4	Loss: 1.267744
+@@@@@@@@@@@@@@@@ Training Client CM(10): 7
+Client Index = 7	Epoch: 0	Loss: 1.257863
+Client Index = 7	Epoch: 1	Loss: 1.185063
+Client Index = 7	Epoch: 2	Loss: 1.216685
+Client Index = 7	Epoch: 3	Loss: 1.175035
+Client Index = 7	Epoch: 4	Loss: 1.141526
+@@@@@@@@@@@@@@@@ Training Client CM(10): 8
+Client Index = 8	Epoch: 0	Loss: 1.294862
+Client Index = 8	Epoch: 1	Loss: 1.200928
+Client Index = 8	Epoch: 2	Loss: 1.183867
+Client Index = 8	Epoch: 3	Loss: 1.194612
+Client Index = 8	Epoch: 4	Loss: 1.191178
+@@@@@@@@@@@@@@@@ Training Client CM(10): 10
+Client Index = 10	Epoch: 0	Loss: 1.214479
+Client Index = 10	Epoch: 1	Loss: 1.193645
+Client Index = 10	Epoch: 2	Loss: 1.171136
+Client Index = 10	Epoch: 3	Loss: 1.210541
+Client Index = 10	Epoch: 4	Loss: 1.192818
+@@@@@@@@@@@@@@@@ Training Client CM(10): 13
+Client Index = 13	Epoch: 0	Loss: 0.799035
+Client Index = 13	Epoch: 1	Loss: 0.777765
+Client Index = 13	Epoch: 2	Loss: 0.668593
+Client Index = 13	Epoch: 3	Loss: 0.679871
+Client Index = 13	Epoch: 4	Loss: 0.580142
+@@@@@@@@@@@@@@@@ Training Client CM(10): 14
+Client Index = 14	Epoch: 0	Loss: 1.117863
+Client Index = 14	Epoch: 1	Loss: 1.141451
+Client Index = 14	Epoch: 2	Loss: 1.008198
+Client Index = 14	Epoch: 3	Loss: 1.016408
+Client Index = 14	Epoch: 4	Loss: 1.021488
+@@@@@@@@@@@@@@@@ Training Client CM(10): 18
+Client Index = 18	Epoch: 0	Loss: 1.367289
+Client Index = 18	Epoch: 1	Loss: 1.314122
+Client Index = 18	Epoch: 2	Loss: 1.286382
+Client Index = 18	Epoch: 3	Loss: 1.341082
+Client Index = 18	Epoch: 4	Loss: 1.362504
+{'training_loss': 1.097606750935316}
+################global_test_on_all_clients : 10
+{'global_test_acc': 0.38862186804550547, 'global_test_loss': 1.6670425449658246}
+{'person_test_acc': 0.484801027942393, 'person_test_loss': 1.677070413039705}
+################Communication round : 11
+client_indexes = [ 3  5 10  6 14 19 15  9 18  4]
+client_indexes = [ 3  4  5  6  9 10 14 15 18 19]
+@@@@@@@@@@@@@@@@ Training Client CM(11): 3
+Client Index = 3	Epoch: 0	Loss: 1.267325
+Client Index = 3	Epoch: 1	Loss: 1.327104
+Client Index = 3	Epoch: 2	Loss: 1.356128
+Client Index = 3	Epoch: 3	Loss: 1.308287
+Client Index = 3	Epoch: 4	Loss: 1.286180
+@@@@@@@@@@@@@@@@ Training Client CM(11): 4
+Client Index = 4	Epoch: 0	Loss: 1.184206
+Client Index = 4	Epoch: 1	Loss: 1.154215
+Client Index = 4	Epoch: 2	Loss: 1.139192
+Client Index = 4	Epoch: 3	Loss: 1.104928
+Client Index = 4	Epoch: 4	Loss: 1.145601
+@@@@@@@@@@@@@@@@ Training Client CM(11): 5
+Client Index = 5	Epoch: 0	Loss: 0.764140
+Client Index = 5	Epoch: 1	Loss: 0.761399
+Client Index = 5	Epoch: 2	Loss: 0.787311
+Client Index = 5	Epoch: 3	Loss: 0.750158
+Client Index = 5	Epoch: 4	Loss: 0.670441
+@@@@@@@@@@@@@@@@ Training Client CM(11): 6
+Client Index = 6	Epoch: 0	Loss: 1.268091
+Client Index = 6	Epoch: 1	Loss: 1.297967
+Client Index = 6	Epoch: 2	Loss: 1.277211
+Client Index = 6	Epoch: 3	Loss: 1.221634
+Client Index = 6	Epoch: 4	Loss: 1.202942
+@@@@@@@@@@@@@@@@ Training Client CM(11): 9
+Client Index = 9	Epoch: 0	Loss: 1.281855
+Client Index = 9	Epoch: 1	Loss: 1.295348
+Client Index = 9	Epoch: 2	Loss: 1.268768
+Client Index = 9	Epoch: 3	Loss: 1.274102
+Client Index = 9	Epoch: 4	Loss: 1.256538
+@@@@@@@@@@@@@@@@ Training Client CM(11): 10
+Client Index = 10	Epoch: 0	Loss: 1.235267
+Client Index = 10	Epoch: 1	Loss: 1.161138
+Client Index = 10	Epoch: 2	Loss: 1.102901
+Client Index = 10	Epoch: 3	Loss: 1.098072
+Client Index = 10	Epoch: 4	Loss: 1.055890
+@@@@@@@@@@@@@@@@ Training Client CM(11): 14
+Client Index = 14	Epoch: 0	Loss: 1.128983
+Client Index = 14	Epoch: 1	Loss: 0.974720
+Client Index = 14	Epoch: 2	Loss: 1.010322
+Client Index = 14	Epoch: 3	Loss: 1.098884
+Client Index = 14	Epoch: 4	Loss: 1.006613
+@@@@@@@@@@@@@@@@ Training Client CM(11): 15
+Client Index = 15	Epoch: 0	Loss: 0.691761
+Client Index = 15	Epoch: 1	Loss: 0.613126
+Client Index = 15	Epoch: 2	Loss: 0.588325
+Client Index = 15	Epoch: 3	Loss: 0.624802
+Client Index = 15	Epoch: 4	Loss: 0.597800
+@@@@@@@@@@@@@@@@ Training Client CM(11): 18
+Client Index = 18	Epoch: 0	Loss: 1.331715
+Client Index = 18	Epoch: 1	Loss: 1.316214
+Client Index = 18	Epoch: 2	Loss: 1.282432
+Client Index = 18	Epoch: 3	Loss: 1.363870
+Client Index = 18	Epoch: 4	Loss: 1.230838
+@@@@@@@@@@@@@@@@ Training Client CM(11): 19
+Client Index = 19	Epoch: 0	Loss: 1.159712
+Client Index = 19	Epoch: 1	Loss: 1.133838
+Client Index = 19	Epoch: 2	Loss: 1.143142
+Client Index = 19	Epoch: 3	Loss: 1.097643
+Client Index = 19	Epoch: 4	Loss: 1.128995
+{'training_loss': 1.0965614534243942}
+################global_test_on_all_clients : 11
+{'global_test_acc': 0.36944611869273986, 'global_test_loss': 1.680008201843402}
+{'person_test_acc': 0.4737224365023778, 'person_test_loss': 1.7335261544172478}
+################Communication round : 12
+client_indexes = [19 13  9  7 14 16 10  8  5  4]
+client_indexes = [ 4  5  7  8  9 10 13 14 16 19]
+@@@@@@@@@@@@@@@@ Training Client CM(12): 4
+Client Index = 4	Epoch: 0	Loss: 1.133244
+Client Index = 4	Epoch: 1	Loss: 1.064712
+Client Index = 4	Epoch: 2	Loss: 1.093623
+Client Index = 4	Epoch: 3	Loss: 1.051399
+Client Index = 4	Epoch: 4	Loss: 1.030769
+@@@@@@@@@@@@@@@@ Training Client CM(12): 5
+Client Index = 5	Epoch: 0	Loss: 0.722845
+Client Index = 5	Epoch: 1	Loss: 0.714341
+Client Index = 5	Epoch: 2	Loss: 0.659903
+Client Index = 5	Epoch: 3	Loss: 0.666906
+Client Index = 5	Epoch: 4	Loss: 0.727852
+@@@@@@@@@@@@@@@@ Training Client CM(12): 7
+Client Index = 7	Epoch: 0	Loss: 1.241082
+Client Index = 7	Epoch: 1	Loss: 1.235425
+Client Index = 7	Epoch: 2	Loss: 1.113298
+Client Index = 7	Epoch: 3	Loss: 1.109427
+Client Index = 7	Epoch: 4	Loss: 1.109431
+@@@@@@@@@@@@@@@@ Training Client CM(12): 8
+Client Index = 8	Epoch: 0	Loss: 1.184777
+Client Index = 8	Epoch: 1	Loss: 1.133138
+Client Index = 8	Epoch: 2	Loss: 1.104261
+Client Index = 8	Epoch: 3	Loss: 1.153091
+Client Index = 8	Epoch: 4	Loss: 1.073838
+@@@@@@@@@@@@@@@@ Training Client CM(12): 9
+Client Index = 9	Epoch: 0	Loss: 1.260862
+Client Index = 9	Epoch: 1	Loss: 1.256585
+Client Index = 9	Epoch: 2	Loss: 1.297843
+Client Index = 9	Epoch: 3	Loss: 1.305635
+Client Index = 9	Epoch: 4	Loss: 1.286930
+@@@@@@@@@@@@@@@@ Training Client CM(12): 10
+Client Index = 10	Epoch: 0	Loss: 1.188818
+Client Index = 10	Epoch: 1	Loss: 1.114457
+Client Index = 10	Epoch: 2	Loss: 1.190741
+Client Index = 10	Epoch: 3	Loss: 1.185224
+Client Index = 10	Epoch: 4	Loss: 1.102021
+@@@@@@@@@@@@@@@@ Training Client CM(12): 13
+Client Index = 13	Epoch: 0	Loss: 0.747574
+Client Index = 13	Epoch: 1	Loss: 0.633351
+Client Index = 13	Epoch: 2	Loss: 0.570827
+Client Index = 13	Epoch: 3	Loss: 0.598750
+Client Index = 13	Epoch: 4	Loss: 0.565247
+@@@@@@@@@@@@@@@@ Training Client CM(12): 14
+Client Index = 14	Epoch: 0	Loss: 1.048843
+Client Index = 14	Epoch: 1	Loss: 0.970713
+Client Index = 14	Epoch: 2	Loss: 0.988039
+Client Index = 14	Epoch: 3	Loss: 0.934416
+Client Index = 14	Epoch: 4	Loss: 0.937560
+@@@@@@@@@@@@@@@@ Training Client CM(12): 16
+Client Index = 16	Epoch: 0	Loss: 1.143005
+Client Index = 16	Epoch: 1	Loss: 1.107543
+Client Index = 16	Epoch: 2	Loss: 1.155030
+Client Index = 16	Epoch: 3	Loss: 1.074501
+Client Index = 16	Epoch: 4	Loss: 1.065018
+@@@@@@@@@@@@@@@@ Training Client CM(12): 19
+Client Index = 19	Epoch: 0	Loss: 1.111270
+Client Index = 19	Epoch: 1	Loss: 1.137960
+Client Index = 19	Epoch: 2	Loss: 1.124790
+Client Index = 19	Epoch: 3	Loss: 1.007644
+Client Index = 19	Epoch: 4	Loss: 1.110686
+{'training_loss': 1.0309048607125877}
+################global_test_on_all_clients : 12
+{'global_test_acc': 0.41732414185594147, 'global_test_loss': 1.6050284223677038}
+{'person_test_acc': 0.49848553481171437, 'person_test_loss': 1.686503131577134}
+################Communication round : 13
+client_indexes = [11 12  0  1  8  5  7 15 14 13]
+client_indexes = [ 0  1  5  7  8 11 12 13 14 15]
+@@@@@@@@@@@@@@@@ Training Client CM(13): 0
+Client Index = 0	Epoch: 0	Loss: 1.082173
+Client Index = 0	Epoch: 1	Loss: 1.030527
+Client Index = 0	Epoch: 2	Loss: 1.065744
+Client Index = 0	Epoch: 3	Loss: 0.991161
+Client Index = 0	Epoch: 4	Loss: 0.981134
+@@@@@@@@@@@@@@@@ Training Client CM(13): 1
+Client Index = 1	Epoch: 0	Loss: 0.700897
+Client Index = 1	Epoch: 1	Loss: 0.669736
+Client Index = 1	Epoch: 2	Loss: 0.600864
+Client Index = 1	Epoch: 3	Loss: 0.570588
+Client Index = 1	Epoch: 4	Loss: 0.546800
+@@@@@@@@@@@@@@@@ Training Client CM(13): 5
+Client Index = 5	Epoch: 0	Loss: 0.729404
+Client Index = 5	Epoch: 1	Loss: 0.695071
+Client Index = 5	Epoch: 2	Loss: 0.627868
+Client Index = 5	Epoch: 3	Loss: 0.678956
+Client Index = 5	Epoch: 4	Loss: 0.659847
+@@@@@@@@@@@@@@@@ Training Client CM(13): 7
+Client Index = 7	Epoch: 0	Loss: 1.213107
+Client Index = 7	Epoch: 1	Loss: 1.144525
+Client Index = 7	Epoch: 2	Loss: 1.048314
+Client Index = 7	Epoch: 3	Loss: 1.104651
+Client Index = 7	Epoch: 4	Loss: 1.109451
+@@@@@@@@@@@@@@@@ Training Client CM(13): 8
+Client Index = 8	Epoch: 0	Loss: 1.123995
+Client Index = 8	Epoch: 1	Loss: 1.075622
+Client Index = 8	Epoch: 2	Loss: 1.084808
+Client Index = 8	Epoch: 3	Loss: 1.022776
+Client Index = 8	Epoch: 4	Loss: 1.038590
+@@@@@@@@@@@@@@@@ Training Client CM(13): 11
+Client Index = 11	Epoch: 0	Loss: 0.840432
+Client Index = 11	Epoch: 1	Loss: 0.815795
+Client Index = 11	Epoch: 2	Loss: 0.814835
+Client Index = 11	Epoch: 3	Loss: 0.714691
+Client Index = 11	Epoch: 4	Loss: 0.786058
+@@@@@@@@@@@@@@@@ Training Client CM(13): 12
+Client Index = 12	Epoch: 0	Loss: 1.027639
+Client Index = 12	Epoch: 1	Loss: 1.021039
+Client Index = 12	Epoch: 2	Loss: 1.006061
+Client Index = 12	Epoch: 3	Loss: 1.022493
+Client Index = 12	Epoch: 4	Loss: 0.940815
+@@@@@@@@@@@@@@@@ Training Client CM(13): 13
+Client Index = 13	Epoch: 0	Loss: 0.695706
+Client Index = 13	Epoch: 1	Loss: 0.649393
+Client Index = 13	Epoch: 2	Loss: 0.565023
+Client Index = 13	Epoch: 3	Loss: 0.626810
+Client Index = 13	Epoch: 4	Loss: 0.582987
+@@@@@@@@@@@@@@@@ Training Client CM(13): 14
+Client Index = 14	Epoch: 0	Loss: 1.011544
+Client Index = 14	Epoch: 1	Loss: 0.976943
+Client Index = 14	Epoch: 2	Loss: 0.948141
+Client Index = 14	Epoch: 3	Loss: 0.940083
+Client Index = 14	Epoch: 4	Loss: 0.890064
+@@@@@@@@@@@@@@@@ Training Client CM(13): 15
+Client Index = 15	Epoch: 0	Loss: 0.642849
+Client Index = 15	Epoch: 1	Loss: 0.539469
+Client Index = 15	Epoch: 2	Loss: 0.594476
+Client Index = 15	Epoch: 3	Loss: 0.598955
+Client Index = 15	Epoch: 4	Loss: 0.558629
+{'training_loss': 0.8481507826950401}
+################global_test_on_all_clients : 13
+{'global_test_acc': 0.4334303956719798, 'global_test_loss': 1.5483865728667587}
+{'person_test_acc': 0.5118632393868927, 'person_test_loss': 1.6265355326522077}
+################Communication round : 14
+client_indexes = [19  5  2  1  4 14  3 16 17  9]
+client_indexes = [ 1  2  3  4  5  9 14 16 17 19]
+@@@@@@@@@@@@@@@@ Training Client CM(14): 1
+Client Index = 1	Epoch: 0	Loss: 0.643271
+Client Index = 1	Epoch: 1	Loss: 0.671374
+Client Index = 1	Epoch: 2	Loss: 0.633256
+Client Index = 1	Epoch: 3	Loss: 0.580737
+Client Index = 1	Epoch: 4	Loss: 0.585432
+@@@@@@@@@@@@@@@@ Training Client CM(14): 2
+Client Index = 2	Epoch: 0	Loss: 0.914214
+Client Index = 2	Epoch: 1	Loss: 0.856283
+Client Index = 2	Epoch: 2	Loss: 0.833401
+Client Index = 2	Epoch: 3	Loss: 0.773004
+Client Index = 2	Epoch: 4	Loss: 0.720558
+@@@@@@@@@@@@@@@@ Training Client CM(14): 3
+Client Index = 3	Epoch: 0	Loss: 1.227261
+Client Index = 3	Epoch: 1	Loss: 1.187511
+Client Index = 3	Epoch: 2	Loss: 1.146535
+Client Index = 3	Epoch: 3	Loss: 1.113022
+Client Index = 3	Epoch: 4	Loss: 1.244066
+@@@@@@@@@@@@@@@@ Training Client CM(14): 4
+Client Index = 4	Epoch: 0	Loss: 1.086785
+Client Index = 4	Epoch: 1	Loss: 1.041950
+Client Index = 4	Epoch: 2	Loss: 1.010747
+Client Index = 4	Epoch: 3	Loss: 1.057040
+Client Index = 4	Epoch: 4	Loss: 1.006625
+@@@@@@@@@@@@@@@@ Training Client CM(14): 5
+Client Index = 5	Epoch: 0	Loss: 0.695973
+Client Index = 5	Epoch: 1	Loss: 0.742939
+Client Index = 5	Epoch: 2	Loss: 0.607407
+Client Index = 5	Epoch: 3	Loss: 0.611781
+Client Index = 5	Epoch: 4	Loss: 0.644971
+@@@@@@@@@@@@@@@@ Training Client CM(14): 9
+Client Index = 9	Epoch: 0	Loss: 1.273199
+Client Index = 9	Epoch: 1	Loss: 1.224973
+Client Index = 9	Epoch: 2	Loss: 1.173843
+Client Index = 9	Epoch: 3	Loss: 1.230962
+Client Index = 9	Epoch: 4	Loss: 1.221244
+@@@@@@@@@@@@@@@@ Training Client CM(14): 14
+Client Index = 14	Epoch: 0	Loss: 1.004838
+Client Index = 14	Epoch: 1	Loss: 0.945416
+Client Index = 14	Epoch: 2	Loss: 0.917570
+Client Index = 14	Epoch: 3	Loss: 0.858395
+Client Index = 14	Epoch: 4	Loss: 0.923382
+@@@@@@@@@@@@@@@@ Training Client CM(14): 16
+Client Index = 16	Epoch: 0	Loss: 1.099239
+Client Index = 16	Epoch: 1	Loss: 1.053997
+Client Index = 16	Epoch: 2	Loss: 1.021685
+Client Index = 16	Epoch: 3	Loss: 1.056224
+Client Index = 16	Epoch: 4	Loss: 1.035945
+@@@@@@@@@@@@@@@@ Training Client CM(14): 17
+Client Index = 17	Epoch: 0	Loss: 0.908740
+Client Index = 17	Epoch: 1	Loss: 0.836040
+Client Index = 17	Epoch: 2	Loss: 0.801120
+Client Index = 17	Epoch: 3	Loss: 0.726415
+Client Index = 17	Epoch: 4	Loss: 0.705214
+@@@@@@@@@@@@@@@@ Training Client CM(14): 19
+Client Index = 19	Epoch: 0	Loss: 1.088666
+Client Index = 19	Epoch: 1	Loss: 1.066529
+Client Index = 19	Epoch: 2	Loss: 1.027119
+Client Index = 19	Epoch: 3	Loss: 1.048508
+Client Index = 19	Epoch: 4	Loss: 1.094146
+{'training_loss': 0.9395910343155265}
+################global_test_on_all_clients : 14
+{'global_test_acc': 0.47064373760019534, 'global_test_loss': 1.4365482872635558}
+{'person_test_acc': 0.49735185317558306, 'person_test_loss': 1.6584886336958733}
+################Communication round : 15
+client_indexes = [19 15  3  9  4  2 10 16 13  1]
+client_indexes = [ 1  2  3  4  9 10 13 15 16 19]
+@@@@@@@@@@@@@@@@ Training Client CM(15): 1
+Client Index = 1	Epoch: 0	Loss: 0.634030
+Client Index = 1	Epoch: 1	Loss: 0.581058
+Client Index = 1	Epoch: 2	Loss: 0.565888
+Client Index = 1	Epoch: 3	Loss: 0.581993
+Client Index = 1	Epoch: 4	Loss: 0.540315
+@@@@@@@@@@@@@@@@ Training Client CM(15): 2
+Client Index = 2	Epoch: 0	Loss: 0.863342
+Client Index = 2	Epoch: 1	Loss: 0.880120
+Client Index = 2	Epoch: 2	Loss: 0.790602
+Client Index = 2	Epoch: 3	Loss: 0.815188
+Client Index = 2	Epoch: 4	Loss: 0.773692
+@@@@@@@@@@@@@@@@ Training Client CM(15): 3
+Client Index = 3	Epoch: 0	Loss: 1.181952
+Client Index = 3	Epoch: 1	Loss: 1.154690
+Client Index = 3	Epoch: 2	Loss: 1.147879
+Client Index = 3	Epoch: 3	Loss: 1.167558
+Client Index = 3	Epoch: 4	Loss: 1.092013
+@@@@@@@@@@@@@@@@ Training Client CM(15): 4
+Client Index = 4	Epoch: 0	Loss: 1.047917
+Client Index = 4	Epoch: 1	Loss: 1.072565
+Client Index = 4	Epoch: 2	Loss: 0.985574
+Client Index = 4	Epoch: 3	Loss: 0.968727
+Client Index = 4	Epoch: 4	Loss: 0.945827
+@@@@@@@@@@@@@@@@ Training Client CM(15): 9
+Client Index = 9	Epoch: 0	Loss: 1.207156
+Client Index = 9	Epoch: 1	Loss: 1.167644
+Client Index = 9	Epoch: 2	Loss: 1.146925
+Client Index = 9	Epoch: 3	Loss: 1.144649
+Client Index = 9	Epoch: 4	Loss: 1.158590
+@@@@@@@@@@@@@@@@ Training Client CM(15): 10
+Client Index = 10	Epoch: 0	Loss: 1.127164
+Client Index = 10	Epoch: 1	Loss: 1.090069
+Client Index = 10	Epoch: 2	Loss: 1.037632
+Client Index = 10	Epoch: 3	Loss: 1.026449
+Client Index = 10	Epoch: 4	Loss: 0.989810
+@@@@@@@@@@@@@@@@ Training Client CM(15): 13
+Client Index = 13	Epoch: 0	Loss: 0.660778
+Client Index = 13	Epoch: 1	Loss: 0.525634
+Client Index = 13	Epoch: 2	Loss: 0.527214
+Client Index = 13	Epoch: 3	Loss: 0.629381
+Client Index = 13	Epoch: 4	Loss: 0.587728
+@@@@@@@@@@@@@@@@ Training Client CM(15): 15
+Client Index = 15	Epoch: 0	Loss: 0.622276
+Client Index = 15	Epoch: 1	Loss: 0.559265
+Client Index = 15	Epoch: 2	Loss: 0.581176
+Client Index = 15	Epoch: 3	Loss: 0.604683
+Client Index = 15	Epoch: 4	Loss: 0.490419
+@@@@@@@@@@@@@@@@ Training Client CM(15): 16
+Client Index = 16	Epoch: 0	Loss: 1.093760
+Client Index = 16	Epoch: 1	Loss: 1.016949
+Client Index = 16	Epoch: 2	Loss: 1.014806
+Client Index = 16	Epoch: 3	Loss: 1.118266
+Client Index = 16	Epoch: 4	Loss: 0.956057
+@@@@@@@@@@@@@@@@ Training Client CM(15): 19
+Client Index = 19	Epoch: 0	Loss: 1.064084
+Client Index = 19	Epoch: 1	Loss: 1.035717
+Client Index = 19	Epoch: 2	Loss: 1.035336
+Client Index = 19	Epoch: 3	Loss: 0.992519
+Client Index = 19	Epoch: 4	Loss: 0.969426
+{'training_loss': 0.8994498412813993}
+################global_test_on_all_clients : 15
+{'global_test_acc': 0.48140958991550864, 'global_test_loss': 1.434216418851774}
+{'person_test_acc': 0.5081100565875174, 'person_test_loss': 1.5697799782020943}
+################Communication round : 16
+client_indexes = [ 3 17 16 15 12  7  6  2  8 10]
+client_indexes = [ 2  3  6  7  8 10 12 15 16 17]
+@@@@@@@@@@@@@@@@ Training Client CM(16): 2
+Client Index = 2	Epoch: 0	Loss: 0.894634
+Client Index = 2	Epoch: 1	Loss: 0.747122
+Client Index = 2	Epoch: 2	Loss: 0.707320
+Client Index = 2	Epoch: 3	Loss: 0.737029
+Client Index = 2	Epoch: 4	Loss: 0.756566
+@@@@@@@@@@@@@@@@ Training Client CM(16): 3
+Client Index = 3	Epoch: 0	Loss: 1.184390
+Client Index = 3	Epoch: 1	Loss: 1.136445
+Client Index = 3	Epoch: 2	Loss: 1.113389
+Client Index = 3	Epoch: 3	Loss: 1.114938
+Client Index = 3	Epoch: 4	Loss: 1.110554
+@@@@@@@@@@@@@@@@ Training Client CM(16): 6
+Client Index = 6	Epoch: 0	Loss: 1.142851
+Client Index = 6	Epoch: 1	Loss: 1.122166
+Client Index = 6	Epoch: 2	Loss: 1.103599
+Client Index = 6	Epoch: 3	Loss: 1.074042
+Client Index = 6	Epoch: 4	Loss: 1.023502
+@@@@@@@@@@@@@@@@ Training Client CM(16): 7
+Client Index = 7	Epoch: 0	Loss: 1.149503
+Client Index = 7	Epoch: 1	Loss: 1.070155
+Client Index = 7	Epoch: 2	Loss: 1.049790
+Client Index = 7	Epoch: 3	Loss: 1.061343
+Client Index = 7	Epoch: 4	Loss: 1.068215
+@@@@@@@@@@@@@@@@ Training Client CM(16): 8
+Client Index = 8	Epoch: 0	Loss: 1.065723
+Client Index = 8	Epoch: 1	Loss: 1.019552
+Client Index = 8	Epoch: 2	Loss: 0.984853
+Client Index = 8	Epoch: 3	Loss: 0.971661
+Client Index = 8	Epoch: 4	Loss: 0.971525
+@@@@@@@@@@@@@@@@ Training Client CM(16): 10
+Client Index = 10	Epoch: 0	Loss: 1.091242
+Client Index = 10	Epoch: 1	Loss: 1.028022
+Client Index = 10	Epoch: 2	Loss: 1.044923
+Client Index = 10	Epoch: 3	Loss: 1.017172
+Client Index = 10	Epoch: 4	Loss: 1.000227
+@@@@@@@@@@@@@@@@ Training Client CM(16): 12
+Client Index = 12	Epoch: 0	Loss: 1.042210
+Client Index = 12	Epoch: 1	Loss: 0.919734
+Client Index = 12	Epoch: 2	Loss: 0.914500
+Client Index = 12	Epoch: 3	Loss: 0.926182
+Client Index = 12	Epoch: 4	Loss: 0.867030
+@@@@@@@@@@@@@@@@ Training Client CM(16): 15
+Client Index = 15	Epoch: 0	Loss: 0.596191
+Client Index = 15	Epoch: 1	Loss: 0.518029
+Client Index = 15	Epoch: 2	Loss: 0.509366
+Client Index = 15	Epoch: 3	Loss: 0.578597
+Client Index = 15	Epoch: 4	Loss: 0.523578
+@@@@@@@@@@@@@@@@ Training Client CM(16): 16
+Client Index = 16	Epoch: 0	Loss: 1.050746
+Client Index = 16	Epoch: 1	Loss: 1.001925
+Client Index = 16	Epoch: 2	Loss: 0.972208
+Client Index = 16	Epoch: 3	Loss: 1.011822
+Client Index = 16	Epoch: 4	Loss: 0.950004
+@@@@@@@@@@@@@@@@ Training Client CM(16): 17
+Client Index = 17	Epoch: 0	Loss: 0.821054
+Client Index = 17	Epoch: 1	Loss: 0.778580
+Client Index = 17	Epoch: 2	Loss: 0.734518
+Client Index = 17	Epoch: 3	Loss: 0.737255
+Client Index = 17	Epoch: 4	Loss: 0.691262
+{'training_loss': 0.93414496396482}
+################global_test_on_all_clients : 16
+{'global_test_acc': 0.4749373827857523, 'global_test_loss': 1.4703294872660855}
+{'person_test_acc': 0.5280223762418063, 'person_test_loss': 1.4570360319355138}
+################Communication round : 17
+client_indexes = [14  3  2 13  5  8 12  1 10 11]
+client_indexes = [ 1  2  3  5  8 10 11 12 13 14]
+@@@@@@@@@@@@@@@@ Training Client CM(17): 1
+Client Index = 1	Epoch: 0	Loss: 0.608917
+Client Index = 1	Epoch: 1	Loss: 0.599107
+Client Index = 1	Epoch: 2	Loss: 0.601043
+Client Index = 1	Epoch: 3	Loss: 0.606291
+Client Index = 1	Epoch: 4	Loss: 0.514963
+@@@@@@@@@@@@@@@@ Training Client CM(17): 2
+Client Index = 2	Epoch: 0	Loss: 0.810088
+Client Index = 2	Epoch: 1	Loss: 0.758240
+Client Index = 2	Epoch: 2	Loss: 0.668073
+Client Index = 2	Epoch: 3	Loss: 0.684001
+Client Index = 2	Epoch: 4	Loss: 0.725490
+@@@@@@@@@@@@@@@@ Training Client CM(17): 3
+Client Index = 3	Epoch: 0	Loss: 1.192718
+Client Index = 3	Epoch: 1	Loss: 1.173752
+Client Index = 3	Epoch: 2	Loss: 1.110065
+Client Index = 3	Epoch: 3	Loss: 1.062256
+Client Index = 3	Epoch: 4	Loss: 1.089091
+@@@@@@@@@@@@@@@@ Training Client CM(17): 5
+Client Index = 5	Epoch: 0	Loss: 0.704639
+Client Index = 5	Epoch: 1	Loss: 0.625146
+Client Index = 5	Epoch: 2	Loss: 0.554757
+Client Index = 5	Epoch: 3	Loss: 0.538769
+Client Index = 5	Epoch: 4	Loss: 0.578568
+@@@@@@@@@@@@@@@@ Training Client CM(17): 8
+Client Index = 8	Epoch: 0	Loss: 1.031711
+Client Index = 8	Epoch: 1	Loss: 0.965655
+Client Index = 8	Epoch: 2	Loss: 0.939488
+Client Index = 8	Epoch: 3	Loss: 0.928968
+Client Index = 8	Epoch: 4	Loss: 0.924470
+@@@@@@@@@@@@@@@@ Training Client CM(17): 10
+Client Index = 10	Epoch: 0	Loss: 1.078657
+Client Index = 10	Epoch: 1	Loss: 1.140246
+Client Index = 10	Epoch: 2	Loss: 1.005406
+Client Index = 10	Epoch: 3	Loss: 1.001611
+Client Index = 10	Epoch: 4	Loss: 0.950994
+@@@@@@@@@@@@@@@@ Training Client CM(17): 11
+Client Index = 11	Epoch: 0	Loss: 0.742345
+Client Index = 11	Epoch: 1	Loss: 0.716568
+Client Index = 11	Epoch: 2	Loss: 0.624822
+Client Index = 11	Epoch: 3	Loss: 0.623895
+Client Index = 11	Epoch: 4	Loss: 0.628038
+@@@@@@@@@@@@@@@@ Training Client CM(17): 12
+Client Index = 12	Epoch: 0	Loss: 0.936560
+Client Index = 12	Epoch: 1	Loss: 1.034616
+Client Index = 12	Epoch: 2	Loss: 0.908459
+Client Index = 12	Epoch: 3	Loss: 0.866311
+Client Index = 12	Epoch: 4	Loss: 0.833846
+@@@@@@@@@@@@@@@@ Training Client CM(17): 13
+Client Index = 13	Epoch: 0	Loss: 0.616849
+Client Index = 13	Epoch: 1	Loss: 0.669444
+Client Index = 13	Epoch: 2	Loss: 0.537497
+Client Index = 13	Epoch: 3	Loss: 0.577128
+Client Index = 13	Epoch: 4	Loss: 0.425777
+@@@@@@@@@@@@@@@@ Training Client CM(17): 14
+Client Index = 14	Epoch: 0	Loss: 0.982255
+Client Index = 14	Epoch: 1	Loss: 0.916443
+Client Index = 14	Epoch: 2	Loss: 0.869077
+Client Index = 14	Epoch: 3	Loss: 0.840461
+Client Index = 14	Epoch: 4	Loss: 0.847748
+{'training_loss': 0.8074264007229358}
+################global_test_on_all_clients : 17
+{'global_test_acc': 0.5221464809513854, 'global_test_loss': 1.3435307039945434}
+{'person_test_acc': 0.5338661957784265, 'person_test_loss': 1.4649210012340046}
+################Communication round : 18
+client_indexes = [ 3  4 19  0 12 11  6  7  9 18]
+client_indexes = [ 0  3  4  6  7  9 11 12 18 19]
+@@@@@@@@@@@@@@@@ Training Client CM(18): 0
+Client Index = 0	Epoch: 0	Loss: 0.978835
+Client Index = 0	Epoch: 1	Loss: 0.927469
+Client Index = 0	Epoch: 2	Loss: 0.877581
+Client Index = 0	Epoch: 3	Loss: 0.873269
+Client Index = 0	Epoch: 4	Loss: 0.840791
+@@@@@@@@@@@@@@@@ Training Client CM(18): 3
+Client Index = 3	Epoch: 0	Loss: 1.136665
+Client Index = 3	Epoch: 1	Loss: 1.105998
+Client Index = 3	Epoch: 2	Loss: 1.045694
+Client Index = 3	Epoch: 3	Loss: 1.104639
+Client Index = 3	Epoch: 4	Loss: 1.024258
+@@@@@@@@@@@@@@@@ Training Client CM(18): 4
+Client Index = 4	Epoch: 0	Loss: 0.998880
+Client Index = 4	Epoch: 1	Loss: 0.988202
+Client Index = 4	Epoch: 2	Loss: 0.902649
+Client Index = 4	Epoch: 3	Loss: 0.855326
+Client Index = 4	Epoch: 4	Loss: 0.833871
+@@@@@@@@@@@@@@@@ Training Client CM(18): 6
+Client Index = 6	Epoch: 0	Loss: 1.055039
+Client Index = 6	Epoch: 1	Loss: 1.083586
+Client Index = 6	Epoch: 2	Loss: 1.014822
+Client Index = 6	Epoch: 3	Loss: 1.070558
+Client Index = 6	Epoch: 4	Loss: 1.008767
+@@@@@@@@@@@@@@@@ Training Client CM(18): 7
+Client Index = 7	Epoch: 0	Loss: 1.113643
+Client Index = 7	Epoch: 1	Loss: 1.027033
+Client Index = 7	Epoch: 2	Loss: 1.064146
+Client Index = 7	Epoch: 3	Loss: 0.976003
+Client Index = 7	Epoch: 4	Loss: 0.905426
+@@@@@@@@@@@@@@@@ Training Client CM(18): 9
+Client Index = 9	Epoch: 0	Loss: 1.170320
+Client Index = 9	Epoch: 1	Loss: 1.115130
+Client Index = 9	Epoch: 2	Loss: 1.098321
+Client Index = 9	Epoch: 3	Loss: 1.204267
+Client Index = 9	Epoch: 4	Loss: 1.228104
+@@@@@@@@@@@@@@@@ Training Client CM(18): 11
+Client Index = 11	Epoch: 0	Loss: 0.664934
+Client Index = 11	Epoch: 1	Loss: 0.615897
+Client Index = 11	Epoch: 2	Loss: 0.596477
+Client Index = 11	Epoch: 3	Loss: 0.580769
+Client Index = 11	Epoch: 4	Loss: 0.620788
+@@@@@@@@@@@@@@@@ Training Client CM(18): 12
+Client Index = 12	Epoch: 0	Loss: 0.947145
+Client Index = 12	Epoch: 1	Loss: 0.998882
+Client Index = 12	Epoch: 2	Loss: 0.877900
+Client Index = 12	Epoch: 3	Loss: 0.853853
+Client Index = 12	Epoch: 4	Loss: 0.855113
+@@@@@@@@@@@@@@@@ Training Client CM(18): 18
+Client Index = 18	Epoch: 0	Loss: 1.203007
+Client Index = 18	Epoch: 1	Loss: 1.152375
+Client Index = 18	Epoch: 2	Loss: 1.187453
+Client Index = 18	Epoch: 3	Loss: 1.124915
+Client Index = 18	Epoch: 4	Loss: 1.097164
+@@@@@@@@@@@@@@@@ Training Client CM(18): 19
+Client Index = 19	Epoch: 0	Loss: 1.099226
+Client Index = 19	Epoch: 1	Loss: 0.934456
+Client Index = 19	Epoch: 2	Loss: 0.928291
+Client Index = 19	Epoch: 3	Loss: 1.005213
+Client Index = 19	Epoch: 4	Loss: 0.867439
+{'training_loss': 0.9768117126002908}
+################global_test_on_all_clients : 18
+{'global_test_acc': 0.510492456739527, 'global_test_loss': 1.3371181575740643}
+{'person_test_acc': 0.5449287544980873, 'person_test_loss': 1.383766050072436}
+################Communication round : 19
+client_indexes = [ 7 16 13  3  9  0  4 11 12  1]
+client_indexes = [ 0  1  3  4  7  9 11 12 13 16]
+@@@@@@@@@@@@@@@@ Training Client CM(19): 0
+Client Index = 0	Epoch: 0	Loss: 0.953466
+Client Index = 0	Epoch: 1	Loss: 0.861127
+Client Index = 0	Epoch: 2	Loss: 0.905458
+Client Index = 0	Epoch: 3	Loss: 0.879069
+Client Index = 0	Epoch: 4	Loss: 0.923321
+@@@@@@@@@@@@@@@@ Training Client CM(19): 1
+Client Index = 1	Epoch: 0	Loss: 0.648138
+Client Index = 1	Epoch: 1	Loss: 0.529856
+Client Index = 1	Epoch: 2	Loss: 0.503640
+Client Index = 1	Epoch: 3	Loss: 0.512410
+Client Index = 1	Epoch: 4	Loss: 0.479935
+@@@@@@@@@@@@@@@@ Training Client CM(19): 3
+Client Index = 3	Epoch: 0	Loss: 1.081233
+Client Index = 3	Epoch: 1	Loss: 1.011782
+Client Index = 3	Epoch: 2	Loss: 1.065554
+Client Index = 3	Epoch: 3	Loss: 1.006232
+Client Index = 3	Epoch: 4	Loss: 1.023540
+@@@@@@@@@@@@@@@@ Training Client CM(19): 4
+Client Index = 4	Epoch: 0	Loss: 0.971339
+Client Index = 4	Epoch: 1	Loss: 0.879440
+Client Index = 4	Epoch: 2	Loss: 0.893728
+Client Index = 4	Epoch: 3	Loss: 0.883739
+Client Index = 4	Epoch: 4	Loss: 0.812392
+@@@@@@@@@@@@@@@@ Training Client CM(19): 7
+Client Index = 7	Epoch: 0	Loss: 1.040746
+Client Index = 7	Epoch: 1	Loss: 1.071739
+Client Index = 7	Epoch: 2	Loss: 0.990698
+Client Index = 7	Epoch: 3	Loss: 0.943668
+Client Index = 7	Epoch: 4	Loss: 0.926326
+@@@@@@@@@@@@@@@@ Training Client CM(19): 9
+Client Index = 9	Epoch: 0	Loss: 1.114089
+Client Index = 9	Epoch: 1	Loss: 1.117093
+Client Index = 9	Epoch: 2	Loss: 1.140720
+Client Index = 9	Epoch: 3	Loss: 1.077991
+Client Index = 9	Epoch: 4	Loss: 1.079162
+@@@@@@@@@@@@@@@@ Training Client CM(19): 11
+Client Index = 11	Epoch: 0	Loss: 0.686615
+Client Index = 11	Epoch: 1	Loss: 0.666421
+Client Index = 11	Epoch: 2	Loss: 0.639934
+Client Index = 11	Epoch: 3	Loss: 0.648903
+Client Index = 11	Epoch: 4	Loss: 0.648798
+@@@@@@@@@@@@@@@@ Training Client CM(19): 12
+Client Index = 12	Epoch: 0	Loss: 0.909263
+Client Index = 12	Epoch: 1	Loss: 0.891592
+Client Index = 12	Epoch: 2	Loss: 0.957397
+Client Index = 12	Epoch: 3	Loss: 0.835661
+Client Index = 12	Epoch: 4	Loss: 0.800804
+@@@@@@@@@@@@@@@@ Training Client CM(19): 13
+Client Index = 13	Epoch: 0	Loss: 0.604329
+Client Index = 13	Epoch: 1	Loss: 0.487809
+Client Index = 13	Epoch: 2	Loss: 0.462126
+Client Index = 13	Epoch: 3	Loss: 0.401087
+Client Index = 13	Epoch: 4	Loss: 0.467785
+@@@@@@@@@@@@@@@@ Training Client CM(19): 16
+Client Index = 16	Epoch: 0	Loss: 1.048167
+Client Index = 16	Epoch: 1	Loss: 1.000409
+Client Index = 16	Epoch: 2	Loss: 0.971137
+Client Index = 16	Epoch: 3	Loss: 0.903087
+Client Index = 16	Epoch: 4	Loss: 0.913300
+{'training_loss': 0.8454450681116432}
+################global_test_on_all_clients : 19
+{'global_test_acc': 0.4855233632675522, 'global_test_loss': 1.4087096191382211}
+{'person_test_acc': 0.5556178538326162, 'person_test_loss': 1.4123288874655924}
+################Communication round : 20
+client_indexes = [16 13 10  4  1 14 17 12 19  5]
+client_indexes = [ 1  4  5 10 12 13 14 16 17 19]
+@@@@@@@@@@@@@@@@ Training Client CM(20): 1
+Client Index = 1	Epoch: 0	Loss: 0.629902
+Client Index = 1	Epoch: 1	Loss: 0.501371
+Client Index = 1	Epoch: 2	Loss: 0.459941
+Client Index = 1	Epoch: 3	Loss: 0.483725
+Client Index = 1	Epoch: 4	Loss: 0.477053
+@@@@@@@@@@@@@@@@ Training Client CM(20): 4
+Client Index = 4	Epoch: 0	Loss: 0.969595
+Client Index = 4	Epoch: 1	Loss: 0.856546
+Client Index = 4	Epoch: 2	Loss: 0.881097
+Client Index = 4	Epoch: 3	Loss: 0.848638
+Client Index = 4	Epoch: 4	Loss: 0.831150
+@@@@@@@@@@@@@@@@ Training Client CM(20): 5
+Client Index = 5	Epoch: 0	Loss: 0.619545
+Client Index = 5	Epoch: 1	Loss: 0.556740
+Client Index = 5	Epoch: 2	Loss: 0.620315
+Client Index = 5	Epoch: 3	Loss: 0.572811
+Client Index = 5	Epoch: 4	Loss: 0.550579
+@@@@@@@@@@@@@@@@ Training Client CM(20): 10
+Client Index = 10	Epoch: 0	Loss: 1.046135
+Client Index = 10	Epoch: 1	Loss: 0.967652
+Client Index = 10	Epoch: 2	Loss: 0.916938
+Client Index = 10	Epoch: 3	Loss: 0.943089
+Client Index = 10	Epoch: 4	Loss: 0.922233
+@@@@@@@@@@@@@@@@ Training Client CM(20): 12
+Client Index = 12	Epoch: 0	Loss: 0.897471
+Client Index = 12	Epoch: 1	Loss: 0.892991
+Client Index = 12	Epoch: 2	Loss: 0.825131
+Client Index = 12	Epoch: 3	Loss: 0.809105
+Client Index = 12	Epoch: 4	Loss: 0.849321
+@@@@@@@@@@@@@@@@ Training Client CM(20): 13
+Client Index = 13	Epoch: 0	Loss: 0.559401
+Client Index = 13	Epoch: 1	Loss: 0.464089
+Client Index = 13	Epoch: 2	Loss: 0.530041
+Client Index = 13	Epoch: 3	Loss: 0.452091
+Client Index = 13	Epoch: 4	Loss: 0.468383
+@@@@@@@@@@@@@@@@ Training Client CM(20): 14
+Client Index = 14	Epoch: 0	Loss: 0.870828
+Client Index = 14	Epoch: 1	Loss: 0.802266
+Client Index = 14	Epoch: 2	Loss: 0.786762
+Client Index = 14	Epoch: 3	Loss: 0.924706
+Client Index = 14	Epoch: 4	Loss: 0.802745
+@@@@@@@@@@@@@@@@ Training Client CM(20): 16
+Client Index = 16	Epoch: 0	Loss: 1.009768
+Client Index = 16	Epoch: 1	Loss: 0.965892
+Client Index = 16	Epoch: 2	Loss: 0.921407
+Client Index = 16	Epoch: 3	Loss: 0.980664
+Client Index = 16	Epoch: 4	Loss: 0.901934
+@@@@@@@@@@@@@@@@ Training Client CM(20): 17
+Client Index = 17	Epoch: 0	Loss: 0.796556
+Client Index = 17	Epoch: 1	Loss: 0.680731
+Client Index = 17	Epoch: 2	Loss: 0.685747
+Client Index = 17	Epoch: 3	Loss: 0.653639
+Client Index = 17	Epoch: 4	Loss: 0.653827
+@@@@@@@@@@@@@@@@ Training Client CM(20): 19
+Client Index = 19	Epoch: 0	Loss: 0.998482
+Client Index = 19	Epoch: 1	Loss: 1.004742
+Client Index = 19	Epoch: 2	Loss: 0.896449
+Client Index = 19	Epoch: 3	Loss: 0.990088
+Client Index = 19	Epoch: 4	Loss: 0.888041
+{'training_loss': 0.772367074011825}
+################global_test_on_all_clients : 20
+{'global_test_acc': 0.5074497540317651, 'global_test_loss': 1.3961301810912847}
+{'person_test_acc': 0.5482877353205902, 'person_test_loss': 1.3902383063852608}
+################Communication round : 21
+client_indexes = [ 7 10 19 13  5 17 18 11  6 14]
+client_indexes = [ 5  6  7 10 11 13 14 17 18 19]
+@@@@@@@@@@@@@@@@ Training Client CM(21): 5
+Client Index = 5	Epoch: 0	Loss: 0.597939
+Client Index = 5	Epoch: 1	Loss: 0.522250
+Client Index = 5	Epoch: 2	Loss: 0.496172
+Client Index = 5	Epoch: 3	Loss: 0.514226
+Client Index = 5	Epoch: 4	Loss: 0.528089
+@@@@@@@@@@@@@@@@ Training Client CM(21): 6
+Client Index = 6	Epoch: 0	Loss: 0.996260
+Client Index = 6	Epoch: 1	Loss: 1.055291
+Client Index = 6	Epoch: 2	Loss: 1.007799
+Client Index = 6	Epoch: 3	Loss: 0.962971
+Client Index = 6	Epoch: 4	Loss: 1.017750
+@@@@@@@@@@@@@@@@ Training Client CM(21): 7
+Client Index = 7	Epoch: 0	Loss: 1.061807
+Client Index = 7	Epoch: 1	Loss: 0.947282
+Client Index = 7	Epoch: 2	Loss: 1.007051
+Client Index = 7	Epoch: 3	Loss: 0.968402
+Client Index = 7	Epoch: 4	Loss: 0.880696
+@@@@@@@@@@@@@@@@ Training Client CM(21): 10
+Client Index = 10	Epoch: 0	Loss: 0.985217
+Client Index = 10	Epoch: 1	Loss: 0.933514
+Client Index = 10	Epoch: 2	Loss: 0.946827
+Client Index = 10	Epoch: 3	Loss: 0.866502
+Client Index = 10	Epoch: 4	Loss: 0.869525
+@@@@@@@@@@@@@@@@ Training Client CM(21): 11
+Client Index = 11	Epoch: 0	Loss: 0.646774
+Client Index = 11	Epoch: 1	Loss: 0.610275
+Client Index = 11	Epoch: 2	Loss: 0.594391
+Client Index = 11	Epoch: 3	Loss: 0.640140
+Client Index = 11	Epoch: 4	Loss: 0.757577
+@@@@@@@@@@@@@@@@ Training Client CM(21): 13
+Client Index = 13	Epoch: 0	Loss: 0.527749
+Client Index = 13	Epoch: 1	Loss: 0.474520
+Client Index = 13	Epoch: 2	Loss: 0.455745
+Client Index = 13	Epoch: 3	Loss: 0.423323
+Client Index = 13	Epoch: 4	Loss: 0.445158
+@@@@@@@@@@@@@@@@ Training Client CM(21): 14
+Client Index = 14	Epoch: 0	Loss: 0.837165
+Client Index = 14	Epoch: 1	Loss: 0.824452
+Client Index = 14	Epoch: 2	Loss: 0.721492
+Client Index = 14	Epoch: 3	Loss: 0.802698
+Client Index = 14	Epoch: 4	Loss: 0.823732
+@@@@@@@@@@@@@@@@ Training Client CM(21): 17
+Client Index = 17	Epoch: 0	Loss: 0.739621
+Client Index = 17	Epoch: 1	Loss: 0.691942
+Client Index = 17	Epoch: 2	Loss: 0.649744
+Client Index = 17	Epoch: 3	Loss: 0.722783
+Client Index = 17	Epoch: 4	Loss: 0.697848
+@@@@@@@@@@@@@@@@ Training Client CM(21): 18
+Client Index = 18	Epoch: 0	Loss: 1.143818
+Client Index = 18	Epoch: 1	Loss: 1.110206
+Client Index = 18	Epoch: 2	Loss: 1.158899
+Client Index = 18	Epoch: 3	Loss: 1.054641
+Client Index = 18	Epoch: 4	Loss: 1.043530
+@@@@@@@@@@@@@@@@ Training Client CM(21): 19
+Client Index = 19	Epoch: 0	Loss: 0.970086
+Client Index = 19	Epoch: 1	Loss: 0.923794
+Client Index = 19	Epoch: 2	Loss: 0.853167
+Client Index = 19	Epoch: 3	Loss: 0.877008
+Client Index = 19	Epoch: 4	Loss: 0.884612
+{'training_loss': 0.8054491190910339}
+################global_test_on_all_clients : 21
+{'global_test_acc': 0.49499774863401347, 'global_test_loss': 1.3872560703770076}
+{'person_test_acc': 0.5219715536432158, 'person_test_loss': 1.5766469710450577}
+################Communication round : 22
+client_indexes = [10 14 17  3  1  7  5  9 13  2]
+client_indexes = [ 1  2  3  5  7  9 10 13 14 17]
+@@@@@@@@@@@@@@@@ Training Client CM(22): 1
+Client Index = 1	Epoch: 0	Loss: 0.587953
+Client Index = 1	Epoch: 1	Loss: 0.535743
+Client Index = 1	Epoch: 2	Loss: 0.562912
+Client Index = 1	Epoch: 3	Loss: 0.452263
+Client Index = 1	Epoch: 4	Loss: 0.433103
+@@@@@@@@@@@@@@@@ Training Client CM(22): 2
+Client Index = 2	Epoch: 0	Loss: 0.727594
+Client Index = 2	Epoch: 1	Loss: 0.684321
+Client Index = 2	Epoch: 2	Loss: 0.622997
+Client Index = 2	Epoch: 3	Loss: 0.558669
+Client Index = 2	Epoch: 4	Loss: 0.635747
+@@@@@@@@@@@@@@@@ Training Client CM(22): 3
+Client Index = 3	Epoch: 0	Loss: 1.032694
+Client Index = 3	Epoch: 1	Loss: 1.078614
+Client Index = 3	Epoch: 2	Loss: 1.081993
+Client Index = 3	Epoch: 3	Loss: 1.017678
+Client Index = 3	Epoch: 4	Loss: 0.965759
+@@@@@@@@@@@@@@@@ Training Client CM(22): 5
+Client Index = 5	Epoch: 0	Loss: 0.565899
+Client Index = 5	Epoch: 1	Loss: 0.490148
+Client Index = 5	Epoch: 2	Loss: 0.491580
+Client Index = 5	Epoch: 3	Loss: 0.459688
+Client Index = 5	Epoch: 4	Loss: 0.556432
+@@@@@@@@@@@@@@@@ Training Client CM(22): 7
+Client Index = 7	Epoch: 0	Loss: 0.989581
+Client Index = 7	Epoch: 1	Loss: 1.014803
+Client Index = 7	Epoch: 2	Loss: 0.934705
+Client Index = 7	Epoch: 3	Loss: 1.029288
+Client Index = 7	Epoch: 4	Loss: 0.891988
+@@@@@@@@@@@@@@@@ Training Client CM(22): 9
+Client Index = 9	Epoch: 0	Loss: 1.053073
+Client Index = 9	Epoch: 1	Loss: 1.059124
+Client Index = 9	Epoch: 2	Loss: 1.119555
+Client Index = 9	Epoch: 3	Loss: 1.050479
+Client Index = 9	Epoch: 4	Loss: 1.006921
+@@@@@@@@@@@@@@@@ Training Client CM(22): 10
+Client Index = 10	Epoch: 0	Loss: 0.917350
+Client Index = 10	Epoch: 1	Loss: 0.922983
+Client Index = 10	Epoch: 2	Loss: 0.883750
+Client Index = 10	Epoch: 3	Loss: 0.899264
+Client Index = 10	Epoch: 4	Loss: 0.908056
+@@@@@@@@@@@@@@@@ Training Client CM(22): 13
+Client Index = 13	Epoch: 0	Loss: 0.511607
+Client Index = 13	Epoch: 1	Loss: 0.388689
+Client Index = 13	Epoch: 2	Loss: 0.394386
+Client Index = 13	Epoch: 3	Loss: 0.377701
+Client Index = 13	Epoch: 4	Loss: 0.561060
+@@@@@@@@@@@@@@@@ Training Client CM(22): 14
+Client Index = 14	Epoch: 0	Loss: 0.808313
+Client Index = 14	Epoch: 1	Loss: 0.769961
+Client Index = 14	Epoch: 2	Loss: 0.726774
+Client Index = 14	Epoch: 3	Loss: 0.731333
+Client Index = 14	Epoch: 4	Loss: 0.683345
+@@@@@@@@@@@@@@@@ Training Client CM(22): 17
+Client Index = 17	Epoch: 0	Loss: 0.682467
+Client Index = 17	Epoch: 1	Loss: 0.686914
+Client Index = 17	Epoch: 2	Loss: 0.650006
+Client Index = 17	Epoch: 3	Loss: 0.579425
+Client Index = 17	Epoch: 4	Loss: 0.585632
+{'training_loss': 0.7472064893841743}
+################global_test_on_all_clients : 22
+{'global_test_acc': 0.5249751632212953, 'global_test_loss': 1.2829681570172224}
+{'person_test_acc': 0.5206180834560632, 'person_test_loss': 1.6327450772186964}
+################Communication round : 23
+client_indexes = [ 0 10  2  1  4  5 14 15  3 16]
+client_indexes = [ 0  1  2  3  4  5 10 14 15 16]
+@@@@@@@@@@@@@@@@ Training Client CM(23): 0
+Client Index = 0	Epoch: 0	Loss: 0.907781
+Client Index = 0	Epoch: 1	Loss: 0.877972
+Client Index = 0	Epoch: 2	Loss: 0.806089
+Client Index = 0	Epoch: 3	Loss: 0.761538
+Client Index = 0	Epoch: 4	Loss: 0.749807
+@@@@@@@@@@@@@@@@ Training Client CM(23): 1
+Client Index = 1	Epoch: 0	Loss: 0.528439
+Client Index = 1	Epoch: 1	Loss: 0.456124
+Client Index = 1	Epoch: 2	Loss: 0.449761
+Client Index = 1	Epoch: 3	Loss: 0.416638
+Client Index = 1	Epoch: 4	Loss: 0.420893
+@@@@@@@@@@@@@@@@ Training Client CM(23): 2
+Client Index = 2	Epoch: 0	Loss: 0.711910
+Client Index = 2	Epoch: 1	Loss: 0.677520
+Client Index = 2	Epoch: 2	Loss: 0.656365
+Client Index = 2	Epoch: 3	Loss: 0.641391
+Client Index = 2	Epoch: 4	Loss: 0.560607
+@@@@@@@@@@@@@@@@ Training Client CM(23): 3
+Client Index = 3	Epoch: 0	Loss: 1.043346
+Client Index = 3	Epoch: 1	Loss: 1.044238
+Client Index = 3	Epoch: 2	Loss: 1.008015
+Client Index = 3	Epoch: 3	Loss: 0.903160
+Client Index = 3	Epoch: 4	Loss: 1.023468
+@@@@@@@@@@@@@@@@ Training Client CM(23): 4
+Client Index = 4	Epoch: 0	Loss: 0.850266
+Client Index = 4	Epoch: 1	Loss: 0.796330
+Client Index = 4	Epoch: 2	Loss: 0.872415
+Client Index = 4	Epoch: 3	Loss: 0.833075
+Client Index = 4	Epoch: 4	Loss: 0.739383
+@@@@@@@@@@@@@@@@ Training Client CM(23): 5
+Client Index = 5	Epoch: 0	Loss: 0.545696
+Client Index = 5	Epoch: 1	Loss: 0.519151
+Client Index = 5	Epoch: 2	Loss: 0.504327
+Client Index = 5	Epoch: 3	Loss: 0.442692
+Client Index = 5	Epoch: 4	Loss: 0.519579
+@@@@@@@@@@@@@@@@ Training Client CM(23): 10
+Client Index = 10	Epoch: 0	Loss: 0.928832
+Client Index = 10	Epoch: 1	Loss: 1.002385
+Client Index = 10	Epoch: 2	Loss: 0.911342
+Client Index = 10	Epoch: 3	Loss: 0.888531
+Client Index = 10	Epoch: 4	Loss: 0.832379
+@@@@@@@@@@@@@@@@ Training Client CM(23): 14
+Client Index = 14	Epoch: 0	Loss: 0.783406
+Client Index = 14	Epoch: 1	Loss: 0.768578
+Client Index = 14	Epoch: 2	Loss: 0.860383
+Client Index = 14	Epoch: 3	Loss: 0.742307
+Client Index = 14	Epoch: 4	Loss: 0.710435
+@@@@@@@@@@@@@@@@ Training Client CM(23): 15
+Client Index = 15	Epoch: 0	Loss: 0.469371
+Client Index = 15	Epoch: 1	Loss: 0.475605
+Client Index = 15	Epoch: 2	Loss: 0.455330
+Client Index = 15	Epoch: 3	Loss: 0.386204
+Client Index = 15	Epoch: 4	Loss: 0.422505
+@@@@@@@@@@@@@@@@ Training Client CM(23): 16
+Client Index = 16	Epoch: 0	Loss: 0.980123
+Client Index = 16	Epoch: 1	Loss: 0.931995
+Client Index = 16	Epoch: 2	Loss: 0.990725
+Client Index = 16	Epoch: 3	Loss: 0.865242
+Client Index = 16	Epoch: 4	Loss: 0.860034
+{'training_loss': 0.730673746946268}
+################global_test_on_all_clients : 23
+{'global_test_acc': 0.5629688740004191, 'global_test_loss': 1.2119185970444335}
+{'person_test_acc': 0.5485904149625155, 'person_test_loss': 1.5670220010959954}
+################Communication round : 24
+client_indexes = [13  6 17  5  9  8 14 16  7 10]
+client_indexes = [ 5  6  7  8  9 10 13 14 16 17]
+@@@@@@@@@@@@@@@@ Training Client CM(24): 5
+Client Index = 5	Epoch: 0	Loss: 0.516049
+Client Index = 5	Epoch: 1	Loss: 0.471288
+Client Index = 5	Epoch: 2	Loss: 0.482060
+Client Index = 5	Epoch: 3	Loss: 0.449566
+Client Index = 5	Epoch: 4	Loss: 0.576833
+@@@@@@@@@@@@@@@@ Training Client CM(24): 6
+Client Index = 6	Epoch: 0	Loss: 0.951551
+Client Index = 6	Epoch: 1	Loss: 0.893260
+Client Index = 6	Epoch: 2	Loss: 0.890398
+Client Index = 6	Epoch: 3	Loss: 0.897487
+Client Index = 6	Epoch: 4	Loss: 0.861112
+@@@@@@@@@@@@@@@@ Training Client CM(24): 7
+Client Index = 7	Epoch: 0	Loss: 1.000926
+Client Index = 7	Epoch: 1	Loss: 0.961574
+Client Index = 7	Epoch: 2	Loss: 0.889245
+Client Index = 7	Epoch: 3	Loss: 0.831428
+Client Index = 7	Epoch: 4	Loss: 0.806587
+@@@@@@@@@@@@@@@@ Training Client CM(24): 8
+Client Index = 8	Epoch: 0	Loss: 0.876845
+Client Index = 8	Epoch: 1	Loss: 0.856339
+Client Index = 8	Epoch: 2	Loss: 0.820321
+Client Index = 8	Epoch: 3	Loss: 0.794671
+Client Index = 8	Epoch: 4	Loss: 0.864389
+@@@@@@@@@@@@@@@@ Training Client CM(24): 9
+Client Index = 9	Epoch: 0	Loss: 1.087165
+Client Index = 9	Epoch: 1	Loss: 1.030607
+Client Index = 9	Epoch: 2	Loss: 1.008599
+Client Index = 9	Epoch: 3	Loss: 1.012721
+Client Index = 9	Epoch: 4	Loss: 1.057215
+@@@@@@@@@@@@@@@@ Training Client CM(24): 10
+Client Index = 10	Epoch: 0	Loss: 0.929296
+Client Index = 10	Epoch: 1	Loss: 0.937688
+Client Index = 10	Epoch: 2	Loss: 0.920026
+Client Index = 10	Epoch: 3	Loss: 0.823700
+Client Index = 10	Epoch: 4	Loss: 0.881364
+@@@@@@@@@@@@@@@@ Training Client CM(24): 13
+Client Index = 13	Epoch: 0	Loss: 0.461830
+Client Index = 13	Epoch: 1	Loss: 0.378143
+Client Index = 13	Epoch: 2	Loss: 0.376613
+Client Index = 13	Epoch: 3	Loss: 0.447277
+Client Index = 13	Epoch: 4	Loss: 0.351586
+@@@@@@@@@@@@@@@@ Training Client CM(24): 14
+Client Index = 14	Epoch: 0	Loss: 0.758238
+Client Index = 14	Epoch: 1	Loss: 0.722161
+Client Index = 14	Epoch: 2	Loss: 0.632978
+Client Index = 14	Epoch: 3	Loss: 0.744095
+Client Index = 14	Epoch: 4	Loss: 0.655066
+@@@@@@@@@@@@@@@@ Training Client CM(24): 16
+Client Index = 16	Epoch: 0	Loss: 0.947608
+Client Index = 16	Epoch: 1	Loss: 0.885438
+Client Index = 16	Epoch: 2	Loss: 0.894294
+Client Index = 16	Epoch: 3	Loss: 0.908553
+Client Index = 16	Epoch: 4	Loss: 0.866483
+@@@@@@@@@@@@@@@@ Training Client CM(24): 17
+Client Index = 17	Epoch: 0	Loss: 0.734449
+Client Index = 17	Epoch: 1	Loss: 0.689442
+Client Index = 17	Epoch: 2	Loss: 0.617360
+Client Index = 17	Epoch: 3	Loss: 0.586508
+Client Index = 17	Epoch: 4	Loss: 0.554466
+{'training_loss': 0.771857856316492}
+################global_test_on_all_clients : 24
+{'global_test_acc': 0.5668556380423027, 'global_test_loss': 1.189176415153515}
+{'person_test_acc': 0.5763927465360369, 'person_test_loss': 1.4681431933409699}
+################Communication round : 25
+client_indexes = [13 11  2 10  6 18 16  0  3  7]
+client_indexes = [ 0  2  3  6  7 10 11 13 16 18]
+@@@@@@@@@@@@@@@@ Training Client CM(25): 0
+Client Index = 0	Epoch: 0	Loss: 0.865639
+Client Index = 0	Epoch: 1	Loss: 0.785416
+Client Index = 0	Epoch: 2	Loss: 0.760957
+Client Index = 0	Epoch: 3	Loss: 0.775522
+Client Index = 0	Epoch: 4	Loss: 0.768166
+@@@@@@@@@@@@@@@@ Training Client CM(25): 2
+Client Index = 2	Epoch: 0	Loss: 0.741510
+Client Index = 2	Epoch: 1	Loss: 0.634238
+Client Index = 2	Epoch: 2	Loss: 0.606859
+Client Index = 2	Epoch: 3	Loss: 0.530155
+Client Index = 2	Epoch: 4	Loss: 0.556511
+@@@@@@@@@@@@@@@@ Training Client CM(25): 3
+Client Index = 3	Epoch: 0	Loss: 0.999373
+Client Index = 3	Epoch: 1	Loss: 0.906997
+Client Index = 3	Epoch: 2	Loss: 0.930383
+Client Index = 3	Epoch: 3	Loss: 0.886626
+Client Index = 3	Epoch: 4	Loss: 0.931629
+@@@@@@@@@@@@@@@@ Training Client CM(25): 6
+Client Index = 6	Epoch: 0	Loss: 0.931986
+Client Index = 6	Epoch: 1	Loss: 0.947820
+Client Index = 6	Epoch: 2	Loss: 0.860147
+Client Index = 6	Epoch: 3	Loss: 0.846394
+Client Index = 6	Epoch: 4	Loss: 0.982529
+@@@@@@@@@@@@@@@@ Training Client CM(25): 7
+Client Index = 7	Epoch: 0	Loss: 0.929169
+Client Index = 7	Epoch: 1	Loss: 0.889617
+Client Index = 7	Epoch: 2	Loss: 0.883092
+Client Index = 7	Epoch: 3	Loss: 0.857029
+Client Index = 7	Epoch: 4	Loss: 0.852667
+@@@@@@@@@@@@@@@@ Training Client CM(25): 10
+Client Index = 10	Epoch: 0	Loss: 0.897508
+Client Index = 10	Epoch: 1	Loss: 0.879443
+Client Index = 10	Epoch: 2	Loss: 0.902599
+Client Index = 10	Epoch: 3	Loss: 0.862323
+Client Index = 10	Epoch: 4	Loss: 0.806304
+@@@@@@@@@@@@@@@@ Training Client CM(25): 11
+Client Index = 11	Epoch: 0	Loss: 0.613926
+Client Index = 11	Epoch: 1	Loss: 0.531694
+Client Index = 11	Epoch: 2	Loss: 0.522577
+Client Index = 11	Epoch: 3	Loss: 0.552347
+Client Index = 11	Epoch: 4	Loss: 0.475452
+@@@@@@@@@@@@@@@@ Training Client CM(25): 13
+Client Index = 13	Epoch: 0	Loss: 0.439610
+Client Index = 13	Epoch: 1	Loss: 0.416752
+Client Index = 13	Epoch: 2	Loss: 0.344505
+Client Index = 13	Epoch: 3	Loss: 0.333504
+Client Index = 13	Epoch: 4	Loss: 0.438576
+@@@@@@@@@@@@@@@@ Training Client CM(25): 16
+Client Index = 16	Epoch: 0	Loss: 0.918795
+Client Index = 16	Epoch: 1	Loss: 0.894504
+Client Index = 16	Epoch: 2	Loss: 0.872313
+Client Index = 16	Epoch: 3	Loss: 0.821744
+Client Index = 16	Epoch: 4	Loss: 0.815637
+@@@@@@@@@@@@@@@@ Training Client CM(25): 18
+Client Index = 18	Epoch: 0	Loss: 1.116415
+Client Index = 18	Epoch: 1	Loss: 1.070924
+Client Index = 18	Epoch: 2	Loss: 1.066389
+Client Index = 18	Epoch: 3	Loss: 1.014237
+Client Index = 18	Epoch: 4	Loss: 0.979777
+{'training_loss': 0.7849657770581543}
+################global_test_on_all_clients : 25
+{'global_test_acc': 0.556435131693931, 'global_test_loss': 1.2084963872497994}
+{'person_test_acc': 0.5795533604886562, 'person_test_loss': 1.5326130655713126}
+################Communication round : 26
+client_indexes = [ 8 18 12 14 11  9  5 15  7 17]
+client_indexes = [ 5  7  8  9 11 12 14 15 17 18]
+@@@@@@@@@@@@@@@@ Training Client CM(26): 5
+Client Index = 5	Epoch: 0	Loss: 0.572269
+Client Index = 5	Epoch: 1	Loss: 0.440522
+Client Index = 5	Epoch: 2	Loss: 0.481225
+Client Index = 5	Epoch: 3	Loss: 0.457366
+Client Index = 5	Epoch: 4	Loss: 0.469856
+@@@@@@@@@@@@@@@@ Training Client CM(26): 7
+Client Index = 7	Epoch: 0	Loss: 0.961196
+Client Index = 7	Epoch: 1	Loss: 0.927696
+Client Index = 7	Epoch: 2	Loss: 0.826691
+Client Index = 7	Epoch: 3	Loss: 0.830714
+Client Index = 7	Epoch: 4	Loss: 0.829352
+@@@@@@@@@@@@@@@@ Training Client CM(26): 8
+Client Index = 8	Epoch: 0	Loss: 0.825393
+Client Index = 8	Epoch: 1	Loss: 0.800374
+Client Index = 8	Epoch: 2	Loss: 0.838104
+Client Index = 8	Epoch: 3	Loss: 0.881234
+Client Index = 8	Epoch: 4	Loss: 0.754742
+@@@@@@@@@@@@@@@@ Training Client CM(26): 9
+Client Index = 9	Epoch: 0	Loss: 1.057178
+Client Index = 9	Epoch: 1	Loss: 1.020510
+Client Index = 9	Epoch: 2	Loss: 0.963199
+Client Index = 9	Epoch: 3	Loss: 0.957957
+Client Index = 9	Epoch: 4	Loss: 0.965957
+@@@@@@@@@@@@@@@@ Training Client CM(26): 11
+Client Index = 11	Epoch: 0	Loss: 0.603480
+Client Index = 11	Epoch: 1	Loss: 0.526451
+Client Index = 11	Epoch: 2	Loss: 0.585740
+Client Index = 11	Epoch: 3	Loss: 0.514224
+Client Index = 11	Epoch: 4	Loss: 0.462259
+@@@@@@@@@@@@@@@@ Training Client CM(26): 12
+Client Index = 12	Epoch: 0	Loss: 0.852224
+Client Index = 12	Epoch: 1	Loss: 0.869226
+Client Index = 12	Epoch: 2	Loss: 0.719717
+Client Index = 12	Epoch: 3	Loss: 0.746391
+Client Index = 12	Epoch: 4	Loss: 0.755239
+@@@@@@@@@@@@@@@@ Training Client CM(26): 14
+Client Index = 14	Epoch: 0	Loss: 0.751944
+Client Index = 14	Epoch: 1	Loss: 0.715149
+Client Index = 14	Epoch: 2	Loss: 0.633616
+Client Index = 14	Epoch: 3	Loss: 0.608993
+Client Index = 14	Epoch: 4	Loss: 0.634481
+@@@@@@@@@@@@@@@@ Training Client CM(26): 15
+Client Index = 15	Epoch: 0	Loss: 0.458823
+Client Index = 15	Epoch: 1	Loss: 0.547626
+Client Index = 15	Epoch: 2	Loss: 0.398500
+Client Index = 15	Epoch: 3	Loss: 0.388625
+Client Index = 15	Epoch: 4	Loss: 0.350638
+@@@@@@@@@@@@@@@@ Training Client CM(26): 17
+Client Index = 17	Epoch: 0	Loss: 0.675149
+Client Index = 17	Epoch: 1	Loss: 0.601983
+Client Index = 17	Epoch: 2	Loss: 0.533264
+Client Index = 17	Epoch: 3	Loss: 0.515028
+Client Index = 17	Epoch: 4	Loss: 0.511935
+@@@@@@@@@@@@@@@@ Training Client CM(26): 18
+Client Index = 18	Epoch: 0	Loss: 1.051410
+Client Index = 18	Epoch: 1	Loss: 1.010289
+Client Index = 18	Epoch: 2	Loss: 1.091509
+Client Index = 18	Epoch: 3	Loss: 0.991496
+Client Index = 18	Epoch: 4	Loss: 0.967502
+{'training_loss': 0.7186888485979288}
+################global_test_on_all_clients : 26
+{'global_test_acc': 0.5935911600460531, 'global_test_loss': 1.1367427882598327}
+{'person_test_acc': 0.5964149481595231, 'person_test_loss': 1.362328943916101}
+################Communication round : 27
+client_indexes = [ 7 15  0 11 17  3  6  4 14 12]
+client_indexes = [ 0  3  4  6  7 11 12 14 15 17]
+@@@@@@@@@@@@@@@@ Training Client CM(27): 0
+Client Index = 0	Epoch: 0	Loss: 0.837825
+Client Index = 0	Epoch: 1	Loss: 0.863735
+Client Index = 0	Epoch: 2	Loss: 0.741617
+Client Index = 0	Epoch: 3	Loss: 0.775170
+Client Index = 0	Epoch: 4	Loss: 0.803250
+@@@@@@@@@@@@@@@@ Training Client CM(27): 3
+Client Index = 3	Epoch: 0	Loss: 0.964469
+Client Index = 3	Epoch: 1	Loss: 0.895055
+Client Index = 3	Epoch: 2	Loss: 0.948631
+Client Index = 3	Epoch: 3	Loss: 0.903955
+Client Index = 3	Epoch: 4	Loss: 0.850283
+@@@@@@@@@@@@@@@@ Training Client CM(27): 4
+Client Index = 4	Epoch: 0	Loss: 0.815306
+Client Index = 4	Epoch: 1	Loss: 0.715038
+Client Index = 4	Epoch: 2	Loss: 0.826537
+Client Index = 4	Epoch: 3	Loss: 0.697174
+Client Index = 4	Epoch: 4	Loss: 0.656639
+@@@@@@@@@@@@@@@@ Training Client CM(27): 6
+Client Index = 6	Epoch: 0	Loss: 0.882595
+Client Index = 6	Epoch: 1	Loss: 0.881488
+Client Index = 6	Epoch: 2	Loss: 0.854370
+Client Index = 6	Epoch: 3	Loss: 0.855244
+Client Index = 6	Epoch: 4	Loss: 0.788503
+@@@@@@@@@@@@@@@@ Training Client CM(27): 7
+Client Index = 7	Epoch: 0	Loss: 0.934016
+Client Index = 7	Epoch: 1	Loss: 0.913468
+Client Index = 7	Epoch: 2	Loss: 0.866799
+Client Index = 7	Epoch: 3	Loss: 0.777702
+Client Index = 7	Epoch: 4	Loss: 0.778553
+@@@@@@@@@@@@@@@@ Training Client CM(27): 11
+Client Index = 11	Epoch: 0	Loss: 0.525892
+Client Index = 11	Epoch: 1	Loss: 0.473368
+Client Index = 11	Epoch: 2	Loss: 0.540013
+Client Index = 11	Epoch: 3	Loss: 0.556564
+Client Index = 11	Epoch: 4	Loss: 0.475264
+@@@@@@@@@@@@@@@@ Training Client CM(27): 12
+Client Index = 12	Epoch: 0	Loss: 0.771123
+Client Index = 12	Epoch: 1	Loss: 0.728913
+Client Index = 12	Epoch: 2	Loss: 0.704393
+Client Index = 12	Epoch: 3	Loss: 0.711454
+Client Index = 12	Epoch: 4	Loss: 0.709613
+@@@@@@@@@@@@@@@@ Training Client CM(27): 14
+Client Index = 14	Epoch: 0	Loss: 0.692930
+Client Index = 14	Epoch: 1	Loss: 0.672544
+Client Index = 14	Epoch: 2	Loss: 0.676084
+Client Index = 14	Epoch: 3	Loss: 0.761699
+Client Index = 14	Epoch: 4	Loss: 0.624685
+@@@@@@@@@@@@@@@@ Training Client CM(27): 15
+Client Index = 15	Epoch: 0	Loss: 0.460514
+Client Index = 15	Epoch: 1	Loss: 0.425603
+Client Index = 15	Epoch: 2	Loss: 0.387261
+Client Index = 15	Epoch: 3	Loss: 0.333580
+Client Index = 15	Epoch: 4	Loss: 0.402511
+@@@@@@@@@@@@@@@@ Training Client CM(27): 17
+Client Index = 17	Epoch: 0	Loss: 0.633431
+Client Index = 17	Epoch: 1	Loss: 0.583027
+Client Index = 17	Epoch: 2	Loss: 0.556972
+Client Index = 17	Epoch: 3	Loss: 0.562421

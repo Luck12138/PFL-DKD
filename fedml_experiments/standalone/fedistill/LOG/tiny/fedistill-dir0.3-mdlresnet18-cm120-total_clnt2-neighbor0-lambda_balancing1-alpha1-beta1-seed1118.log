@@ -1,0 +1,120 @@
+Namespace(active=1.0, alpha=1, batch_size=128, beta=1, ci=0, client_num_in_total=2, client_num_per_round=0, client_optimizer='sgd', comm_round=120, cs='full', data_dir='/Date/FL/DisPFL-master/data/', dataset='tiny', epochs=5, frac=0.2, frequency_of_the_test=1, gpu=0, identity='fedistill-dir0.3-mdlresnet18-cm120-total_clnt2-neighbor0-lambda_balancing1-alpha1-beta1-seed1118', lambda_balancing=1, lr=0.1, lr_decay=0.998, model='resnet18', momentum=0, partition_alpha=0.3, partition_method='dir', seed=1118, tag='test', temperature=7, wd=0.0005)
+cuda:0
+running at devicecuda:0
+*********partition data***************
+train_num100000  test_num5000
+client_idx = 0, local_sample_number = 100000
+train_num50000  test_num5093
+client_idx = 1, local_sample_number = 50000
+DATA Partition: Train [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500]; Test [25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25]
+DATA Partition: Train [242, 258, 252, 254, 259, 258, 249, 261, 239, 249, 256, 250, 245, 270, 245, 245, 211, 251, 250, 248, 245, 252, 247, 249, 233, 240, 243, 244, 245, 256, 255, 267, 251, 258, 275, 256, 252, 256, 240, 241, 239, 244, 246, 246, 265, 254, 229, 252, 253, 252, 234, 229, 241, 239, 263, 264, 226, 244, 262, 236, 263, 265, 241, 229, 259, 254, 238, 237, 245, 262, 229, 258, 262, 250, 249, 263, 241, 242, 248, 241, 257, 252, 261, 249, 251, 254, 245, 235, 244, 249, 249, 252, 261, 256, 268, 232, 226, 245, 254, 245, 237, 275, 246, 250, 263, 263, 243, 249, 249, 258, 246, 237, 245, 267, 257, 261, 261, 255, 248, 252, 264, 264, 257, 241, 252, 256, 252, 229, 258, 235, 255, 243, 257, 248, 249, 240, 263, 251, 253, 235, 266, 246, 238, 253, 274, 258, 239, 263, 244, 237, 264, 267, 238, 245, 254, 257, 259, 254, 231, 244, 276, 266, 253, 258, 232, 244, 259, 234, 250, 254, 236, 238, 248, 247, 266, 255, 252, 253, 255, 259, 247, 257, 270, 245, 255, 222, 242, 256, 251, 235, 252, 245, 258, 250, 258, 253, 251, 254, 247, 246]; Test [25, 26, 26, 26, 26, 26, 25, 27, 24, 25, 26, 25, 25, 27, 25, 25, 22, 26, 25, 25, 25, 26, 25, 25, 24, 24, 25, 25, 25, 26, 26, 27, 26, 26, 28, 26, 26, 26, 24, 25, 24, 25, 25, 25, 27, 26, 23, 26, 26, 26, 24, 23, 25, 24, 27, 27, 23, 25, 27, 24, 27, 27, 25, 23, 26, 26, 24, 24, 25, 27, 23, 26, 27, 25, 25, 27, 25, 25, 25, 25, 26, 26, 27, 25, 26, 26, 25, 24, 25, 25, 25, 26, 27, 26, 27, 24, 23, 25, 26, 25, 24, 28, 25, 25, 27, 27, 25, 25, 25, 26, 25, 24, 25, 27, 26, 27, 27, 26, 25, 26, 27, 27, 26, 25, 26, 26, 26, 23, 26, 24, 26, 25, 26, 25, 25, 24, 27, 26, 26, 24, 27, 25, 24, 26, 28, 26, 24, 27, 25, 24, 27, 27, 24, 25, 26, 26, 26, 26, 24, 25, 28, 27, 26, 26, 24, 25, 26, 24, 25, 26, 24, 24, 25, 25, 27, 26, 26, 26, 26, 26, 25, 26, 27, 25, 26, 23, 25, 26, 26, 24, 26, 25, 26, 25, 26, 26, 26, 26, 25, 25]
+create_model. model_name = resnet18
+tiny_ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (linear): Linear(in_features=512, out_features=200, bias=True)
+)
+############setup_clients (START)#############
+self.local_sample_number = 100000
+self.local_sample_number = 50000
+############setup_clients (END)#############
+################Communication round : 0
+@@@@@@@@@@@@@@@@ Training Client CM(0): 0
+Client Index = 0	Epoch: 0	Loss: 5.275308
+Client Index = 0	Epoch: 1	Loss: 5.078928
+Client Index = 0	Epoch: 2	Loss: 4.909730
+Client Index = 0	Epoch: 3	Loss: 4.779690
+Client Index = 0	Epoch: 4	Loss: 4.656985
+{'0_training_loss': 4.940128411783282}
+@@@@@@@@@@@@@@@@ Training Client CM(0): 1
+Client Index = 1	Epoch: 0	Loss: 5.423585
+Client Index = 1	Epoch: 1	Loss: 5.387536
+Client Index = 1	Epoch: 2	Loss: 5.346329
+Client Index = 1	Epoch: 3	Loss: 5.301180
+Client Index = 1	Epoch: 4	Loss: 5.271927
+{'1_training_loss': 5.346111391267508}
+################Average Training Loss : 0
+{'training_loss': 5.143119901525395}
+################global_test_on_all_clients : 0
+{'0_test_loss': 4.698997834777832}
+{'0_test_acc': 0.0456}
+{'1_test_loss': 5.154619957500512}
+{'1_test_acc': 0.0196}
+################Communication round : 1
+@@@@@@@@@@@@@@@@ Training Client CM(1): 0
+Client Index = 0	Epoch: 0	Loss: 4.546359
+Client Index = 0	Epoch: 1	Loss: 4.447637

@@ -1,0 +1,1288 @@
+Namespace(batch_size=128, ci=0, client_num_in_total=1, client_num_per_round=1, client_optimizer='sgd', comm_round=100, data_dir='/Date/FL/DisPFL-master/data/', dataset='cifar100', epochs=5, frac=1.0, frequency_of_the_test=1, gpu=0, identity="local-'dir'0.3-cm100-total_clnt1-neighbor1-seed1118", lr=0.1, lr_decay=0.998, model='resnet18', momentum=0, partition_alpha=0.3, partition_method="'dir'", seed=1118, tag='test', wd=0.0005)
+cuda:0
+*********partition data***************
+train_num25000  test_num9857
+client_idx = 0, local_sample_number = 25000
+DATA Partition: Train [277, 247, 253, 234, 269, 252, 248, 244, 235, 245, 234, 250, 265, 226, 264, 253, 239, 246, 264, 249, 251, 241, 243, 252, 248, 245, 242, 249, 248, 271, 256, 261, 229, 254, 256, 249, 256, 242, 267, 253, 238, 236, 249, 266, 251, 266, 261, 268, 256, 239, 254, 240, 245, 243, 239, 238, 244, 255, 260, 246, 249, 246, 277, 249, 260, 260, 239, 255, 258, 262, 248, 248, 251, 244, 265, 258, 257, 232, 251, 252, 250, 248, 246, 259, 242, 244, 253, 211, 257, 254, 247, 238, 258, 250, 254, 255, 244, 258, 232, 238]; Test [100, 99, 100, 94, 100, 100, 100, 98, 94, 98, 94, 100, 100, 91, 100, 100, 96, 99, 100, 100, 100, 97, 98, 100, 100, 98, 97, 100, 100, 100, 100, 100, 92, 100, 100, 100, 100, 97, 100, 100, 96, 95, 100, 100, 100, 100, 100, 100, 100, 96, 100, 96, 98, 98, 96, 96, 98, 100, 100, 99, 100, 99, 100, 100, 100, 100, 96, 100, 100, 100, 100, 100, 100, 98, 100, 100, 100, 93, 100, 100, 100, 100, 99, 100, 97, 98, 100, 85, 100, 100, 99, 96, 100, 100, 100, 100, 98, 100, 93, 96]
+create_model. model_name = resnet18
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 64, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 128, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): GroupNorm(32, 512, eps=1e-05, affine=True)
+      (shortcut): Sequential()
+    )
+  )
+  (linear): Linear(in_features=512, out_features=100, bias=True)
+)
+############setup_clients (START)#############
+self.local_sample_number = 25000
+############setup_clients (END)#############
+################Communication round : 0
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(0): 0
+Client Index = 0	Epoch: 0	Loss: 4.570060
+Client Index = 0	Epoch: 1	Loss: 4.248867
+Client Index = 0	Epoch: 2	Loss: 4.060755
+Client Index = 0	Epoch: 3	Loss: 3.923648
+Client Index = 0	Epoch: 4	Loss: 3.820188
+test acc on this client  878 / 9857 : 7.32
+################local_test_on_all_clients in communication round: 0
+{'test_acc': 0.08907375469209698, 'test_loss': 4.016163365502526}
+################Communication round : 1
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(1): 0
+Client Index = 0	Epoch: 0	Loss: 3.718117
+Client Index = 0	Epoch: 1	Loss: 3.622427
+Client Index = 0	Epoch: 2	Loss: 3.532473
+Client Index = 0	Epoch: 3	Loss: 3.453109
+Client Index = 0	Epoch: 4	Loss: 3.365629
+test acc on this client  1213 / 9857 : 9.53
+################local_test_on_all_clients in communication round: 1
+{'test_acc': 0.1230597544891955, 'test_loss': 3.806098031673565}
+################Communication round : 2
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(2): 0
+Client Index = 0	Epoch: 0	Loss: 3.291744
+Client Index = 0	Epoch: 1	Loss: 3.213008
+Client Index = 0	Epoch: 2	Loss: 3.140192
+Client Index = 0	Epoch: 3	Loss: 3.063859
+Client Index = 0	Epoch: 4	Loss: 3.018563
+test acc on this client  1526 / 9857 : 12.00
+################local_test_on_all_clients in communication round: 2
+{'test_acc': 0.15481383788170844, 'test_loss': 3.700755971990034}
+################Communication round : 3
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(3): 0
+Client Index = 0	Epoch: 0	Loss: 2.943715
+Client Index = 0	Epoch: 1	Loss: 2.912745
+Client Index = 0	Epoch: 2	Loss: 2.837685
+Client Index = 0	Epoch: 3	Loss: 2.781397
+Client Index = 0	Epoch: 4	Loss: 2.729963
+test acc on this client  2104 / 9857 : 16.68
+################local_test_on_all_clients in communication round: 3
+{'test_acc': 0.21345236887491123, 'test_loss': 3.3412266485804993}
+################Communication round : 4
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(4): 0
+Client Index = 0	Epoch: 0	Loss: 2.671009
+Client Index = 0	Epoch: 1	Loss: 2.626457
+Client Index = 0	Epoch: 2	Loss: 2.572739
+Client Index = 0	Epoch: 3	Loss: 2.543679
+Client Index = 0	Epoch: 4	Loss: 2.471148
+test acc on this client  2600 / 9857 : 21.23
+################local_test_on_all_clients in communication round: 4
+{'test_acc': 0.2637719387237496, 'test_loss': 3.1336445278094387}
+################Communication round : 5
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(5): 0
+Client Index = 0	Epoch: 0	Loss: 2.443998
+Client Index = 0	Epoch: 1	Loss: 2.391122
+Client Index = 0	Epoch: 2	Loss: 2.342492
+Client Index = 0	Epoch: 3	Loss: 2.303564
+Client Index = 0	Epoch: 4	Loss: 2.257395
+test acc on this client  2812 / 9857 : 22.08
+################local_test_on_all_clients in communication round: 5
+{'test_acc': 0.28527949680430154, 'test_loss': 2.9267265037408134}
+################Communication round : 6
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(6): 0
+Client Index = 0	Epoch: 0	Loss: 2.208046
+Client Index = 0	Epoch: 1	Loss: 2.165371
+Client Index = 0	Epoch: 2	Loss: 2.110630
+Client Index = 0	Epoch: 3	Loss: 2.080912
+Client Index = 0	Epoch: 4	Loss: 2.025146
+test acc on this client  3555 / 9857 : 27.63
+################local_test_on_all_clients in communication round: 6
+{'test_acc': 0.3606574008318961, 'test_loss': 2.476929133207111}
+################Communication round : 7
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(7): 0
+Client Index = 0	Epoch: 0	Loss: 1.979191
+Client Index = 0	Epoch: 1	Loss: 1.945973
+Client Index = 0	Epoch: 2	Loss: 1.891968
+Client Index = 0	Epoch: 3	Loss: 1.875102
+Client Index = 0	Epoch: 4	Loss: 1.811218
+test acc on this client  2611 / 9857 : 20.38
+################local_test_on_all_clients in communication round: 7
+{'test_acc': 0.2648878969260424, 'test_loss': 3.185151746684958}
+################Communication round : 8
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(8): 0
+Client Index = 0	Epoch: 0	Loss: 1.801702
+Client Index = 0	Epoch: 1	Loss: 1.742396
+Client Index = 0	Epoch: 2	Loss: 1.683997
+Client Index = 0	Epoch: 3	Loss: 1.654337
+Client Index = 0	Epoch: 4	Loss: 1.604922
+test acc on this client  3608 / 9857 : 28.64
+################local_test_on_all_clients in communication round: 8
+{'test_acc': 0.3660342903520341, 'test_loss': 2.584940358229942}
+################Communication round : 9
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(9): 0
+Client Index = 0	Epoch: 0	Loss: 1.567778
+Client Index = 0	Epoch: 1	Loss: 1.528905
+Client Index = 0	Epoch: 2	Loss: 1.496506
+Client Index = 0	Epoch: 3	Loss: 1.478598
+Client Index = 0	Epoch: 4	Loss: 1.420217
+test acc on this client  3920 / 9857 : 30.71
+################local_test_on_all_clients in communication round: 9
+{'test_acc': 0.39768692299888403, 'test_loss': 2.416284602203826}
+################Communication round : 10
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(10): 0
+Client Index = 0	Epoch: 0	Loss: 1.358799
+Client Index = 0	Epoch: 1	Loss: 1.345091
+Client Index = 0	Epoch: 2	Loss: 1.302644
+Client Index = 0	Epoch: 3	Loss: 1.271449
+Client Index = 0	Epoch: 4	Loss: 1.248849
+test acc on this client  4439 / 9857 : 35.63
+################local_test_on_all_clients in communication round: 10
+{'test_acc': 0.450339859997971, 'test_loss': 2.140528608144896}
+################Communication round : 11
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(11): 0
+Client Index = 0	Epoch: 0	Loss: 1.184276
+Client Index = 0	Epoch: 1	Loss: 1.172774
+Client Index = 0	Epoch: 2	Loss: 1.110017
+Client Index = 0	Epoch: 3	Loss: 1.071202
+Client Index = 0	Epoch: 4	Loss: 1.061704
+test acc on this client  4093 / 9857 : 32.37
+################local_test_on_all_clients in communication round: 11
+{'test_acc': 0.4152379019985797, 'test_loss': 2.3797516379937376}
+################Communication round : 12
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(12): 0
+Client Index = 0	Epoch: 0	Loss: 1.009024
+Client Index = 0	Epoch: 1	Loss: 0.996240
+Client Index = 0	Epoch: 2	Loss: 0.922661
+Client Index = 0	Epoch: 3	Loss: 0.903255
+Client Index = 0	Epoch: 4	Loss: 0.864585
+test acc on this client  4850 / 9857 : 38.47
+################local_test_on_all_clients in communication round: 12
+{'test_acc': 0.49203611646545603, 'test_loss': 2.0390533878976016}
+################Communication round : 13
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(13): 0
+Client Index = 0	Epoch: 0	Loss: 0.815613
+Client Index = 0	Epoch: 1	Loss: 0.801958
+Client Index = 0	Epoch: 2	Loss: 0.795539
+Client Index = 0	Epoch: 3	Loss: 0.730577
+Client Index = 0	Epoch: 4	Loss: 0.671269
+test acc on this client  3826 / 9857 : 30.42
+################local_test_on_all_clients in communication round: 13
+{'test_acc': 0.38815055290656386, 'test_loss': 2.796308164992269}
+################Communication round : 14
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(14): 0
+Client Index = 0	Epoch: 0	Loss: 0.670713
+Client Index = 0	Epoch: 1	Loss: 0.638486
+Client Index = 0	Epoch: 2	Loss: 0.583409
+Client Index = 0	Epoch: 3	Loss: 0.530009
+Client Index = 0	Epoch: 4	Loss: 0.517967
+test acc on this client  4563 / 9857 : 36.26
+################local_test_on_all_clients in communication round: 14
+{'test_acc': 0.4629197524601806, 'test_loss': 2.3093162920234156}
+################Communication round : 15
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(15): 0
+Client Index = 0	Epoch: 0	Loss: 0.485130
+Client Index = 0	Epoch: 1	Loss: 0.470224
+Client Index = 0	Epoch: 2	Loss: 0.454733
+Client Index = 0	Epoch: 3	Loss: 0.382896
+Client Index = 0	Epoch: 4	Loss: 0.369042
+test acc on this client  4397 / 9857 : 34.42
+################local_test_on_all_clients in communication round: 15
+{'test_acc': 0.4460789286801258, 'test_loss': 2.567121475635659}
+################Communication round : 16
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(16): 0
+Client Index = 0	Epoch: 0	Loss: 0.460338
+Client Index = 0	Epoch: 1	Loss: 0.387213
+Client Index = 0	Epoch: 2	Loss: 0.268303
+Client Index = 0	Epoch: 3	Loss: 0.271434
+Client Index = 0	Epoch: 4	Loss: 0.278599
+test acc on this client  4754 / 9857 : 37.24
+################local_test_on_all_clients in communication round: 16
+{'test_acc': 0.4822968448818099, 'test_loss': 2.4260345841199085}
+################Communication round : 17
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(17): 0
+Client Index = 0	Epoch: 0	Loss: 0.203383
+Client Index = 0	Epoch: 1	Loss: 0.302601
+Client Index = 0	Epoch: 2	Loss: 0.385656
+Client Index = 0	Epoch: 3	Loss: 0.140772
+Client Index = 0	Epoch: 4	Loss: 0.119392
+test acc on this client  5007 / 9857 : 40.44
+################local_test_on_all_clients in communication round: 17
+{'test_acc': 0.507963883534544, 'test_loss': 2.3154684436046726}
+################Communication round : 18
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(18): 0
+Client Index = 0	Epoch: 0	Loss: 0.103229
+Client Index = 0	Epoch: 1	Loss: 0.108854
+Client Index = 0	Epoch: 2	Loss: 0.484123
+Client Index = 0	Epoch: 3	Loss: 0.110960
+Client Index = 0	Epoch: 4	Loss: 0.083153
+test acc on this client  5365 / 9857 : 42.71
+################local_test_on_all_clients in communication round: 18
+{'test_acc': 0.5442832504818911, 'test_loss': 2.1118137364069685}
+################Communication round : 19
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(19): 0
+Client Index = 0	Epoch: 0	Loss: 0.077617
+Client Index = 0	Epoch: 1	Loss: 0.643689
+Client Index = 0	Epoch: 2	Loss: 0.150844
+Client Index = 0	Epoch: 3	Loss: 0.077901
+Client Index = 0	Epoch: 4	Loss: 0.067343
+test acc on this client  5234 / 9857 : 41.73
+################local_test_on_all_clients in communication round: 19
+{'test_acc': 0.5309932028000406, 'test_loss': 2.200941772221148}
+################Communication round : 20
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(20): 0
+Client Index = 0	Epoch: 0	Loss: 0.051143
+Client Index = 0	Epoch: 1	Loss: 0.048407
+Client Index = 0	Epoch: 2	Loss: 0.041210
+Client Index = 0	Epoch: 3	Loss: 0.525800
+Client Index = 0	Epoch: 4	Loss: 0.468562
+test acc on this client  4189 / 9857 : 33.40
+################local_test_on_all_clients in communication round: 20
+{'test_acc': 0.4249771735822258, 'test_loss': 2.883787061157799}
+################Communication round : 21
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(21): 0
+Client Index = 0	Epoch: 0	Loss: 0.133334
+Client Index = 0	Epoch: 1	Loss: 0.067753
+Client Index = 0	Epoch: 2	Loss: 0.054443
+Client Index = 0	Epoch: 3	Loss: 0.042617
+Client Index = 0	Epoch: 4	Loss: 0.034604
+test acc on this client  5338 / 9857 : 41.70
+################local_test_on_all_clients in communication round: 21
+{'test_acc': 0.5415440803489906, 'test_loss': 2.152871186959613}
+################Communication round : 22
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(22): 0
+Client Index = 0	Epoch: 0	Loss: 0.036392
+Client Index = 0	Epoch: 1	Loss: 0.027315
+Client Index = 0	Epoch: 2	Loss: 0.023863
+Client Index = 0	Epoch: 3	Loss: 0.994536
+Client Index = 0	Epoch: 4	Loss: 0.167248
+test acc on this client  5395 / 9857 : 43.02
+################local_test_on_all_clients in communication round: 22
+{'test_acc': 0.5473267728517804, 'test_loss': 2.0012075808876193}
+################Communication round : 23
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(23): 0
+Client Index = 0	Epoch: 0	Loss: 0.076567
+Client Index = 0	Epoch: 1	Loss: 0.056073
+Client Index = 0	Epoch: 2	Loss: 0.036759
+Client Index = 0	Epoch: 3	Loss: 0.029430
+Client Index = 0	Epoch: 4	Loss: 0.026753
+test acc on this client  5610 / 9857 : 45.08
+################local_test_on_all_clients in communication round: 23
+{'test_acc': 0.5691386831693213, 'test_loss': 1.9510008137300119}
+################Communication round : 24
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(24): 0
+Client Index = 0	Epoch: 0	Loss: 0.021804
+Client Index = 0	Epoch: 1	Loss: 0.018885
+Client Index = 0	Epoch: 2	Loss: 0.017796
+Client Index = 0	Epoch: 3	Loss: 0.018521
+Client Index = 0	Epoch: 4	Loss: 0.023833
+test acc on this client  5647 / 9857 : 44.12
+################local_test_on_all_clients in communication round: 24
+{'test_acc': 0.5728923607588515, 'test_loss': 1.9631427504342214}
+################Communication round : 25
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(25): 0
+Client Index = 0	Epoch: 0	Loss: 0.018831
+Client Index = 0	Epoch: 1	Loss: 0.016318
+Client Index = 0	Epoch: 2	Loss: 0.013763
+Client Index = 0	Epoch: 3	Loss: 0.012443
+Client Index = 0	Epoch: 4	Loss: 0.014371
+test acc on this client  5613 / 9857 : 43.92
+################local_test_on_all_clients in communication round: 25
+{'test_acc': 0.5694430354063102, 'test_loss': 1.9702763607986464}
+################Communication round : 26
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(26): 0
+Client Index = 0	Epoch: 0	Loss: 0.018126
+Client Index = 0	Epoch: 1	Loss: 0.013254
+Client Index = 0	Epoch: 2	Loss: 1.154162
+Client Index = 0	Epoch: 3	Loss: 0.953275
+Client Index = 0	Epoch: 4	Loss: 0.547086
+test acc on this client  4612 / 9857 : 37.00
+################local_test_on_all_clients in communication round: 26
+{'test_acc': 0.46789083899766665, 'test_loss': 2.3363847380774803}
+################Communication round : 27
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(27): 0
+Client Index = 0	Epoch: 0	Loss: 0.202694
+Client Index = 0	Epoch: 1	Loss: 0.134285
+Client Index = 0	Epoch: 2	Loss: 0.105944
+Client Index = 0	Epoch: 3	Loss: 0.098629
+Client Index = 0	Epoch: 4	Loss: 0.892318
+test acc on this client  4467 / 9857 : 35.29
+################local_test_on_all_clients in communication round: 27
+{'test_acc': 0.45318048087653445, 'test_loss': 2.5069299682975195}
+################Communication round : 28
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(28): 0
+Client Index = 0	Epoch: 0	Loss: 0.192012
+Client Index = 0	Epoch: 1	Loss: 0.088602
+Client Index = 0	Epoch: 2	Loss: 0.053598
+Client Index = 0	Epoch: 3	Loss: 0.041434
+Client Index = 0	Epoch: 4	Loss: 0.031595
+test acc on this client  5638 / 9857 : 44.83
+################local_test_on_all_clients in communication round: 28
+{'test_acc': 0.5719793040478848, 'test_loss': 1.9505457927058307}
+################Communication round : 29
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(29): 0
+Client Index = 0	Epoch: 0	Loss: 0.027100
+Client Index = 0	Epoch: 1	Loss: 0.021444
+Client Index = 0	Epoch: 2	Loss: 0.023831
+Client Index = 0	Epoch: 3	Loss: 0.019559
+Client Index = 0	Epoch: 4	Loss: 0.012651
+test acc on this client  5790 / 9857 : 46.03
+################local_test_on_all_clients in communication round: 29
+{'test_acc': 0.5873998173886578, 'test_loss': 1.8875103910378315}
+################Communication round : 30
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(30): 0
+Client Index = 0	Epoch: 0	Loss: 0.011412
+Client Index = 0	Epoch: 1	Loss: 0.014316
+Client Index = 0	Epoch: 2	Loss: 0.012506
+Client Index = 0	Epoch: 3	Loss: 0.010915
+Client Index = 0	Epoch: 4	Loss: 0.012834
+test acc on this client  5787 / 9857 : 46.20
+################local_test_on_all_clients in communication round: 30
+{'test_acc': 0.5870954651516689, 'test_loss': 1.8565371239370219}
+################Communication round : 31
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(31): 0
+Client Index = 0	Epoch: 0	Loss: 0.010699
+Client Index = 0	Epoch: 1	Loss: 0.017894
+Client Index = 0	Epoch: 2	Loss: 0.023527
+Client Index = 0	Epoch: 3	Loss: 0.010947
+Client Index = 0	Epoch: 4	Loss: 0.010049
+test acc on this client  5801 / 9857 : 45.01
+################local_test_on_all_clients in communication round: 31
+{'test_acc': 0.5885157755909506, 'test_loss': 1.8599499743766277}
+################Communication round : 32
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(32): 0
+Client Index = 0	Epoch: 0	Loss: 1.373310
+Client Index = 0	Epoch: 1	Loss: 0.936085
+Client Index = 0	Epoch: 2	Loss: 0.430158
+Client Index = 0	Epoch: 3	Loss: 0.375750
+Client Index = 0	Epoch: 4	Loss: 0.256658
+test acc on this client  4362 / 9857 : 34.32
+################local_test_on_all_clients in communication round: 32
+{'test_acc': 0.44252815258192146, 'test_loss': 2.623630495566791}
+################Communication round : 33
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(33): 0
+Client Index = 0	Epoch: 0	Loss: 0.149719
+Client Index = 0	Epoch: 1	Loss: 0.093431
+Client Index = 0	Epoch: 2	Loss: 0.079655
+Client Index = 0	Epoch: 3	Loss: 0.097461
+Client Index = 0	Epoch: 4	Loss: 0.916666
+test acc on this client  4560 / 9857 : 36.32
+################local_test_on_all_clients in communication round: 33
+{'test_acc': 0.46261540022319164, 'test_loss': 2.477980527670428}
+################Communication round : 34
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(34): 0
+Client Index = 0	Epoch: 0	Loss: 0.176741
+Client Index = 0	Epoch: 1	Loss: 0.091963
+Client Index = 0	Epoch: 2	Loss: 0.055271
+Client Index = 0	Epoch: 3	Loss: 0.033773
+Client Index = 0	Epoch: 4	Loss: 0.036017
+test acc on this client  5667 / 9857 : 44.95
+################local_test_on_all_clients in communication round: 34
+{'test_acc': 0.5749213756721112, 'test_loss': 1.9485117417508018}
+################Communication round : 35
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(35): 0
+Client Index = 0	Epoch: 0	Loss: 0.033761
+Client Index = 0	Epoch: 1	Loss: 0.026972
+Client Index = 0	Epoch: 2	Loss: 0.028549
+Client Index = 0	Epoch: 3	Loss: 0.844463
+Client Index = 0	Epoch: 4	Loss: 0.182383
+test acc on this client  4755 / 9857 : 37.36
+################local_test_on_all_clients in communication round: 35
+{'test_acc': 0.4823982956274729, 'test_loss': 2.4319053398844805}
+################Communication round : 36
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(36): 0
+Client Index = 0	Epoch: 0	Loss: 0.070410
+Client Index = 0	Epoch: 1	Loss: 0.046811
+Client Index = 0	Epoch: 2	Loss: 0.029148
+Client Index = 0	Epoch: 3	Loss: 0.024065
+Client Index = 0	Epoch: 4	Loss: 0.022751
+test acc on this client  5689 / 9857 : 45.05
+################local_test_on_all_clients in communication round: 36
+{'test_acc': 0.5771532920766967, 'test_loss': 1.9719115654353354}
+################Communication round : 37
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(37): 0
+Client Index = 0	Epoch: 0	Loss: 0.015251
+Client Index = 0	Epoch: 1	Loss: 0.011979
+Client Index = 0	Epoch: 2	Loss: 0.011970
+Client Index = 0	Epoch: 3	Loss: 0.012295
+Client Index = 0	Epoch: 4	Loss: 0.012169
+test acc on this client  5835 / 9857 : 46.53
+################local_test_on_all_clients in communication round: 37
+{'test_acc': 0.591965100943492, 'test_loss': 1.8583174022805344}
+################Communication round : 38
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(38): 0
+Client Index = 0	Epoch: 0	Loss: 0.010773
+Client Index = 0	Epoch: 1	Loss: 0.009921
+Client Index = 0	Epoch: 2	Loss: 0.010702
+Client Index = 0	Epoch: 3	Loss: 0.007409
+Client Index = 0	Epoch: 4	Loss: 0.007799
+test acc on this client  5936 / 9857 : 46.97
+################local_test_on_all_clients in communication round: 38
+{'test_acc': 0.602211626255453, 'test_loss': 1.8160774583987906}
+################Communication round : 39
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(39): 0
+Client Index = 0	Epoch: 0	Loss: 0.007121
+Client Index = 0	Epoch: 1	Loss: 0.007756
+Client Index = 0	Epoch: 2	Loss: 0.008069
+Client Index = 0	Epoch: 3	Loss: 0.010152
+Client Index = 0	Epoch: 4	Loss: 0.007776
+test acc on this client  5936 / 9857 : 46.65
+################local_test_on_all_clients in communication round: 39
+{'test_acc': 0.602211626255453, 'test_loss': 1.7917179654139685}
+################Communication round : 40
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(40): 0
+Client Index = 0	Epoch: 0	Loss: 0.007412
+Client Index = 0	Epoch: 1	Loss: 0.006839
+Client Index = 0	Epoch: 2	Loss: 0.007486
+Client Index = 0	Epoch: 3	Loss: 0.007432
+Client Index = 0	Epoch: 4	Loss: 0.007592
+test acc on this client  5952 / 9857 : 47.23
+################local_test_on_all_clients in communication round: 40
+{'test_acc': 0.6038348381860607, 'test_loss': 1.7696585010004369}
+################Communication round : 41
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(41): 0
+Client Index = 0	Epoch: 0	Loss: 0.006955
+Client Index = 0	Epoch: 1	Loss: 0.006819
+Client Index = 0	Epoch: 2	Loss: 0.006801
+Client Index = 0	Epoch: 3	Loss: 0.007113
+Client Index = 0	Epoch: 4	Loss: 0.007273
+test acc on this client  5962 / 9857 : 46.93
+################local_test_on_all_clients in communication round: 41
+{'test_acc': 0.6048493456426904, 'test_loss': 1.7552002366442123}
+################Communication round : 42
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(42): 0
+Client Index = 0	Epoch: 0	Loss: 0.008079
+Client Index = 0	Epoch: 1	Loss: 0.009229
+Client Index = 0	Epoch: 2	Loss: 0.007933
+Client Index = 0	Epoch: 3	Loss: 0.007106
+Client Index = 0	Epoch: 4	Loss: 0.008308
+test acc on this client  5969 / 9857 : 47.11
+################local_test_on_all_clients in communication round: 42
+{'test_acc': 0.6055595008623313, 'test_loss': 1.7562684164479552}
+################Communication round : 43
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(43): 0
+Client Index = 0	Epoch: 0	Loss: 0.007942
+Client Index = 0	Epoch: 1	Loss: 0.007329
+Client Index = 0	Epoch: 2	Loss: 0.007594
+Client Index = 0	Epoch: 3	Loss: 0.019769
+Client Index = 0	Epoch: 4	Loss: 2.342219
+test acc on this client  3915 / 9857 : 30.96
+################local_test_on_all_clients in communication round: 43
+{'test_acc': 0.39717966927056914, 'test_loss': 2.5038226298678716}
+################Communication round : 44
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(44): 0
+Client Index = 0	Epoch: 0	Loss: 1.535791
+Client Index = 0	Epoch: 1	Loss: 1.167258
+Client Index = 0	Epoch: 2	Loss: 0.876525
+Client Index = 0	Epoch: 3	Loss: 0.710060
+Client Index = 0	Epoch: 4	Loss: 0.564385
+test acc on this client  4402 / 9857 : 35.01
+################local_test_on_all_clients in communication round: 44
+{'test_acc': 0.4465861824084407, 'test_loss': 2.4646177797174738}
+################Communication round : 45
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(45): 0
+Client Index = 0	Epoch: 0	Loss: 0.489145
+Client Index = 0	Epoch: 1	Loss: 0.341083
+Client Index = 0	Epoch: 2	Loss: 0.310765
+Client Index = 0	Epoch: 3	Loss: 0.195871
+Client Index = 0	Epoch: 4	Loss: 0.215073
+test acc on this client  4921 / 9857 : 39.54
+################local_test_on_all_clients in communication round: 45
+{'test_acc': 0.49923911940752763, 'test_loss': 2.3110935380788526}
+################Communication round : 46
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(46): 0
+Client Index = 0	Epoch: 0	Loss: 0.173540
+Client Index = 0	Epoch: 1	Loss: 0.103358
+Client Index = 0	Epoch: 2	Loss: 0.243450
+Client Index = 0	Epoch: 3	Loss: 0.252784
+Client Index = 0	Epoch: 4	Loss: 0.121824
+test acc on this client  5320 / 9857 : 42.37
+################local_test_on_all_clients in communication round: 46
+{'test_acc': 0.5397179669270569, 'test_loss': 2.1551899614882686}
+################Communication round : 47
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(47): 0
+Client Index = 0	Epoch: 0	Loss: 0.087344
+Client Index = 0	Epoch: 1	Loss: 0.184401
+Client Index = 0	Epoch: 2	Loss: 0.147182
+Client Index = 0	Epoch: 3	Loss: 0.239777
+Client Index = 0	Epoch: 4	Loss: 0.091915
+test acc on this client  5103 / 9857 : 40.22
+################local_test_on_all_clients in communication round: 47
+{'test_acc': 0.5177031551181901, 'test_loss': 2.407986093880914}
+################Communication round : 48
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(48): 0
+Client Index = 0	Epoch: 0	Loss: 0.071210
+Client Index = 0	Epoch: 1	Loss: 0.046856
+Client Index = 0	Epoch: 2	Loss: 0.038447
+Client Index = 0	Epoch: 3	Loss: 0.032995
+Client Index = 0	Epoch: 4	Loss: 0.033866
+test acc on this client  5715 / 9857 : 45.07
+################local_test_on_all_clients in communication round: 48
+{'test_acc': 0.5797910114639343, 'test_loss': 1.975770489394342}
+################Communication round : 49
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(49): 0
+Client Index = 0	Epoch: 0	Loss: 0.018762
+Client Index = 0	Epoch: 1	Loss: 0.012159
+Client Index = 0	Epoch: 2	Loss: 0.012535
+Client Index = 0	Epoch: 3	Loss: 0.010595
+Client Index = 0	Epoch: 4	Loss: 0.012778
+test acc on this client  5847 / 9857 : 46.08
+################local_test_on_all_clients in communication round: 49
+{'test_acc': 0.5931825098914477, 'test_loss': 1.910818594300482}
+################Communication round : 50
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(50): 0
+Client Index = 0	Epoch: 0	Loss: 0.009431
+Client Index = 0	Epoch: 1	Loss: 0.008997
+Client Index = 0	Epoch: 2	Loss: 0.010752
+Client Index = 0	Epoch: 3	Loss: 0.008573
+Client Index = 0	Epoch: 4	Loss: 0.009135
+test acc on this client  5859 / 9857 : 45.61
+################local_test_on_all_clients in communication round: 50
+{'test_acc': 0.5943999188394035, 'test_loss': 1.8890313360092907}
+################Communication round : 51
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(51): 0
+Client Index = 0	Epoch: 0	Loss: 0.008833
+Client Index = 0	Epoch: 1	Loss: 0.009246
+Client Index = 0	Epoch: 2	Loss: 0.008623
+Client Index = 0	Epoch: 3	Loss: 0.006206
+Client Index = 0	Epoch: 4	Loss: 0.006011
+test acc on this client  5956 / 9857 : 47.92
+################local_test_on_all_clients in communication round: 51
+{'test_acc': 0.6042406411687126, 'test_loss': 1.8098053715800348}
+################Communication round : 52
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(52): 0
+Client Index = 0	Epoch: 0	Loss: 0.005630
+Client Index = 0	Epoch: 1	Loss: 0.007554
+Client Index = 0	Epoch: 2	Loss: 0.005802
+Client Index = 0	Epoch: 3	Loss: 0.007861
+Client Index = 0	Epoch: 4	Loss: 0.006701
+test acc on this client  5978 / 9857 : 47.60
+################local_test_on_all_clients in communication round: 52
+{'test_acc': 0.6064725575732982, 'test_loss': 1.7878775745615147}
+################Communication round : 53
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(53): 0
+Client Index = 0	Epoch: 0	Loss: 0.007971
+Client Index = 0	Epoch: 1	Loss: 0.008301
+Client Index = 0	Epoch: 2	Loss: 0.007318
+Client Index = 0	Epoch: 3	Loss: 0.006473
+Client Index = 0	Epoch: 4	Loss: 0.006295
+test acc on this client  5952 / 9857 : 47.06
+################local_test_on_all_clients in communication round: 53
+{'test_acc': 0.6038348381860607, 'test_loss': 1.8035992505500316}
+################Communication round : 54
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(54): 0
+Client Index = 0	Epoch: 0	Loss: 0.006218
+Client Index = 0	Epoch: 1	Loss: 0.005925
+Client Index = 0	Epoch: 2	Loss: 0.007115
+Client Index = 0	Epoch: 3	Loss: 0.007036
+Client Index = 0	Epoch: 4	Loss: 0.006141
+test acc on this client  6017 / 9857 : 47.38
+################local_test_on_all_clients in communication round: 54
+{'test_acc': 0.6104291366541544, 'test_loss': 1.7415366327909307}
+################Communication round : 55
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(55): 0
+Client Index = 0	Epoch: 0	Loss: 0.006103
+Client Index = 0	Epoch: 1	Loss: 0.006553
+Client Index = 0	Epoch: 2	Loss: 0.006605
+Client Index = 0	Epoch: 3	Loss: 0.006637
+Client Index = 0	Epoch: 4	Loss: 0.006160
+test acc on this client  6095 / 9857 : 48.09
+################local_test_on_all_clients in communication round: 55
+{'test_acc': 0.6183422948158669, 'test_loss': 1.7198836138515234}
+################Communication round : 56
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(56): 0
+Client Index = 0	Epoch: 0	Loss: 0.006214
+Client Index = 0	Epoch: 1	Loss: 0.006435
+Client Index = 0	Epoch: 2	Loss: 0.006159
+Client Index = 0	Epoch: 3	Loss: 1.858474
+Client Index = 0	Epoch: 4	Loss: 1.545392
+test acc on this client  4272 / 9857 : 33.83
+################local_test_on_all_clients in communication round: 56
+{'test_acc': 0.4333975854722532, 'test_loss': 2.4139316642672606}
+################Communication round : 57
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(57): 0
+Client Index = 0	Epoch: 0	Loss: 1.159266
+Client Index = 0	Epoch: 1	Loss: 0.885210
+Client Index = 0	Epoch: 2	Loss: 0.638040
+Client Index = 0	Epoch: 3	Loss: 0.529849
+Client Index = 0	Epoch: 4	Loss: 0.421595
+test acc on this client  4351 / 9857 : 34.07
+################local_test_on_all_clients in communication round: 57
+{'test_acc': 0.4414121943796287, 'test_loss': 2.601306658445658}
+################Communication round : 58
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(58): 0
+Client Index = 0	Epoch: 0	Loss: 0.265668
+Client Index = 0	Epoch: 1	Loss: 0.284610
+Client Index = 0	Epoch: 2	Loss: 0.214382
+Client Index = 0	Epoch: 3	Loss: 0.228887
+Client Index = 0	Epoch: 4	Loss: 0.214378
+test acc on this client  5296 / 9857 : 41.14
+################local_test_on_all_clients in communication round: 58
+{'test_acc': 0.5372831490311454, 'test_loss': 2.1564446263197814}
+################Communication round : 59
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(59): 0
+Client Index = 0	Epoch: 0	Loss: 0.112574
+Client Index = 0	Epoch: 1	Loss: 0.236915
+Client Index = 0	Epoch: 2	Loss: 0.114911
+Client Index = 0	Epoch: 3	Loss: 0.090751
+Client Index = 0	Epoch: 4	Loss: 0.171663
+test acc on this client  5566 / 9857 : 43.75
+################local_test_on_all_clients in communication round: 59
+{'test_acc': 0.5646748503601502, 'test_loss': 2.025400466433926}
+################Communication round : 60
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(60): 0
+Client Index = 0	Epoch: 0	Loss: 0.088234
+Client Index = 0	Epoch: 1	Loss: 0.072551
+Client Index = 0	Epoch: 2	Loss: 0.033472
+Client Index = 0	Epoch: 3	Loss: 0.031652
+Client Index = 0	Epoch: 4	Loss: 0.055585
+test acc on this client  4548 / 9857 : 36.09
+################local_test_on_all_clients in communication round: 60
+{'test_acc': 0.4613979912752359, 'test_loss': 2.795140355767978}
+################Communication round : 61
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(61): 0
+Client Index = 0	Epoch: 0	Loss: 0.131830
+Client Index = 0	Epoch: 1	Loss: 0.299487
+Client Index = 0	Epoch: 2	Loss: 0.178041
+Client Index = 0	Epoch: 3	Loss: 0.108080
+Client Index = 0	Epoch: 4	Loss: 0.086620
+test acc on this client  5539 / 9857 : 44.04
+################local_test_on_all_clients in communication round: 61
+{'test_acc': 0.5619356802272497, 'test_loss': 2.100862722966714}
+################Communication round : 62
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(62): 0
+Client Index = 0	Epoch: 0	Loss: 0.054003
+Client Index = 0	Epoch: 1	Loss: 0.046261
+Client Index = 0	Epoch: 2	Loss: 0.047252
+Client Index = 0	Epoch: 3	Loss: 0.188266
+Client Index = 0	Epoch: 4	Loss: 0.144035
+test acc on this client  5378 / 9857 : 42.71
+################local_test_on_all_clients in communication round: 62
+{'test_acc': 0.5456021101755097, 'test_loss': 2.184093594297115}
+################Communication round : 63
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(63): 0
+Client Index = 0	Epoch: 0	Loss: 0.079515
+Client Index = 0	Epoch: 1	Loss: 0.236681
+Client Index = 0	Epoch: 2	Loss: 0.054641
+Client Index = 0	Epoch: 3	Loss: 0.060412
+Client Index = 0	Epoch: 4	Loss: 0.056806
+test acc on this client  4802 / 9857 : 38.23
+################local_test_on_all_clients in communication round: 63
+{'test_acc': 0.48716648067363294, 'test_loss': 2.7345391120626994}
+################Communication round : 64
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(64): 0
+Client Index = 0	Epoch: 0	Loss: 0.098338
+Client Index = 0	Epoch: 1	Loss: 0.038927
+Client Index = 0	Epoch: 2	Loss: 0.031395
+Client Index = 0	Epoch: 3	Loss: 0.023979
+Client Index = 0	Epoch: 4	Loss: 0.025942
+test acc on this client  5822 / 9857 : 45.74
+################local_test_on_all_clients in communication round: 64
+{'test_acc': 0.5906462412498732, 'test_loss': 1.9526924752285417}
+################Communication round : 65
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(65): 0
+Client Index = 0	Epoch: 0	Loss: 0.017392
+Client Index = 0	Epoch: 1	Loss: 0.023209
+Client Index = 0	Epoch: 2	Loss: 0.544690
+Client Index = 0	Epoch: 3	Loss: 0.268974
+Client Index = 0	Epoch: 4	Loss: 0.088847
+test acc on this client  5601 / 9857 : 44.23
+################local_test_on_all_clients in communication round: 65
+{'test_acc': 0.5682256264583545, 'test_loss': 2.0174590316813212}
+################Communication round : 66
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(66): 0
+Client Index = 0	Epoch: 0	Loss: 0.040687
+Client Index = 0	Epoch: 1	Loss: 0.024602
+Client Index = 0	Epoch: 2	Loss: 0.017601
+Client Index = 0	Epoch: 3	Loss: 0.013902
+Client Index = 0	Epoch: 4	Loss: 0.010973
+test acc on this client  5889 / 9857 : 46.20
+################local_test_on_all_clients in communication round: 66
+{'test_acc': 0.5974434412092929, 'test_loss': 1.8862202716451806}
+################Communication round : 67
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(67): 0
+Client Index = 0	Epoch: 0	Loss: 0.008443
+Client Index = 0	Epoch: 1	Loss: 0.008422
+Client Index = 0	Epoch: 2	Loss: 0.006433
+Client Index = 0	Epoch: 3	Loss: 0.007950
+Client Index = 0	Epoch: 4	Loss: 0.005718
+test acc on this client  5932 / 9857 : 47.09
+################local_test_on_all_clients in communication round: 67
+{'test_acc': 0.6018058232728011, 'test_loss': 1.8471555111434115}
+################Communication round : 68
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(68): 0
+Client Index = 0	Epoch: 0	Loss: 0.004776
+Client Index = 0	Epoch: 1	Loss: 0.005876
+Client Index = 0	Epoch: 2	Loss: 0.005396
+Client Index = 0	Epoch: 3	Loss: 0.005467
+Client Index = 0	Epoch: 4	Loss: 0.004609
+test acc on this client  6058 / 9857 : 48.06
+################local_test_on_all_clients in communication round: 68
+{'test_acc': 0.6145886172263366, 'test_loss': 1.7913511943473068}
+################Communication round : 69
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(69): 0
+Client Index = 0	Epoch: 0	Loss: 0.005030
+Client Index = 0	Epoch: 1	Loss: 0.004896
+Client Index = 0	Epoch: 2	Loss: 0.005761
+Client Index = 0	Epoch: 3	Loss: 0.004719
+Client Index = 0	Epoch: 4	Loss: 0.004790
+test acc on this client  6091 / 9857 : 48.94
+################local_test_on_all_clients in communication round: 69
+{'test_acc': 0.617936491833215, 'test_loss': 1.7550986181822537}
+################Communication round : 70
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(70): 0
+Client Index = 0	Epoch: 0	Loss: 0.005091
+Client Index = 0	Epoch: 1	Loss: 0.005241
+Client Index = 0	Epoch: 2	Loss: 0.007795
+Client Index = 0	Epoch: 3	Loss: 0.007726
+Client Index = 0	Epoch: 4	Loss: 0.005963
+test acc on this client  6071 / 9857 : 47.70
+################local_test_on_all_clients in communication round: 70
+{'test_acc': 0.6159074769199554, 'test_loss': 1.7432491582681044}
+################Communication round : 71
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(71): 0
+Client Index = 0	Epoch: 0	Loss: 0.006581
+Client Index = 0	Epoch: 1	Loss: 0.005229
+Client Index = 0	Epoch: 2	Loss: 0.006707
+Client Index = 0	Epoch: 3	Loss: 0.005919
+Client Index = 0	Epoch: 4	Loss: 0.006158
+test acc on this client  6092 / 9857 : 48.49
+################local_test_on_all_clients in communication round: 71
+{'test_acc': 0.618037942578878, 'test_loss': 1.7435843229555164}
+################Communication round : 72
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(72): 0
+Client Index = 0	Epoch: 0	Loss: 0.005943
+Client Index = 0	Epoch: 1	Loss: 0.005681
+Client Index = 0	Epoch: 2	Loss: 0.005575
+Client Index = 0	Epoch: 3	Loss: 0.007736
+Client Index = 0	Epoch: 4	Loss: 0.008458
+test acc on this client  6043 / 9857 : 48.29
+################local_test_on_all_clients in communication round: 72
+{'test_acc': 0.6130668560413919, 'test_loss': 1.7458174938336581}
+################Communication round : 73
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(73): 0
+Client Index = 0	Epoch: 0	Loss: 1.001536
+Client Index = 0	Epoch: 1	Loss: 1.269817
+Client Index = 0	Epoch: 2	Loss: 0.969652
+Client Index = 0	Epoch: 3	Loss: 0.721248
+Client Index = 0	Epoch: 4	Loss: 0.540654
+test acc on this client  4543 / 9857 : 35.68
+################local_test_on_all_clients in communication round: 73
+{'test_acc': 0.46089073754692095, 'test_loss': 2.4508560843916154}
+################Communication round : 74
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(74): 0
+Client Index = 0	Epoch: 0	Loss: 0.405675
+Client Index = 0	Epoch: 1	Loss: 0.253732
+Client Index = 0	Epoch: 2	Loss: 0.254098
+Client Index = 0	Epoch: 3	Loss: 0.283504
+Client Index = 0	Epoch: 4	Loss: 0.159152
+test acc on this client  5096 / 9857 : 39.94
+################local_test_on_all_clients in communication round: 74
+{'test_acc': 0.5169929998985493, 'test_loss': 2.308293219030272}
+################Communication round : 75
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(75): 0
+Client Index = 0	Epoch: 0	Loss: 0.110584
+Client Index = 0	Epoch: 1	Loss: 0.149130
+Client Index = 0	Epoch: 2	Loss: 0.103608
+Client Index = 0	Epoch: 3	Loss: 0.152784
+Client Index = 0	Epoch: 4	Loss: 0.169775
+test acc on this client  4864 / 9857 : 38.14
+################local_test_on_all_clients in communication round: 75
+{'test_acc': 0.49345642690473773, 'test_loss': 2.505732872380414}
+################Communication round : 76
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(76): 0
+Client Index = 0	Epoch: 0	Loss: 0.084564
+Client Index = 0	Epoch: 1	Loss: 0.170792
+Client Index = 0	Epoch: 2	Loss: 0.152182
+Client Index = 0	Epoch: 3	Loss: 0.092655
+Client Index = 0	Epoch: 4	Loss: 0.165199
+test acc on this client  5350 / 9857 : 41.99
+################local_test_on_all_clients in communication round: 76
+{'test_acc': 0.5427614892969463, 'test_loss': 2.2387566369034837}
+################Communication round : 77
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(77): 0
+Client Index = 0	Epoch: 0	Loss: 0.079735
+Client Index = 0	Epoch: 1	Loss: 0.054973
+Client Index = 0	Epoch: 2	Loss: 0.118404
+Client Index = 0	Epoch: 3	Loss: 0.051273
+Client Index = 0	Epoch: 4	Loss: 0.027342
+test acc on this client  4379 / 9857 : 34.64
+################local_test_on_all_clients in communication round: 77
+{'test_acc': 0.44425281525819216, 'test_loss': 3.1463868960751786}
+################Communication round : 78
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(78): 0
+Client Index = 0	Epoch: 0	Loss: 0.151036
+Client Index = 0	Epoch: 1	Loss: 0.078278
+Client Index = 0	Epoch: 2	Loss: 0.127023
+Client Index = 0	Epoch: 3	Loss: 0.046150
+Client Index = 0	Epoch: 4	Loss: 0.050721
+test acc on this client  5650 / 9857 : 44.81
+################local_test_on_all_clients in communication round: 78
+{'test_acc': 0.5731967129958405, 'test_loss': 2.069642740856311}
+################Communication round : 79
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(79): 0
+Client Index = 0	Epoch: 0	Loss: 0.035671
+Client Index = 0	Epoch: 1	Loss: 0.026983
+Client Index = 0	Epoch: 2	Loss: 0.032035
+Client Index = 0	Epoch: 3	Loss: 0.022478
+Client Index = 0	Epoch: 4	Loss: 0.174187
+test acc on this client  5593 / 9857 : 43.71
+################local_test_on_all_clients in communication round: 79
+{'test_acc': 0.5674140204930507, 'test_loss': 2.0964525899575546}
+################Communication round : 80
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(80): 0
+Client Index = 0	Epoch: 0	Loss: 0.105555
+Client Index = 0	Epoch: 1	Loss: 0.340740
+Client Index = 0	Epoch: 2	Loss: 0.081584
+Client Index = 0	Epoch: 3	Loss: 0.165818
+Client Index = 0	Epoch: 4	Loss: 0.069983
+test acc on this client  5570 / 9857 : 44.11
+################local_test_on_all_clients in communication round: 80
+{'test_acc': 0.5650806533428021, 'test_loss': 2.1038829414382767}
+################Communication round : 81
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(81): 0
+Client Index = 0	Epoch: 0	Loss: 0.036389
+Client Index = 0	Epoch: 1	Loss: 0.019946
+Client Index = 0	Epoch: 2	Loss: 0.052462
+Client Index = 0	Epoch: 3	Loss: 0.043499
+Client Index = 0	Epoch: 4	Loss: 0.091141
+test acc on this client  5694 / 9857 : 45.22
+################local_test_on_all_clients in communication round: 81
+{'test_acc': 0.5776605458050117, 'test_loss': 2.0418029849377732}
+################Communication round : 82
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(82): 0
+Client Index = 0	Epoch: 0	Loss: 0.034099
+Client Index = 0	Epoch: 1	Loss: 0.025824
+Client Index = 0	Epoch: 2	Loss: 0.022208
+Client Index = 0	Epoch: 3	Loss: 0.019435
+Client Index = 0	Epoch: 4	Loss: 0.025434
+test acc on this client  5144 / 9857 : 40.19
+################local_test_on_all_clients in communication round: 82
+{'test_acc': 0.5218626356903723, 'test_loss': 2.472496424314397}
+################Communication round : 83
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(83): 0
+Client Index = 0	Epoch: 0	Loss: 0.230692
+Client Index = 0	Epoch: 1	Loss: 0.205723
+Client Index = 0	Epoch: 2	Loss: 0.114652
+Client Index = 0	Epoch: 3	Loss: 0.133074
+Client Index = 0	Epoch: 4	Loss: 0.330733
+test acc on this client  4774 / 9857 : 37.59
+################local_test_on_all_clients in communication round: 83
+{'test_acc': 0.4843258597950695, 'test_loss': 2.6165706503717194}
+################Communication round : 84
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(84): 0
+Client Index = 0	Epoch: 0	Loss: 0.087793
+Client Index = 0	Epoch: 1	Loss: 0.036685
+Client Index = 0	Epoch: 2	Loss: 0.029603
+Client Index = 0	Epoch: 3	Loss: 0.019051
+Client Index = 0	Epoch: 4	Loss: 0.014538
+test acc on this client  5777 / 9857 : 45.92
+################local_test_on_all_clients in communication round: 84
+{'test_acc': 0.5860809576950391, 'test_loss': 2.010068086336021}
+################Communication round : 85
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(85): 0
+Client Index = 0	Epoch: 0	Loss: 0.014817
+Client Index = 0	Epoch: 1	Loss: 0.012257
+Client Index = 0	Epoch: 2	Loss: 0.007510
+Client Index = 0	Epoch: 3	Loss: 0.006449
+Client Index = 0	Epoch: 4	Loss: 0.009477
+test acc on this client  5969 / 9857 : 47.71
+################local_test_on_all_clients in communication round: 85
+{'test_acc': 0.6055595008623313, 'test_loss': 1.904461022437887}
+################Communication round : 86
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(86): 0
+Client Index = 0	Epoch: 0	Loss: 0.006458
+Client Index = 0	Epoch: 1	Loss: 0.005036
+Client Index = 0	Epoch: 2	Loss: 0.005257
+Client Index = 0	Epoch: 3	Loss: 0.004995
+Client Index = 0	Epoch: 4	Loss: 0.004857
+test acc on this client  6037 / 9857 : 47.74
+################local_test_on_all_clients in communication round: 86
+{'test_acc': 0.612458151567414, 'test_loss': 1.846901100681546}
+################Communication round : 87
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(87): 0
+Client Index = 0	Epoch: 0	Loss: 0.004594
+Client Index = 0	Epoch: 1	Loss: 0.004651
+Client Index = 0	Epoch: 2	Loss: 0.004181
+Client Index = 0	Epoch: 3	Loss: 0.004285
+Client Index = 0	Epoch: 4	Loss: 0.004326
+test acc on this client  6106 / 9857 : 48.49
+################local_test_on_all_clients in communication round: 87
+{'test_acc': 0.6194582530181597, 'test_loss': 1.790576002543171}
+################Communication round : 88
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(88): 0
+Client Index = 0	Epoch: 0	Loss: 0.004215
+Client Index = 0	Epoch: 1	Loss: 0.004325
+Client Index = 0	Epoch: 2	Loss: 0.004564
+Client Index = 0	Epoch: 3	Loss: 0.004557
+Client Index = 0	Epoch: 4	Loss: 0.005412
+test acc on this client  6132 / 9857 : 47.53
+################local_test_on_all_clients in communication round: 88
+{'test_acc': 0.6220959724053972, 'test_loss': 1.7571547794525868}
+################Communication round : 89
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(89): 0
+Client Index = 0	Epoch: 0	Loss: 0.004676
+Client Index = 0	Epoch: 1	Loss: 0.005054
+Client Index = 0	Epoch: 2	Loss: 0.006119
+Client Index = 0	Epoch: 3	Loss: 0.005353
+Client Index = 0	Epoch: 4	Loss: 0.005233
+test acc on this client  6153 / 9857 : 48.94
+################local_test_on_all_clients in communication round: 89
+{'test_acc': 0.6242264380643198, 'test_loss': 1.7435226632091565}
+################Communication round : 90
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(90): 0
+Client Index = 0	Epoch: 0	Loss: 0.007178
+Client Index = 0	Epoch: 1	Loss: 0.705219
+Client Index = 0	Epoch: 2	Loss: 0.883669
+Client Index = 0	Epoch: 3	Loss: 0.661332
+Client Index = 0	Epoch: 4	Loss: 0.470383
+test acc on this client  4472 / 9857 : 35.33
+################local_test_on_all_clients in communication round: 90
+{'test_acc': 0.45368773460484935, 'test_loss': 2.6266939638915616}
+################Communication round : 91
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(91): 0
+Client Index = 0	Epoch: 0	Loss: 0.448963
+Client Index = 0	Epoch: 1	Loss: 0.172331
+Client Index = 0	Epoch: 2	Loss: 0.201457
+Client Index = 0	Epoch: 3	Loss: 0.158920
+Client Index = 0	Epoch: 4	Loss: 0.166113
+test acc on this client  4152 / 9857 : 32.60
+################local_test_on_all_clients in communication round: 91
+{'test_acc': 0.42122349599269554, 'test_loss': 3.034499353001194}
+################Communication round : 92
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(92): 0
+Client Index = 0	Epoch: 0	Loss: 0.159198
+Client Index = 0	Epoch: 1	Loss: 0.122303
+Client Index = 0	Epoch: 2	Loss: 0.106035
+Client Index = 0	Epoch: 3	Loss: 0.161602
+Client Index = 0	Epoch: 4	Loss: 0.100505
+test acc on this client  5499 / 9857 : 43.82
+################local_test_on_all_clients in communication round: 92
+{'test_acc': 0.5578776504007305, 'test_loss': 2.17524301012861}
+################Communication round : 93
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(93): 0
+Client Index = 0	Epoch: 0	Loss: 0.086847
+Client Index = 0	Epoch: 1	Loss: 0.064485
+Client Index = 0	Epoch: 2	Loss: 0.139915
+Client Index = 0	Epoch: 3	Loss: 0.103549
+Client Index = 0	Epoch: 4	Loss: 0.088181
+test acc on this client  5071 / 9857 : 40.93
+################local_test_on_all_clients in communication round: 93
+{'test_acc': 0.5144567312569748, 'test_loss': 2.5053266782916985}
+################Communication round : 94
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(94): 0
+Client Index = 0	Epoch: 0	Loss: 0.051514
+Client Index = 0	Epoch: 1	Loss: 0.034958
+Client Index = 0	Epoch: 2	Loss: 0.021086
+Client Index = 0	Epoch: 3	Loss: 0.032275
+Client Index = 0	Epoch: 4	Loss: 0.064666
+test acc on this client  5563 / 9857 : 43.01
+################local_test_on_all_clients in communication round: 94
+{'test_acc': 0.5643704981231612, 'test_loss': 2.1623668735961203}
+################Communication round : 95
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(95): 0
+Client Index = 0	Epoch: 0	Loss: 0.164245
+Client Index = 0	Epoch: 1	Loss: 0.176204
+Client Index = 0	Epoch: 2	Loss: 0.086304
+Client Index = 0	Epoch: 3	Loss: 0.058592
+Client Index = 0	Epoch: 4	Loss: 0.054867
+test acc on this client  5611 / 9857 : 44.83
+################local_test_on_all_clients in communication round: 95
+{'test_acc': 0.5692401339149843, 'test_loss': 2.1146711468548443}
+################Communication round : 96
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(96): 0
+Client Index = 0	Epoch: 0	Loss: 0.027868
+Client Index = 0	Epoch: 1	Loss: 0.022317
+Client Index = 0	Epoch: 2	Loss: 0.014771
+Client Index = 0	Epoch: 3	Loss: 0.012660
+Client Index = 0	Epoch: 4	Loss: 0.018243
+test acc on this client  5835 / 9857 : 45.83
+################local_test_on_all_clients in communication round: 96
+{'test_acc': 0.591965100943492, 'test_loss': 1.997910731775083}
+################Communication round : 97
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(97): 0
+Client Index = 0	Epoch: 0	Loss: 0.019435
+Client Index = 0	Epoch: 1	Loss: 0.012866
+Client Index = 0	Epoch: 2	Loss: 0.008275
+Client Index = 0	Epoch: 3	Loss: 0.009898
+Client Index = 0	Epoch: 4	Loss: 0.010309
+test acc on this client  5952 / 9857 : 47.11
+################local_test_on_all_clients in communication round: 97
+{'test_acc': 0.6038348381860607, 'test_loss': 1.9095193008720561}
+################Communication round : 98
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(98): 0
+Client Index = 0	Epoch: 0	Loss: 0.006959
+Client Index = 0	Epoch: 1	Loss: 0.007102
+Client Index = 0	Epoch: 2	Loss: 0.005369
+Client Index = 0	Epoch: 3	Loss: 0.004031
+Client Index = 0	Epoch: 4	Loss: 0.005602
+test acc on this client  6029 / 9857 : 47.77
+################local_test_on_all_clients in communication round: 98
+{'test_acc': 0.6116465456021102, 'test_loss': 1.8456946560856762}
+################Communication round : 99
+client_indexes = [0]
+client_indexes = [0]
+@@@@@@@@@@@@@@@@ Training Client CM(99): 0
+Client Index = 0	Epoch: 0	Loss: 0.004414
+Client Index = 0	Epoch: 1	Loss: 0.004082
+Client Index = 0	Epoch: 2	Loss: 0.004088
+Client Index = 0	Epoch: 3	Loss: 0.004392
+Client Index = 0	Epoch: 4	Loss: 0.004490
+test acc on this client  6105 / 9857 : 47.90
+################local_test_on_all_clients in communication round: 99
+{'test_acc': 0.6193568022724967, 'test_loss': 1.7894099459053598}
