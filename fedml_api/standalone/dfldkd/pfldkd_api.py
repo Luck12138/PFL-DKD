@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# @FileName  :fedistill_api.py
+# @FileName  :pfldkd_api.py
 # @Time      :2022/11/6 10:47
 # @Author    :lucas
 from fedml_api.standalone.dfldkd.client import Client
@@ -46,8 +46,8 @@ class FedistillAPI(object):
         # select neighbors
         neighbors = {}
         for clnt in range(self.args.client_num_in_total):
-            nei_indexs = self._benefit_choose(clnt, self.args.client_num_in_total,
-                                              self.args.client_num_per_round, self.args.cs)
+            nei_indexs = self._client_sampling(self.args.client_num_in_total,
+                                               self.args.client_num_per_round)
             neighbors[clnt] = nei_indexs
 
         for round_idx in range(self.args.comm_round):
@@ -58,13 +58,6 @@ class FedistillAPI(object):
             training_loss = []
             for clnt_idx in range(self.args.client_num_in_total):
                 self.logger.info('@@@@@@@@@@@@@@@@ Training Client CM({}): {}'.format(round_idx, clnt_idx))
-                #
-                # #select neighbors
-                # nei_indexs = self._benefit_choose(clnt_idx, self.args.client_num_in_total,
-                #                                   self.args.client_num_per_round,  self.args.cs, None)
-                # # 如果不是全选，则补上当前clint，进行聚合操作
-                # if self.args.client_num_in_total != self.args.client_num_per_round:
-                #     nei_indexs = np.append(nei_indexs, clnt_idx)
                 nei_indexs = neighbors[clnt_idx]
                 nei_indexs = np.sort(nei_indexs)
                 # update dataset
@@ -78,7 +71,6 @@ class FedistillAPI(object):
                                                                                             self.teacher_trainer,
                                                                                             round_idx)
                 w_per_mdls[clnt_idx] = copy.deepcopy(w_per)
-                # self.logger.info("local weights = " + str(w))
                 training_loss.append(avg_loss)
                 self.stat_info["sum_training_flops"] += training_flops
                 self.stat_info["sum_comm_params"] += num_comm_params
@@ -89,37 +81,16 @@ class FedistillAPI(object):
             self.logger.info("################Average Training Loss : {}".format(round_idx))
             train_loss = {'training_loss': sum(training_loss) / len(training_loss)}
             self.logger.info(train_loss)
-            # self.logger.info('CM_AVG({}) \tTraining_Loss: {:.6f}'.format(
-            #     round, sum(training_loss) / len(training_loss)))
             self._test_on_all_clients(w_per_mdls, round_idx)
-            # self._test_on_all_clients_avg(w_per_mdls, round_idx)
 
-
-    def _benefit_choose(self, cur_clnt, client_num_in_total, client_num_per_round, cs):
+    def _client_sampling(self, round_idx, client_num_in_total, client_num_per_round):
         if client_num_in_total == client_num_per_round:
-            # If one can communicate with all others and there is no bandwidth limit
             client_indexes = [client_index for client_index in range(client_num_in_total)]
-            return client_indexes
-
-        if cs == "random":
-            # Random selection of available clients
+        else:
             num_clients = min(client_num_per_round, client_num_in_total)
+            np.random.seed(round_idx)  # make sure for each comparison, we are selecting the same clients each round
             client_indexes = np.random.choice(range(client_num_in_total), num_clients, replace=False)
-            while cur_clnt in client_indexes:
-                client_indexes = np.random.choice(range(client_num_in_total), num_clients, replace=False)
-
-        elif cs == "ring":
-            # Ring Topology in Decentralized setting
-            left = (cur_clnt - 1 + client_num_in_total) % client_num_in_total
-            right = (cur_clnt + 1) % client_num_in_total
-            client_indexes = np.asarray([left, right])
-
-        elif cs == "full":
-            active_ths_rnd = np.random.choice([0, 1], size=client_num_in_total,
-                                              p=[0, 1.0])
-            # Fully-connected Topology in Decentralized setting
-            client_indexes = np.array(np.where(active_ths_rnd == 1)).squeeze()
-            client_indexes = np.delete(client_indexes, int(np.where(client_indexes == cur_clnt)[0]))
+        self.logger.info("client_indexes = %s" % str(client_indexes))
         return client_indexes
 
     def _aggregate(self, w_locals):
@@ -157,29 +128,14 @@ class FedistillAPI(object):
             test_num = p_test_local_metrics['test_total']
             test_correct = p_test_local_metrics['test_correct']
             test_loss = p_test_local_metrics['test_loss']
-            # p_test_metrics['num_samples'].append(copy.deepcopy(p_test_local_metrics['test_total']))
-            # p_test_metrics['num_correct'].append(copy.deepcopy(p_test_local_metrics['test_correct']))
-            # p_test_metrics['losses'].append(copy.deepcopy(p_test_local_metrics['test_loss']))
-
             p_test_local_acc = test_correct / test_num
             p_test_local_loss = test_loss / test_num
 
-            # p_test_local_acc = np.array(p_test_metrics['num_correct']) / np.array(p_test_metrics['num_samples'])
-            # p_test_local_loss=np.array(p_test_metrics['losses'])/np.array(p_test_metrics['num_samples'])
             per_test_loss = {str(client_idx) + '_test_loss': p_test_local_loss}
             per_test_acc = {str(client_idx) + '_test_acc': round(p_test_local_acc, 4)}
             self.logger.info(per_test_loss)
             self.logger.info(per_test_acc)
 
-        # test on test dataset
-
-        # p_test_acc = sum(
-        #     [np.array(p_test_metrics['num_correct'][i]) / np.array(p_test_metrics['num_samples'][i]) for i in
-        #      range(self.args.client_num_in_total)]) / self.args.client_num_in_total
-        # p_test_loss = sum([np.array(p_test_metrics['losses'][i]) / np.array(p_test_metrics['num_samples'][i]) for i in range(self.args.client_num_in_total)]) / self.args.client_num_in_total
-
-        # stats = {'person_test_acc': p_test_acc, 'person_test_loss': p_test_loss}
-        # self.stat_info["person_test_acc"].append(p_test_acc)
 
     def _test_on_all_clients_avg(self, w_per_mdls, round_idx):
 
@@ -205,7 +161,7 @@ class FedistillAPI(object):
             'num_correct': [],
             'losses': []
         }
-        for client_idx in range(1,self.args.client_num_in_total):
+        for client_idx in range(1, self.args.client_num_in_total):
             # test data
             client = self.client_list[client_idx]
             p_test_local_metrics = client.local_test(w_per_mdls[client_idx], True)
@@ -215,15 +171,14 @@ class FedistillAPI(object):
 
         p_test_acc = sum(
             [np.array(p_test_metrics['num_correct'][i]) / np.array(p_test_metrics['num_samples'][i]) for i in
-             range(self.args.client_num_in_total-1)]) / (self.args.client_num_in_total-1)
+             range(self.args.client_num_in_total - 1)]) / (self.args.client_num_in_total - 1)
         p_test_loss = sum(
             [np.array(p_test_metrics['losses'][i]) / np.array(p_test_metrics['num_samples'][i]) for i in
-             range(self.args.client_num_in_total-1)]) / (self.args.client_num_in_total-1)
+             range(self.args.client_num_in_total - 1)]) / (self.args.client_num_in_total - 1)
 
         stats = {'person_test_acc': round(p_test_acc, 4), 'person_test_loss': round(p_test_loss, 4)}
         # self.stat_info["person_test_acc"].append(p_test_acc)
         self.logger.info(stats)
-
 
     def init_stat_info(self):
         self.stat_info = {}

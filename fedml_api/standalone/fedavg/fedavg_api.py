@@ -56,13 +56,13 @@ class FedAvgAPI(object):
             client_indexes = np.sort(client_indexes)
 
             self.logger.info("client_indexes = " + str(client_indexes))
-            training_loss=[]
+            training_loss = []
             for cur_clnt in client_indexes:
                 self.logger.info('@@@@@@@@@@@@@@@@ Training Client CM({}): {}'.format(round_idx, cur_clnt))
                 # update dataset
                 client = self.client_list[cur_clnt]
                 # update meta components in personal network
-                w_per,training_flops,num_comm_params,avg_loss = client.train(copy.deepcopy(w_global), round_idx)
+                w_per, training_flops, num_comm_params, avg_loss = client.train(copy.deepcopy(w_global), round_idx)
                 w_per_mdls[cur_clnt] = copy.deepcopy(w_per)
                 # self.logger.info("local weights = " + str(w))
                 w_locals.append((client.get_sample_number(), copy.deepcopy(w_per)))
@@ -74,25 +74,7 @@ class FedAvgAPI(object):
 
             train_loss = {'training_loss': sum(training_loss) / len(training_loss)}
             self.logger.info(train_loss)
-            # self.logger.info('CM_AVG({}) \tTraining_Loss: {:.6f}'.format(
-            #     round, sum(training_loss) / len(training_loss)))
             self._test_on_all_clients(w_global, w_per_mdls, round_idx)
-            # self._local_test_on_all_clients(w_global, round_idx)
-        # self.record_avg_inference_flops(w_global)
-
-        # # 为了查看finetune的结果，在global avged model上再进行一轮训练
-        # self.logger.info("################Communication round Last Fine Tune Round")
-        # for clnt_idx in range(self.args.client_num_in_total):
-        #     self.logger.info('@@@@@@@@@@@@@@@@ Training Client: {}'.format(clnt_idx))
-        #     w_local_mdl = copy.deepcopy(w_global)
-        #     client = self.client_list[clnt_idx]
-        #     w_local_mdl, training_flops, num_comm_params,avg_loss = client.train(copy.deepcopy(w_local_mdl), -1)
-        #     # 更新local model
-        #     w_per_mdls[clnt_idx] = copy.deepcopy(w_local_mdl)
-        #
-        # self._test_on_all_clients(w_global, w_per_mdls, -1)
-
-
 
     def _client_sampling(self, round_idx, client_num_in_total, client_num_per_round):
         if client_num_in_total == client_num_per_round:
@@ -109,7 +91,7 @@ class FedAvgAPI(object):
         for idx in range(len(w_locals)):
             (sample_num, _) = w_locals[idx]
             training_num += sample_num
-        w_global ={}
+        w_global = {}
         (sample_num, averaged_params) = w_locals[0]
         for k in averaged_params.keys():
             for i in range(0, len(w_locals)):
@@ -157,17 +139,17 @@ class FedAvgAPI(object):
             if self.args.ci == 1:
                 break
         # test on test dataset
-        g_test_acc = sum([np.array(g_test_metrics['num_correct'][i]) / np.array(g_test_metrics['num_samples'][i]) for i in
-                        range(self.args.client_num_in_total)]) / self.args.client_num_in_total
+        g_test_acc = sum(
+            [np.array(g_test_metrics['num_correct'][i]) / np.array(g_test_metrics['num_samples'][i]) for i in
+             range(self.args.client_num_in_total)]) / self.args.client_num_in_total
         g_test_loss = sum([np.array(g_test_metrics['losses'][i]) / np.array(g_test_metrics['num_samples'][i]) for i in
-                         range(self.args.client_num_in_total)]) / self.args.client_num_in_total
+                           range(self.args.client_num_in_total)]) / self.args.client_num_in_total
 
         p_test_acc = sum(
             [np.array(p_test_metrics['num_correct'][i]) / np.array(p_test_metrics['num_samples'][i]) for i in
              range(self.args.client_num_in_total)]) / self.args.client_num_in_total
         p_test_loss = sum([np.array(p_test_metrics['losses'][i]) / np.array(p_test_metrics['num_samples'][i]) for i in
                            range(self.args.client_num_in_total)]) / self.args.client_num_in_total
-
 
         stats = {'global_test_acc': g_test_acc, 'global_test_loss': g_test_loss}
         self.stat_info["global_test_acc"].append(g_test_acc)
@@ -176,8 +158,6 @@ class FedAvgAPI(object):
         stats = {'person_test_acc': p_test_acc, 'person_test_loss': p_test_loss}
         self.stat_info["person_test_acc"].append(p_test_acc)
         self.logger.info(stats)
-
-
 
     def record_avg_inference_flops(self, w_global, mask_pers=None):
         inference_flops = []

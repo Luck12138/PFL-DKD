@@ -43,16 +43,10 @@ class Client:
         return weights,training_flops,num_comm_params,avg_loss
 
     def train_distill(self, w_global, nei_indexs,teacher_trainer,round):
-        # self.logger.info(sum([torch.sum(w_per[name]) for name in w_per]))
-        # num_comm_params = self.model_trainer.count_communication_params(w_global[self.client_idx])
         self.model_trainer.set_model_params(w_global[self.client_idx])
         self.model_trainer.set_id(self.client_idx)
         avg_loss=self.model_trainer.train_distill(self.local_training_data, self.device,w_global,nei_indexs,teacher_trainer, self.args,round)
         weights = self.model_trainer.get_model_params()
-        # self.logger.info( "training_flops{}".format( self.model_trainer.count_training_flops_per_sample()))
-        # self.logger.info("full{}".format(self.model_trainer.count_full_flops_per_sample()))
-        # training_flops = self.args.epochs * self.local_sample_number * self.model_trainer.count_training_flops_per_sample()
-        # num_comm_params += self.model_trainer.count_communication_params(weights)
         return weights, 0, 0, avg_loss
 
     def local_test(self, w, b_use_test_dataset = True):

@@ -11,19 +11,11 @@ import torch
 # sys.path.insert(0, os.path.abspath(os.path.join(os.getcwd(), "../../../")))
 from fedml_api.data_preprocessing.cifar10.load_data import load_partition_cifar10
 from fedml_api.data_preprocessing.cifar100.load_data import load_partition_cifar100
-from fedml_api.data_preprocessing.mnist.data_loader import load_partition_data_mnist
 from fedml_api.data_preprocessing.mnist.load_data import load_partition_mnist
-from fedml_api.model.cv.cnn_mnist import CNNMnist
-
-sys.path.insert(0, os.path.abspath("/Date/FL/DisPFL-master/"))
-# sys.path.insert(0, os.path.abspath("/home/featurize/myproject/"))
-from urllib.request import urlopen
-from fedml_api.data_preprocessing.cifar100.data_loader import load_partition_data_cifar100
+sys.path.insert(0, os.path.abspath("/Date/FL/PFL-DKD/"))
 from fedml_api.model.cv.vgg import vgg16, vgg11
 from fedml_api.model.cv.cnn_cifar10 import cnn_cifar10, cnn_cifar100
 from fedml_api.standalone.DisPFL.dispfl_api import dispflAPI
-from fedml_api.data_preprocessing.cifar10.data_loader import load_partition_data_cifar10
-from fedml_api.data_preprocessing.tiny_imagenet.data_loader import load_partition_data_tiny
 from fedml_api.model.cv.resnet import  customized_resnet18, tiny_resnet18
 from fedml_api.standalone.DisPFL.my_model_trainer import MyModelTrainer
 from fedml_api.model.cv.cnn_mnist import CNNMnist,MLP
@@ -39,9 +31,7 @@ def add_args(parser):
     parser.add_argument('--dataset', type=str, default='cifar10', metavar='N',
                         help='dataset used for training')
 
-    # parser.add_argument('--data_dir', type=str, default='/home/featurize/myproject/data/',
-    #                     help='data directory, please feel free to change the directory to the right place')
-    parser.add_argument('--data_dir', type=str, default='/Date/FL/DisPFL-master/data/',
+    parser.add_argument('--data_dir', type=str, default='/Date/FL/PFL-DKD/data/',
                         help='data directory, please feel free to change the directory to the right place')
 
     parser.add_argument('--partition_method', type=str, default='dir', metavar='N',

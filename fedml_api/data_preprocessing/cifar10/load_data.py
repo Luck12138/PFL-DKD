@@ -84,14 +84,7 @@ def partition_data_diff_count(datadir, partition, n_nets, alpha, logger):
     net_dataidx_map = {}
 
     n_client = n_nets
-    n_cls = 10
-    # rate = [0.5, 0.5, 0.5, 0.5, 0.5]
-    # rate = [1, 0.5]
-    rate = [1, 0.1,  0.3,  0.5,  0.7, 0.9]
-    # rate = [0.05,0.001]
-    # rate = [1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
-    # rate = [0.001, 0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009]
-
+    rate = [1, 0.1, 0.3, 0.5, 0.7, 0.9]
     all_idxs = [i for i in range(len(y_train))]
     # clnt_data_list = [int(len(y_train)*rate[i%10]) for i in range(n_client)]
     for i in range(n_client):

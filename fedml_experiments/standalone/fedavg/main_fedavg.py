@@ -3,36 +3,33 @@ import logging
 import os
 import random
 import sys
-import pdb
 import numpy as np
 import torch
 
 from fedml_api.data_preprocessing.cifar10.load_data import load_partition_cifar10
 from fedml_api.data_preprocessing.cifar100.load_data import load_partition_cifar100
 from fedml_api.data_preprocessing.mnist.load_data import load_partition_mnist
-from fedml_api.data_preprocessing.tiny_imagenet.load_data import load_partition_tiny
+from fedml_api.model.cv.lenet5 import LeNet5
 
-sys.path.insert(0, os.path.abspath("/Date/FL/DisPFL-master/"))
+sys.path.insert(0, os.path.abspath("/Date/FL/PFL-DKD/"))
 from fedml_api.model.cv.vgg import vgg11
-from fedml_api.data_preprocessing.cifar10.data_loader import load_partition_data_cifar10
-from fedml_api.data_preprocessing.cifar100.data_loader import load_partition_data_cifar100
-from fedml_api.data_preprocessing.tiny_imagenet.data_loader import load_partition_data_tiny
-from fedml_api.data_preprocessing.mnist.data_loader import load_partition_data_mnist
-from fedml_api.model.cv.resnet import  customized_resnet18, tiny_resnet18
+from fedml_api.model.cv.resnet import customized_resnet18, tiny_resnet18
 from fedml_api.model.cv.cnn_cifar10 import cnn_cifar10, cnn_cifar100
-from fedml_api.model.cv.cnn_mnist import CNNMnist,MLP
+from fedml_api.model.cv.cnn_mnist import CNNMnist, MLP
 from fedml_api.standalone.fedavg.fedavg_api import FedAvgAPI
 from fedml_api.standalone.fedavg.my_model_trainer import MyModelTrainer
+
 
 def logger_config(log_path, logging_name):
     logger = logging.getLogger(logging_name)
     logger.setLevel(level=logging.DEBUG)
-    handler = logging.FileHandler(log_path, mode='w',encoding='UTF-8')
+    handler = logging.FileHandler(log_path, mode='w', encoding='UTF-8')
     handler.setLevel(level=logging.DEBUG)
     formatter = logging.Formatter('%(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     return logger
+
 
 def add_args(parser):
     """
@@ -49,7 +46,7 @@ def add_args(parser):
     parser.add_argument('--momentum', type=float, default=0, metavar='N',
                         help='momentum')
 
-    parser.add_argument('--data_dir', type=str, default='/Date/FL/DisPFL-master/data/',
+    parser.add_argument('--data_dir', type=str, default='/Date/FL/PFL-DKD/data/',
                         help='data directory, please feel free to change the directory to the right place')
 
     parser.add_argument('--partition_method', type=str, default='dir', metavar='N',
@@ -105,60 +102,32 @@ def load_data(args, dataset_name):
         args.data_dir += "cifar10"
         train_data_num, test_data_num, train_data_global, test_data_global, \
         train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-        class_num = load_partition_data_cifar10(args.data_dir, args.partition_method,
-                                args.partition_alpha, args.client_num_in_total, args.batch_size, logger)
-        # train_data_num, test_data_num, train_data_global, test_data_global, \
-        # train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-        # class_num = load_partition_cifar10(args.data_dir, args.partition_method,
-        #                                    args.partition_alpha, args.client_num_in_total, args.batch_size, logger)
+        class_num = load_partition_cifar10(args.data_dir, args.partition_method,
+                                           args.partition_alpha, args.client_num_in_total, args.batch_size, logger)
     else:
         if dataset_name == "cifar100":
             args.data_dir += "cifar100"
             train_data_num, test_data_num, train_data_global, test_data_global, \
             train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            class_num = load_partition_data_cifar100(args.data_dir, args.partition_method,
-                                                     args.partition_alpha, args.client_num_in_total,
-                                                     args.batch_size, logger)
-            # train_data_num, test_data_num, train_data_global, test_data_global, \
-            # train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            # class_num = load_partition_cifar100(args.data_dir, args.partition_method,
-            #                                          args.partition_alpha, args.client_num_in_total,
-            #                                          args.batch_size, logger)
-
-        elif dataset_name == "tiny":
-            args.data_dir += "tiny_imagenet"
-            train_data_num, test_data_num, train_data_global, test_data_global, \
-            train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            class_num = load_partition_data_tiny(args.data_dir, args.partition_method,
-                                                     args.partition_alpha, args.client_num_in_total,
-                                                     args.batch_size, logger)
-            # train_data_num, test_data_num, train_data_global, test_data_global, \
-            # train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            # class_num = load_partition_tiny(args.data_dir, args.partition_method,
-            #                                          args.partition_alpha, args.client_num_in_total,
-            #                                          args.batch_size, logger)
+            class_num = load_partition_cifar100(args.data_dir, args.partition_method,
+                                                args.partition_alpha, args.client_num_in_total,
+                                                args.batch_size, logger)
 
 
         elif dataset_name == "mnist":
             args.data_dir += "mnist"
             train_data_num, test_data_num, train_data_global, test_data_global, \
             train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            class_num = load_partition_data_mnist(args.data_dir, args.partition_method,
-                                                     args.partition_alpha, args.client_num_in_total,
-                                                     args.batch_size, logger)
-            # train_data_num, test_data_num, train_data_global, test_data_global, \
-            # train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            # class_num = load_partition_mnist(args.data_dir, args.partition_method,
-            #                                          args.partition_alpha, args.client_num_in_total,
-            #                                          args.batch_size, logger)
+            class_num = load_partition_mnist(args.data_dir, args.partition_method,
+                                             args.partition_alpha, args.client_num_in_total,
+                                             args.batch_size, logger)
 
     dataset = [train_data_num, test_data_num, train_data_global, test_data_global,
                train_data_local_num_dict, train_data_local_dict, test_data_local_dict, class_num]
     return dataset
 
 
-
-def create_model(args, model_name,class_num,logger):
+def create_model(args, model_name, class_num, logger):
     logger.info("create_model. model_name = %s" % (model_name))
     model = None
     if model_name == "lenet5":
@@ -167,16 +136,16 @@ def create_model(args, model_name,class_num,logger):
         model = cnn_cifar10()
     elif model_name == "cnn_cifar100":
         model = cnn_cifar100()
-    elif model_name =="resnet18" and args.dataset != 'tiny':
+    elif model_name == "resnet18" and args.dataset != 'tiny':
         model = customized_resnet18(class_num=class_num)
     elif model_name == "resnet18" and args.dataset == 'tiny':
         model = tiny_resnet18(class_num=class_num)
     elif model_name == "vgg11":
         model = vgg11(class_num)
     elif model_name == "cnn_mnist":
-        model =CNNMnist(args)
+        model = CNNMnist(args)
     elif model_name == "mlp_mnist":
-        model =MLP(28*28,64,10)
+        model = MLP(28 * 28, 64, 10)
     return model
 
 
@@ -193,8 +162,8 @@ if __name__ == "__main__":
     data_partition = args.partition_method
     if data_partition != "homo":
         data_partition += str(args.partition_alpha)
-    args.identity = "fedavg"  + "-"+data_partition
-    args. client_num_per_round = int(args.client_num_in_total* args.frac)
+    args.identity = "fedavg" + "-" + data_partition
+    args.client_num_per_round = int(args.client_num_in_total * args.frac)
     args.identity += "-mdl" + args.model
     args.identity += "-cm" + str(args.comm_round) + "-total_clnt" + str(args.client_num_in_total)
     args.identity += "-neighbor" + str(args.client_num_per_round)
@@ -209,9 +178,6 @@ if __name__ == "__main__":
     logger.info(device)
     logger.info("running at device{}".format(device))
 
-    # Set the random seed. The np.random seed determines the dataset partition.
-    # The torch_manual_seed determines the initial weight.
-    # We fix these two, so that we can reproduce the result.
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -222,7 +188,7 @@ if __name__ == "__main__":
     dataset = load_data(args, args.dataset)
 
     # create model.
-    model = create_model(args, model_name=args.model, class_num= len(dataset[-1][0]), logger = logger)
+    model = create_model(args, model_name=args.model, class_num=len(dataset[-1][0]), logger=logger)
     # print(model)
     model_trainer = custom_model_trainer(args, model, logger)
     logger.info(model)

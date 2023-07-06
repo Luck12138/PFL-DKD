@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# @FileName  :main_fedistill.py
+# @FileName  :main_pfldkd.py
 # @Time      :2022/11/5 15:14
 # @Author    :lucas
 import argparse
@@ -15,18 +15,14 @@ import copy
 from fedml_api.data_preprocessing.cifar10.load_data import load_partition_cifar10
 from fedml_api.data_preprocessing.cifar100.load_data import load_partition_cifar100
 from fedml_api.data_preprocessing.mnist.load_data import load_partition_mnist
-from fedml_api.data_preprocessing.mnist.data_loader import load_partition_data_mnist
-from fedml_api.data_preprocessing.tiny_imagenet.load_data import load_partition_tiny
 from fedml_api.model.cv.cnn_mnist import CNNMnist, MLP
-from fedml_api.standalone.fedistill.fedistill_api import FedistillAPI
-from fedml_api.standalone.fedistill.my_model_trainer import MyModelTrainer
+from fedml_api.model.cv.lenet5 import LeNet5
+from fedml_api.standalone.dfldkd.pfldkd_api import FedistillAPI
+from fedml_api.standalone.dfldkd.my_model_trainer import MyModelTrainer
 
-sys.path.insert(0, os.path.abspath("/Date/FL/DisPFL-master/"))
+sys.path.insert(0, os.path.abspath("/Date/FL/PFL-DKD/"))
 # sys.path.insert(0, os.path.abspath("/home/featurize/"))
 from fedml_api.model.cv.vgg import vgg11
-from fedml_api.data_preprocessing.cifar10.data_loader import load_partition_data_cifar10
-from fedml_api.data_preprocessing.cifar100.data_loader import load_partition_data_cifar100
-from fedml_api.data_preprocessing.tiny_imagenet.data_loader import load_partition_data_tiny
 from fedml_api.model.cv.resnet import customized_resnet18, tiny_resnet18
 from fedml_api.model.cv.cnn_cifar10 import cnn_cifar10, cnn_cifar100
 
@@ -57,13 +53,8 @@ def add_args(parser):
     parser.add_argument('--momentum', type=float, default=0, metavar='N',
                         help='momentum')
 
-    parser.add_argument('--data_dir', type=str, default='/Date/FL/DisPFL-master/data/',
+    parser.add_argument('--data_dir', type=str, default='/Date/FL/PFL-DKD/data/',
                         help='data directory, please feel free to change the directory to the right place')
-
-    # parser.add_argument('--data_dir', type=str, default='/home/featurize/data/',
-    #                     help='data directory, please feel free to change the directory to the right place')
-
-
 
     parser.add_argument('--partition_method', type=str, default='dir', metavar='N',
                         help="current supporting three types of data partition, one called 'dir' short for Dirichlet"
@@ -128,10 +119,6 @@ def add_args(parser):
 def load_data(args, dataset_name):
     if dataset_name == "cifar10":
         args.data_dir += "cifar10"
-        # train_data_num, test_data_num, train_data_global, test_data_global, \
-        # train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-        # class_num = load_partition_data_cifar10(args.data_dir, args.partition_method,
-        #                         args.partition_alpha, args.client_num_in_total, args.batch_size, logger)
         train_data_num, test_data_num, train_data_global, test_data_global, \
         train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
         class_num = load_partition_cifar10(args.data_dir, args.partition_method,
@@ -139,41 +126,19 @@ def load_data(args, dataset_name):
     else:
         if dataset_name == "cifar100":
             args.data_dir += "cifar100"
-            # train_data_num, test_data_num, train_data_global, test_data_global, \
-            # train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            # class_num = load_partition_data_cifar100(args.data_dir, args.partition_method,
-            #                                          args.partition_alpha, args.client_num_in_total,
-            #                                          args.batch_size, logger)
-            #
             train_data_num, test_data_num, train_data_global, test_data_global, \
             train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
             class_num = load_partition_cifar100(args.data_dir, args.partition_method,
-                                                     args.partition_alpha, args.client_num_in_total,
-                                                     args.batch_size, logger)
-        elif dataset_name == "tiny":
-            args.data_dir += "tiny_imagenet"
-            # train_data_num, test_data_num, train_data_global, test_data_global, \
-            # train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            # class_num = load_partition_data_tiny(args.data_dir, args.partition_method,
-            #                                      args.partition_alpha, args.client_num_in_total,
-            #                                      args.batch_size, logger)
-            train_data_num, test_data_num, train_data_global, test_data_global, \
-            train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            class_num = load_partition_tiny(args.data_dir, args.partition_method,
-                                                     args.partition_alpha, args.client_num_in_total,
-                                                     args.batch_size, logger)
+                                                args.partition_alpha, args.client_num_in_total,
+                                                args.batch_size, logger)
         elif dataset_name == "mnist":
             args.data_dir += "mnist"
-            # train_data_num, test_data_num, train_data_global, test_data_global, \
-            # train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
-            # class_num = load_partition_data_mnist(args.data_dir, args.partition_method,
-            #                                          args.partition_alpha, args.client_num_in_total,
-            #                                          args.batch_size, logger)
+
             train_data_num, test_data_num, train_data_global, test_data_global, \
             train_data_local_num_dict, train_data_local_dict, test_data_local_dict, \
             class_num = load_partition_mnist(args.data_dir, args.partition_method,
-                                                     args.partition_alpha, args.client_num_in_total,
-                                                     args.batch_size, logger)
+                                             args.partition_alpha, args.client_num_in_total,
+                                             args.batch_size, logger)
     dataset = [train_data_num, test_data_num, train_data_global, test_data_global,
                train_data_local_num_dict, train_data_local_dict, test_data_local_dict, class_num]
     return dataset
@@ -195,9 +160,9 @@ def create_model(args, model_name, class_num, logger):
     elif model_name == "vgg11":
         model = vgg11(class_num)
     elif model_name == "cnn_mnist":
-        model =CNNMnist(args)
+        model = CNNMnist(args)
     elif model_name == "mlp_mnist":
-        model =MLP(28*28,64,10)
+        model = MLP(28 * 28, 64, 10)
     return model
 
 
@@ -209,12 +174,11 @@ if __name__ == "__main__":
 
     parser = add_args(argparse.ArgumentParser(description='Fedistill-standalone'))
     args = parser.parse_args()
-    # print("torch version{}".format(torch.__version__))
 
     data_partition = args.partition_method
     if data_partition != "homo":
         data_partition += str(args.partition_alpha)
-    args.identity = "fedistill" + "-" + data_partition
+    args.identity = "pfldkd" + "-" + data_partition
     args.client_num_per_round = int(args.client_num_in_total * args.frac)
     args.identity += "-mdl" + args.model
     args.identity += "-cm" + str(args.comm_round) + "-total_clnt" + str(args.client_num_in_total)
@@ -233,9 +197,6 @@ if __name__ == "__main__":
     logger.info(device)
     logger.info("running at device{}".format(device))
 
-    # Set the random seed. The np.random seed determines the dataset partition.
-    # The torch_manual_seed determines the initial weight.
-    # We fix these two, so that we can reproduce the result.
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)

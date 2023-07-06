@@ -1,8 +1,8 @@
 # PFL-DKD
 This repository contains the official implementation for the manuscript:
-> [On Exploring and Exploiting Knowledge Fusion and Distillation for Improving Personalized Federated Learining](null)
+> [Modeling Knowledge Fusion with Distillation for Improving Personalized Federated Learning](null)
 
-Personalized federated learning (PFL) develops a customized model for each local client to mitigate accuracy issues caused by data and system heterogeneity of different local clients. Most works on PFL adopt a centralized federation and therefore suffer from single-point failures or malicious attacks at the global server. In addition, due to system heterogeneity, such as different computing capabilities of local clients, the computational and storage constraints vary significantly among local clients, which limits the centralized model aggregation considerably. To tackle the issues mentioned above, we propose a personalized federated learning (PFL) and an extension of it, referred to as PFL-DKD and PFL-FDKD, by integrating decoupled knowledge distillation (DKD) into FL for personalization. In PFL-DKD, multiple local clients are in a dynamically connected topology, and the local clients are divided into clients with different knowledge based on computational and storage capabilities. Local clients transfer learnings from knowledge-rich clients to knowledgepoor clients using decoupled knowledge distillation in a peer-topeer convergent manner. In PFL-FDKD, we extend the proposed algorithm with fusion where the knowledge of all neighbors is aggregated into the teacher logit. Comprehensive experiments demonstrate that our proposed methods outperforms centralized and decentralized FL baselines while significantly mitigating the challenges of heterogeneous data and system.
+Personalized federated learning (PFL) develops a customized model for each local client to mitigate  accuracy issues caused by data and system heterogeneity of different local clients. Most works on PFL adopt a centralized federation and therefore suffer from single-point failures or malicious attacks at the global server. In addition,  due to system heterogeneity, such as different computing capabilities of local clients, the computational and storage constraints vary significantly among local clients, which limits the centralized model aggregation considerably. To tackle the issues mentioned above, we propose a personalized federated learning (PFL) and an extension of it, referred to as PFL-DKD and PFL-FDKD, by integrating decoupled knowledge distillation (DKD) into FL for personalization. In PFL-DKD, multiple local clients are in a dynamically connected topology, and the local clients are divided into clients with different knowledge based on computational and storage capabilities. Local clients transfer learnings from knowledge-rich clients to knowledge-poor clients using decoupled knowledge distillation in a peer-to-peer convergent manner. In PFL-FDKD, we extend the proposed algorithm with fusion where the knowledge of all neighbors is aggregated into the teacher logit. Comprehensive experiments demonstrate that our proposed methods outperforms centralized and decentralized FL baselines while significantly mitigating the challenges of heterogeneous data and system.
 
 # Experiments
 The implementations of each method are provided in the folder `/fedml_api/standalone`, while experiments are provided in the folder `/fedml_experiments/standalone`.
@@ -11,8 +11,7 @@ The implementations of each method are provided in the folder `/fedml_api/standa
 Use dataset corresponding bash file to run the experiments.
 
 ```
-cd /fedml_experiments/standalone/Fedistill
-sh cifar10.sh
+cd /fedml_experiments/standalone/pfldkd
 ```
 
 <!-- # Citation

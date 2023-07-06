@@ -56,6 +56,7 @@ def record_net_data_stats(y_train, net_dataidx_map):
                 tmp.append(0)
         net_cls_counts.append (tmp)
     return net_cls_counts
+
 def partition_data_diff_count(datadir, partition, n_nets, alpha, logger):
     logger.info("*********partition data***************")
     X_train, y_train, X_test, y_test = load_mnist_data(datadir)
@@ -63,12 +64,7 @@ def partition_data_diff_count(datadir, partition, n_nets, alpha, logger):
 
     n_client = n_nets
     n_cls = 5
-    rate = [0.5, 0.5, 0.5, 0.5, 0.5]
-    # rate = [1, 0.3, 0.5, 0.7, 0.9]
-    # rate = [0.05,0.001]
-    # rate = [1, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
-    # rate = [0.001, 0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009]
-
+    rate = [1, 0.3, 0.5, 0.7, 0.9]
     all_idxs = [i for i in range(len(y_train))]
     # clnt_data_list = [int(len(y_train)*rate[i%10]) for i in range(n_client)]
     for i in range(n_client):
@@ -115,8 +111,6 @@ def load_partition_mnist( data_dir, partition_method, partition_alpha, client_nu
     train_data_local_dict = dict()
     test_data_local_dict = dict()
     transform_train, transform_test = _data_transforms_mnist()
-    # cache_train_data_set=MNIST(data_dir, train=True, transform=transform_train, download=False)
-    # cache_test_data_set = MNIST(data_dir, train=False, transform=transform_test, download=False)
     cache_train_data_set=FashionMNIST(data_dir, train=True, transform=transform_train, download=False)
     cache_test_data_set = FashionMNIST(data_dir, train=False, transform=transform_test, download=False)
 
