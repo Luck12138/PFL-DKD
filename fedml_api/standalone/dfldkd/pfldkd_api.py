@@ -2,7 +2,7 @@
 # @FileName  :fedistill_api.py
 # @Time      :2022/11/6 10:47
 # @Author    :lucas
-from fedml_api.standalone.fedistill.client import Client
+from fedml_api.standalone.dfldkd.client import Client
 import copy
 import numpy as np
 

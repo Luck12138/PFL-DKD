@@ -1,4 +1,0 @@
-Namespace(batch_size=128, ci=0, client_num_in_total=5, client_num_per_round=5, client_optimizer='sgd', comm_round=100, data_dir='/Date/FL/DisPFL-master/data/', dataset='mnist', epochs=5, frac=1.0, frequency_of_the_test=1, gpu=0, identity='fedavg-dir0.3-mdlcnn_mnist-cm100-total_clnt5-neighbor5-seed1118', lr=0.1, lr_decay=0.998, model='cnn_mnist', momentum=0, partition_alpha=0.3, partition_method='dir', seed=1118, tag='test', wd=0.0005)
-cuda:0
-running at devicecuda:0
-*********partition data***************
