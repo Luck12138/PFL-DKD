@@ -7,7 +7,6 @@ Personalized federated learning (PFL) develops a customized model for each local
 # Experiments
 The implementations of each method are provided in the folder `/fedml_api/standalone`, while experiments are provided in the folder `/fedml_experiments/standalone`.
 
-
 Use dataset corresponding bash file to run the experiments.
 
 ```
