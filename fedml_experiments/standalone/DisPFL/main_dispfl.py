@@ -7,7 +7,6 @@ import pdb
 import numpy as np
 import torch
 
-
 # sys.path.insert(0, os.path.abspath(os.path.join(os.getcwd(), "../../../")))
 from fedml_api.data_preprocessing.cifar10.load_data import load_partition_cifar10
 from fedml_api.data_preprocessing.cifar100.load_data import load_partition_cifar100
