@@ -1,6 +1,5 @@
 import torch
 
-
 def vectorize_weight(state_dict):
     weight_list = []
     for (k, v) in state_dict.items():
