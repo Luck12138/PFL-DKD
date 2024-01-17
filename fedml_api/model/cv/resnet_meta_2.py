@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as F
 
+
 stage_repeat = [2, 2, 2]
 
 channel_scale = []
